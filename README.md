@@ -76,3 +76,8 @@
 - i18nに対応させ、将来性を見据えた多言語化への対応
 - sorcery等のGemを利用したユーザー機能実装の簡略化
 - ajax化することでよりスムーズなサービスの利用体験の実現
+
+# 画面遷移図
+MVPリリースまでに必要な最低限の機能を遷移図にしています。
+<br>
+https://www.figma.com/design/3bjsOa8nyyGksM4QTVnIXz/240930_similar-songs?node-id=1-2&t=I00VkG1r1UnokXIS-1
