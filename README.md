@@ -68,7 +68,7 @@ https://www.figma.com/design/3bjsOa8nyyGksM4QTVnIXz/240930_similar-songs?node-id
 
 # ER図
 MVPリリースまでに必要な最低限の機能のER図になります。
-[![Image from Gyazo](https://i.gyazo.com/4d168abe61121dab0a37d4a3c5238156.png)](https://gyazo.com/4d168abe61121dab0a37d4a3c5238156)
+[![Image from Gyazo](https://i.gyazo.com/8b89c1a36e518e05bb4f22804e32ba40.png)](https://gyazo.com/8b89c1a36e518e05bb4f22804e32ba40)
 ### 各テーブルについて
 - users: ユーザーの基本データを格納
 - profiles: ユーザーの詳細プロフィールなどを格納 *1
