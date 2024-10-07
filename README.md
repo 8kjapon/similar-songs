@@ -68,14 +68,13 @@ https://www.figma.com/design/3bjsOa8nyyGksM4QTVnIXz/240930_similar-songs?node-id
 
 # ER図
 MVPリリースまでに必要な最低限の機能のER図になります。
-[![Image from Gyazo](https://i.gyazo.com/8b89c1a36e518e05bb4f22804e32ba40.png)](https://gyazo.com/8b89c1a36e518e05bb4f22804e32ba40)
+[![Image from Gyazo](https://i.gyazo.com/dfa5d15e9118a423d3c4c31b566e63f6.png)](https://gyazo.com/dfa5d15e9118a423d3c4c31b566e63f6)
 ### 各テーブルについて
 - users: ユーザーの基本データを格納
 - songs: 各曲の基本データを格納
 - artists: 各アーティストの基本データを格納
 - song_artists: 各曲とアーティストを紐づけ
-- song_combinations: 似てる曲同士を紐づけ
-- song_descriptions: 似てる曲の詳細ページで表示する各曲の説明をそれぞれ格納
-- categories: 『メロディー』、『ジャンル・スタイル』、『サンプリング』のそれぞれのカテゴリーを格納 *1
+- song_pairs: 似てる曲同士を紐づけ
+- similarity_categories: 『メロディー』、『ジャンル・スタイル』、『サンプリング』のそれぞれのカテゴリーを格納 *1
 
 *1 今後カテゴリーが増えることを考え、enum等で扱えるステータスとしてではなく拡張性のある外部テーブルとして分離。
