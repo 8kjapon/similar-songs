@@ -1,1 +1,85 @@
 // Entry point for your Sass build
+body {
+    background-color: #313338;
+    width: 100;
+}
+
+main {
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+footer {
+    height: 120px;
+    background-color: #1E1F22;
+}
+
+.navbar {
+    height: 60px;
+    background-color: #1E1F22;
+}
+
+.main-area {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    max-width: 1200px;
+}
+
+.header-image {
+    height: 350px;
+    background: url('cover.jpg') center / cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+        color: #FF7171;
+    }
+}
+
+.song-block {
+    background-color: #fff;
+    color: #000;
+    height: 75px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.song-jacket {
+    border-radius: 7px 0px 0px 7px;
+    width: 75px;
+    height: 75px;
+    background-color: #FF7171;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.song-title {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    h3, p {
+        margin: 0px;
+    }
+}
+
+.song-category {
+    margin-right: 10px;
+}
+
+.more-button {
+    margin-left: auto;
+    margin-right: auto;
+    height: 60px;
+    width: 30%;
+    background-color: #FF7171;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+}

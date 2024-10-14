@@ -1,0 +1,42 @@
+<main class="main-area">
+  <div>
+    <h1>最近登録された曲</h1>
+    <div>
+      <% 5.times do %>
+        <div class="song-block d-flex justify-content-between">
+          <div class="song-jacket d-flex align-items-center justify-content-center text-center">jacket</div>
+          <div class="song-title">
+            <h3><%= link_to "アーティスト名 - 曲名", "#" %></h3>
+            <p>→似てる曲: <%= link_to "アーティスト名 - 曲名", "#" %></p>
+          </div>
+          <div class="song-category ms-auto">
+            <%= link_to "カテゴリー: メロディー", "#"%>
+          </div>
+        </div>
+      <% end %>
+      <div class="more-button d-flex align-items-center justify-content-center text-center">
+        <%= link_to "もっと見る", "#" %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1>人気曲</h1>
+    <div>
+      <% 5.times do %>
+        <div class="song-block d-flex justify-content-between">
+          <div class="song-jacket d-flex align-items-center justify-content-center text-center">jacket</div>
+          <div class="song-title">
+            <h3><%= link_to "アーティスト名 - 曲名", "#" %></h3>
+            <p>→似てる曲: <%= link_to "アーティスト名 - 曲名", "#" %></p>
+          </div>
+          <div class="song-category ms-auto">
+            <%= link_to "カテゴリー: メロディー", "#"%>
+          </div>
+        </div>
+      <% end %>
+      <div class="more-button d-flex align-items-center justify-content-center text-center">
+        <%= link_to "もっと見る", "#" %>
+      </div>
+    </div>
+  </div>
+</main>
