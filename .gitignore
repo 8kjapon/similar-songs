@@ -38,3 +38,4 @@
 /memo.md
 /.env
 /config/credentials
+/config/credentials.yml.enc
