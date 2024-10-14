@@ -1,13 +1,13 @@
-<footer class="text-white mt-auto">
-  <div class="main-area">
-    <div>
-      <%= link_to 'musim', '/' %>
+<footer class="text-white mt-auto py-4">
+  <div class="container main-area">
+    <div class="d-flex justify-content-between mb-3">
+      <%= link_to 'musim', '/', class: 'text-white' %>
     </div>
-    <div>
-      <%= link_to '開発者', '#' %>
-      <%= link_to 'お問い合わせ', '#' %>
-      <%= link_to '利用規約', '#' %>
-      <%= link_to 'プライバシーポリシー', '#' %>
+    <div class="d-flex flex-column flex-md-row">
+      <%= link_to '開発者', 'https://8kjapon.com', class: 'text-white me-md-3 mb-2 mb-md-0' %>
+      <%= link_to 'お問い合わせ', '#', class: 'text-white me-md-3 mb-2 mb-md-0' %>
+      <%= link_to '利用規約', '#', class: 'text-white me-md-3 mb-2 mb-md-0' %>
+      <%= link_to 'プライバシーポリシー', '#', class: 'text-white' %>
     </div>
   </div>
 </footer>
