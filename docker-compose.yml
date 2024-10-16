@@ -27,6 +27,16 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+  solargraph:
+    build: .
+    command: bash -c "bundle exec solargraph socket -b '0.0.0.0' -p 7658"
+    environment:
+      - BUNDLE_PATH=/gems
+    ports:
+      - 7658:7658
+    volumes:
+      - .:/similar-songs
 volumes:
   mysql_data:
   bundle_data:
