@@ -74,4 +74,8 @@ group :test do
 
 end
 
+# 追加分
+
 gem "dotenv-rails"
+
+gem "sorcery"
