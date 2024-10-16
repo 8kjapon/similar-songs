@@ -30,7 +30,7 @@ services:
 
   solargraph:
     build: .
-    command: bash -c "bundle exec solargraph socket -b '0.0.0.0' -p 7658"
+    command: bash -c "bundle install && bundle exec solargraph socket --host=0.0.0.0 --port=7658"
     environment:
       - BUNDLE_PATH=/gems
     ports:
