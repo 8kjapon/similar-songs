@@ -1,0 +1,14 @@
+<h1 class="text-center mb-4">ログイン</h1>
+<%= form_with url: login_path, local: true, class: "form-signin" do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", placeholder: "メールアドレスを入力", autofocus: true %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control", placeholder: "パスワードを入力" %>
+  </div>
+  <div class="d-grid">
+    <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
