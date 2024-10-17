@@ -1,0 +1,2 @@
+class SimilarityCategory < ApplicationRecord
+end
