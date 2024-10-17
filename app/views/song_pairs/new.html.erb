@@ -1,0 +1,69 @@
+<h1>楽曲を登録</h1>
+<%= form_with model: @song_pair, local: true do |f| %>
+  <h3>曲1の情報</h3>
+  <div>
+    <%= f.fields_for :original_song_attributes do |song1_form| %>
+      <div class="mb-3">
+        <%= song1_form.label :title, "曲名" %>
+        <%= song1_form.text_field :title, data: { action: "input->autocomplete#search", target: "autocomplete.input" } %>
+      </div>
+      <div class="mb-3">
+        <%= song1_form.label :release_date, "リリース年" %>
+        <%= song1_form.date_field :release_date %>
+      </div>
+      <div class="mb-3">
+        <%= song1_form.label :media_url, "メディアURL" %>
+        <%= song1_form.text_field :media_url %>
+      </div>
+    <% end %>
+
+    <%= f.fields_for :original_song_artist_attributes do |artist1_form| %>
+      <div class="mb-3">
+        <%= artist1_form.label :name, "アーティスト名" %>
+        <%= artist1_form.text_field :name, data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input" } %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= f.label :original_song_description, "曲1の説明" %>
+      <%= f.text_area :original_song_description %>
+    </div>
+  </div>
+
+  <h3>曲2の情報</h3>
+  <div>
+    <%= f.fields_for :similar_song_attributes do |song2_form| %>
+      <div class="mb-3">
+        <%= song2_form.label :title, "曲名" %>
+        <%= song2_form.text_field :title, data: { action: "input->autocomplete#search", target: "autocomplete.input" } %>
+      </div>
+      <div class="mb-3">
+        <%= song2_form.label :release_date, "リリース年" %>
+        <%= song2_form.date_field :release_date %>
+      </div>
+      <div class="mb-3">
+        <%= song2_form.label :media_url, "メディアURL" %>
+        <%= song2_form.text_field :media_url %>
+      </div>
+    <% end %>
+
+    <%= f.fields_for :similar_song_artist_attributes do |artist2_form| %>
+      <div class="mb-3">
+        <%= artist2_form.label :name, "アーティスト名" %>
+        <%= artist2_form.text_field :name, data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input" } %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= f.label :similar_song_description, "曲2の説明" %>
+      <%= f.text_area :similar_song_description %>
+    </div>
+  </div>
+
+  <h3>カテゴリーの情報</h3>
+  <div class="mb-3">
+    <%# <%= f.collection_select :similarity_category_id, @categories, :id, :name %> %>
+  </div>
+
+  <%= f.submit "保存" %>
+<% end %>
