@@ -3,7 +3,7 @@ class CreateSongs < ActiveRecord::Migration[7.0]
     create_table :songs do |t|
       t.string :title, null: false
       t.date :release_date
-      t.str :media_url, null: false
+      t.string :media_url, null: false
 
       t.timestamps
 
