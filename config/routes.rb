@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   resources :songs, only: [:show]
   resources :song_pairs, only: [:index, :new, :create, :show]
+  get 'songs/autocomplete', to: 'songs#autocomplete'
+  get 'artists/autocomplete', to: 'artists#autocomplete'
 end

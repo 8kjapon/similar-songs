@@ -1,69 +1,72 @@
-<h1>楽曲を登録</h1>
-<%= form_with model: @song_pair, local: true do |f| %>
-  <h3>曲1の情報</h3>
+<h1 class="text-center mb-4">楽曲を登録</h1>
+<%= form_with model: @song_pair, local: true, class: "form-signin" do |f| %>
+  <h3 class="text-center mb-4">曲1の情報</h3>
   <div>
-    <%= f.fields_for :original_song_attributes do |song1_form| %>
+    <%= f.fields_for :original_song do |song1_form| %>
       <div class="mb-3">
-        <%= song1_form.label :title, "曲名" %>
-        <%= song1_form.text_field :title, data: { action: "input->autocomplete#search", target: "autocomplete.input" } %>
+        <%= song1_form.label :title, "曲名", class: "form-label" %>
+        <%= song1_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.input", autocompleteTarget: "songList1" } %>
+        <ul data-autocomplete-target="songList1" class="autocomplete-list"></ul>
       </div>
       <div class="mb-3">
-        <%= song1_form.label :release_date, "リリース年" %>
-        <%= song1_form.date_field :release_date %>
+        <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
+        <%= song1_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
       </div>
       <div class="mb-3">
-        <%= song1_form.label :media_url, "メディアURL" %>
-        <%= song1_form.text_field :media_url %>
+        <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
+        <%= song1_form.text_field :media_url, class: "form-control" %>
       </div>
-    <% end %>
-
-    <%= f.fields_for :original_song_artist_attributes do |artist1_form| %>
-      <div class="mb-3">
-        <%= artist1_form.label :name, "アーティスト名" %>
-        <%= artist1_form.text_field :name, data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input" } %>
-      </div>
+      <%= song1_form.fields_for :artists do |artist1_form| %>
+        <div class="mb-3">
+          <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
+          <%= artist1_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input", autocompleteTarget: "artistList1" } %>
+          <ul data-autocomplete-target="artistList1" class="autocomplete-list"></ul>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="mb-3">
-      <%= f.label :original_song_description, "曲1の説明" %>
-      <%= f.text_area :original_song_description %>
+      <%= f.label :original_song_description, "曲1の説明", class: "form-label" %>
+      <%= f.text_area :original_song_description, class: "form-control" %>
     </div>
   </div>
 
-  <h3>曲2の情報</h3>
+  <h3 class="text-center mb-4">曲2の情報</h3>
   <div>
-    <%= f.fields_for :similar_song_attributes do |song2_form| %>
+    <%= f.fields_for :similar_song do |song2_form| %>
       <div class="mb-3">
-        <%= song2_form.label :title, "曲名" %>
-        <%= song2_form.text_field :title, data: { action: "input->autocomplete#search", target: "autocomplete.input" } %>
+        <%= song2_form.label :title, "曲名", class: "form-label" %>
+        <%= song2_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.input", autocompleteTarget: "songList2" } %>
+        <ul data-autocomplete-target="songList2" class="autocomplete-list"></ul>
       </div>
       <div class="mb-3">
-        <%= song2_form.label :release_date, "リリース年" %>
-        <%= song2_form.date_field :release_date %>
+        <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
+        <%= song2_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
       </div>
       <div class="mb-3">
-        <%= song2_form.label :media_url, "メディアURL" %>
-        <%= song2_form.text_field :media_url %>
+        <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
+        <%= song2_form.text_field :media_url, class: "form-control" %>
       </div>
-    <% end %>
-
-    <%= f.fields_for :similar_song_artist_attributes do |artist2_form| %>
-      <div class="mb-3">
-        <%= artist2_form.label :name, "アーティスト名" %>
-        <%= artist2_form.text_field :name, data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input" } %>
-      </div>
+      <%= song2_form.fields_for :artists do |artist2_form| %>
+        <div class="mb-3">
+          <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
+          <%= artist2_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.input", autocompleteTarget: "artistList2" } %>
+          <ul data-autocomplete-target="artistList2" class="autocomplete-list"></ul>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="mb-3">
-      <%= f.label :similar_song_description, "曲2の説明" %>
-      <%= f.text_area :similar_song_description %>
+      <%= f.label :similar_song_description, "曲2の説明", class: "form-label" %>
+      <%= f.text_area :similar_song_description, class: "form-control" %>
     </div>
   </div>
 
-  <h3>カテゴリーの情報</h3>
+  <h3 class="text-center mb-4">カテゴリーの情報</h3>
   <div class="mb-3">
-    <%# <%= f.collection_select :similarity_category_id, @categories, :id, :name %> %>
+    <%= f.collection_select :similarity_category_id, @categories, :id, :name %>
   </div>
-
-  <%= f.submit "保存" %>
+  <div class="d-grid">
+    <%= f.submit "保存", class: "btn btn-primary btn-block" %>
+  </div>
 <% end %>

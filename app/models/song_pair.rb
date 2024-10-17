@@ -8,5 +8,13 @@ class SongPair < ApplicationRecord
   validates :original_song_description, presence: true
   validates :similar_song_description, presence: true
 
-  # def add_song(songs)
+  accepts_nested_attributes_for :original_song
+  accepts_nested_attributes_for :similar_song
+
+  def add_song(song_attributes)
+    song = Song.find_or_initialize_by(title: song_attributes[:title])
+    song.artists.build if song.artists.empty?
+    song.update!(song_attributes)
+    return song
+  end
 end

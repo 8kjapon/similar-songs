@@ -5,4 +5,6 @@ class Song < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :media_url, presence: true
+
+  accepts_nested_attributes_for :artists
 end
