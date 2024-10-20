@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
-  def show; end
+  def show
+    @song = Song.find(params[:id])
+  end
 
   def autocomplete
     songs = Song.where("title LIKE ?", "%#{params[:query]}%").limit(10)

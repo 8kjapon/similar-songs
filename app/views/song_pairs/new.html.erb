@@ -8,14 +8,6 @@
         <%= song1_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.input", autocompleteTarget: "songList1" } %>
         <ul data-autocomplete-target="songList1" class="autocomplete-list"></ul>
       </div>
-      <div class="mb-3">
-        <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
-        <%= song1_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
-      </div>
-      <div class="mb-3">
-        <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
-        <%= song1_form.text_field :media_url, class: "form-control" %>
-      </div>
       <%= song1_form.fields_for :artists do |artist1_form| %>
         <div class="mb-3">
           <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
@@ -23,6 +15,18 @@
           <ul data-autocomplete-target="artistList1" class="autocomplete-list"></ul>
         </div>
       <% end %>
+      <div class="mb-3">
+        <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
+        <%= song1_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
+      </div>
+      <div class="mb-3">
+        <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
+        <%= song1_form.text_field :media_url, class: "form-control", id: "media_url_1" %>
+        <p>YouTubeに対応しています。</p>
+      </div>
+      <div class="mb-3">
+        <div id="media_player_1"></div>
+      </div>
     <% end %>
 
     <div class="mb-3">
@@ -39,14 +43,6 @@
         <%= song2_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.input", autocompleteTarget: "songList2" } %>
         <ul data-autocomplete-target="songList2" class="autocomplete-list"></ul>
       </div>
-      <div class="mb-3">
-        <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
-        <%= song2_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
-      </div>
-      <div class="mb-3">
-        <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
-        <%= song2_form.text_field :media_url, class: "form-control" %>
-      </div>
       <%= song2_form.fields_for :artists do |artist2_form| %>
         <div class="mb-3">
           <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
@@ -54,6 +50,18 @@
           <ul data-autocomplete-target="artistList2" class="autocomplete-list"></ul>
         </div>
       <% end %>
+      <div class="mb-3">
+        <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
+        <%= song2_form.number_field :release_date, class: "form-control", data: { field: 'year' } %>
+      </div>
+      <div class="mb-3">
+        <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
+        <%= song2_form.text_field :media_url, class: "form-control", id: "media_url_2" %>
+        <p>YouTubeに対応しています。</p>
+      </div>
+      <div class="mb-3">
+        <div id="media_player_2"></div>
+      </div>
     <% end %>
 
     <div class="mb-3">
