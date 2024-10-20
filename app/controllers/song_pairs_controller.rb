@@ -10,8 +10,8 @@ class SongPairsController < ApplicationController
     @song_pair.build_original_song
     @song_pair.build_similar_song
 
-    @song_pair.original_song.artists.build
-    @song_pair.similar_song.artists.build
+    @song_pair.original_song.artists.build if @song_pair.original_song.artists.blank?
+    @song_pair.similar_song.artists.build if @song_pair.similar_song.artists.blank?
 
     @categories = SimilarityCategory.all
   end
@@ -31,14 +31,14 @@ class SongPairsController < ApplicationController
       @song_pair.similar_song = similar_song
       @song_pair.user = current_user
 
-      @song_pair.save!
+      if @song_pair.save
+        redirect_to @song_pair, notice: '曲のペアが登録されました'
+      else
+        @categories = SimilarityCategory.all
+        flash[:alert] = "入力に誤りがあります"
+        render :new, status: :unprocessable_entity
+      end
     end
-
-    redirect_to @song_pair, notice: '曲のペアが登録されました'
-  rescue ActiveRecord::RecordInvalid
-    @categories = SimilarityCategory.all
-    flash[:alert] = "入力に誤りがあります"
-    render :new, status: :unprocessable_entity
   end
 
   def show

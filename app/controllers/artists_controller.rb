@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def autocomplete
-    artists = Artist.where("name LIKE ?", "%#{params[:query]}%").limit(10)
+    query = "%#{params[:query]}%"
+    artists = Artist.where("name LIKE ?", query).limit(10)
     render json: artists.pluck(:name)
   end
 end

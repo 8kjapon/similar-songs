@@ -11,18 +11,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const mediaPlayer = document.getElementById(playerId);
 
     if (mediaUrlField && mediaPlayer) {
+      updateMediaPlayer(mediaUrlField.value, mediaPlayer)
+
       mediaUrlField.addEventListener('input', () => {
-        const url = mediaUrlField.value;
-        const mediaId = extractMediaId(url);
-        
-        if (mediaId) {
-          const embedUrl = `https://www.youtube.com/embed/${mediaId}`;
-          const iframeHtml = `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-          mediaPlayer.innerHTML = iframeHtml;
-        } else {
-          mediaPlayer.innerHTML = '';
-        }
+        updateMediaPlayer(mediaUrlField.value, mediaPlayer)
       });
+
+      mediaUrlField.addEventListener('change', () => {
+        updateMediaPlayer(mediaUrlField.value, mediaPlayer)
+      });
+
+      // 値が自動で入力されてもチェックできるように定期的に監視
+      let previousValue = mediaUrlField.value;
+      setInterval(() => {
+        if (mediaUrlField.value !== previousValue) {
+          previousValue = mediaUrlField.value;
+          updateMediaPlayer(mediaUrlField.value, mediaPlayer)
+        }
+      }, 1000);  // 1秒ごとにチェック
+    }
+  }
+
+  function updateMediaPlayer(url, playerElement) {
+    const mediaId = extractMediaId(url);
+
+    if (mediaId) {
+      const embedUrl = `https://www.youtube.com/embed/${mediaId}`;
+      const iframeHtml = `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      playerElement.innerHTML = iframeHtml;
+    } else {
+      playerElement.innerHTML = '';
     }
   }
 

@@ -14,7 +14,7 @@ class SongPair < ApplicationRecord
   def add_song(song_attributes)
     # 曲の保存
     song = Song.find_or_initialize_by(title: song_attributes[:title])
-    song.update!(song_attributes)
+    song.update!(song_attributes.except(:artists_attributes))
 
     # アーティストの保存
     song_attributes[:artists_attributes].each do |_, artist_attributes|

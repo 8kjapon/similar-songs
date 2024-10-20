@@ -1,5 +1,25 @@
 <h1 class="text-center mb-4">楽曲情報</h1>
 <div class="mb-4">
-  <p><%= @song.title %></p>
-  <p><%= @song.artists %></p>
+  <h3><%= @song.title %></h3>
+  <p>アーティスト名: 
+    <% @song.artists.each do |artist| %>
+      <%= artist.name %>
+    <% end %>
+  </p>
+  <p>リリース年: <%= @song.release_date %></p>
+  <% if @song.media_url_id.present? %>
+    <iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @song.media_url_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <% else %>
+    <p>YouTubeの動画が見つかりません。</p>
+  <% end %>
+</div>
+<div>
+  <h4>この曲とメロディーが似てる曲</h4>
+  <% @song.pair_song_list(1) %>
+</div>
+<div>
+  <h4>この曲とジャンル・スタイルが似てる曲</h4>
+</div>
+<div>
+  <h4>この曲がサンプリングしてる・されてる曲</h4>
 </div>

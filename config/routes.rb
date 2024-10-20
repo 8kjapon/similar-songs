@@ -11,8 +11,15 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :songs, only: [:show]
+  resources :songs, only: [:show] do
+    collection do
+      get 'autocomplete'
+    end
+  end
   resources :song_pairs, only: [:index, :new, :create, :show]
-  get 'songs/autocomplete', to: 'songs#autocomplete'
-  get 'artists/autocomplete', to: 'artists#autocomplete'
+  resources :artists, only: [] do
+    collection do
+      get 'autocomplete'
+    end
+  end
 end
