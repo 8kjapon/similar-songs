@@ -68,6 +68,8 @@ group :development do
 
   #追加分
   gem "solargraph"
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :test do

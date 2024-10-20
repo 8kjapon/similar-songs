@@ -41,11 +41,13 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
   <body class="d-flex flex-column min-vh-100">
+
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
+    <%= render 'shared/flash_message' %>
     <main class="main-area container py-5">
       <%= yield %>
     </main>
