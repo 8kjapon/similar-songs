@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  has_many :song_pairs
 
   validates :name, presence: true, length: {minimum:3, maximum:255}
   validates :email, presence: true, uniqueness: true

@@ -65,6 +65,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  #追加分
+  gem "solargraph"
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :test do

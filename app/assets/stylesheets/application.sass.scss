@@ -6,6 +6,10 @@
     p {
         font-size: 0.5rem;
     }
+    iframe {
+        width: 320px;
+        height: 180px;
+    }
 }
 
 body {
@@ -90,4 +94,8 @@ footer {
     border-radius: 7px;
     justify-content: center;
     align-items: center;
+}
+
+.alert {
+    border-radius: 0;
 }
