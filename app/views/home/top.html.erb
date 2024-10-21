@@ -1,22 +1,22 @@
 <div>
   <h1 class="text-center mb-4">最近登録された曲</h1>
   <div class="mb-4">
-    <% 5.times do %>
+    <% @song_pairs.each do |song_pair| %>
       <div class="song-block d-flex align-items-center mb-3">
         <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
           jacket
         </div>
         <div class="song-title">
-          <h3 class="mb-1"><%= link_to "アーティスト名 - 曲名", "#", class: "text-dark" %></h3>
-          <p class="mb-0">→似てる曲: <%= link_to "アーティスト名 - 曲名", "#", class: "text-muted" %></p>
+          <h3 class="mb-1"><%= link_to "#{song_pair.original_song.artist_list} - #{song_pair.original_song.title}", song_pair, class: "text-dark" %></h3>
+          <p class="mb-0">→似てる曲: <%= song_pair.similar_song.artist_list %> - <%= song_pair.similar_song.title %></p>
         </div>
         <div class="song-category ms-auto">
-          <%= link_to "カテゴリー: メロディー", "#"%>
+          <%= link_to "カテゴリー: #{song_pair.similarity_category.name}", "#"%>
         </div>
       </div>
     <% end %>
     <div class="more-button d-flex justify-content-center">
-      <%= link_to "もっと見る", "#", class: "btn" %>
+      <%= link_to "もっと見る", song_pairs_path, class: "btn" %>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ class Song < ApplicationRecord
   has_many :similar_song_pairs, class_name: "SongPair", foreign_key: :similar_song_id
 
   validates :title, presence: true, length: { maximum: 255 }
-  validates :media_url, presence: true
+  validates :media_url, presence: true, format: { with: /\A(https:\/\/www\.youtube\.com\/watch\?v=|https:\/\/youtu\.be\/)[\w-]+\z/, message: "は有効なYouTubeリンクである必要があります" }
 
   validate :release_date_check
 
@@ -16,9 +16,27 @@ class Song < ApplicationRecord
   end
 
   def pair_song_list(similarity_category_id)
+    # 似てる曲(original側)として紐づけられてる曲一覧の取得
+    song_list = song_pairs.where(similarity_category_id: similarity_category_id).map(&:similar_song)
     
-    # binding.pry
+    # 似てる曲(similar側)として紐づけられてる曲一覧の取得
+    similar_song_list = similar_song_pairs.where(similarity_category_id: similarity_category_id).map(&:original_song)
     
+    # 曲一覧の結合と登録日順でソート
+    song_list = song_list | similar_song_list
+    song_list.sort_by{ |song| -song.created_at.to_i }
+  end
+
+  def artist_list
+    artists.map(&:name).join(', ')
+  end
+
+  def song_pair(song)
+    if song_pairs.find_by(similar_song_id: song.id).present?
+      song_pairs.find_by(similar_song_id: song.id)
+    else
+      similar_song_pairs.find_by(original_song_id: song.id)
+    end
   end
 
   private

@@ -2,7 +2,7 @@ class SongPairsController < ApplicationController
   before_action :require_login, only: [:create]
 
   def index
-    @song_pairs = SongPair.all
+    @song_pairs = SongPair.all.order(created_at: :desc)
   end
   
   def new
@@ -20,22 +20,31 @@ class SongPairsController < ApplicationController
     @song_pair = SongPair.new(song_pair_params)
 
     ActiveRecord::Base.transaction do
-      # 曲1の保存
-      original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
+      begin
+        # 曲1の保存
+        original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
 
-      # 曲2の保存
-      similar_song = @song_pair.add_song(song_pair_params[:similar_song_attributes])
+        # 曲2の保存
+        similar_song = @song_pair.add_song(song_pair_params[:similar_song_attributes])
 
-      # 曲ペアの保存
-      @song_pair.original_song = original_song
-      @song_pair.similar_song = similar_song
-      @song_pair.user = current_user
+        # 曲ペアの保存
+        @song_pair.original_song = original_song
+        @song_pair.similar_song = similar_song
+        @song_pair.user = current_user
 
-      if @song_pair.save
-        redirect_to @song_pair, notice: '曲のペアが登録されました'
-      else
+        if @song_pair.save
+          redirect_to @song_pair, notice: '曲のペアが登録されました'
+        else
+          @song_pair.errors.merge!(e.record.errors)
+          @categories = SimilarityCategory.all
+          render :new, status: :unprocessable_entity
+          flash[:alert] = "入力に誤りがあります"
+        end
+
+      rescue ActiveRecord::RecordInvalid => e
+        # バリデーションエラーが発生した場合にフォームを再表示
+        @song_pair.errors.merge!(e.record.errors)
         @categories = SimilarityCategory.all
-        flash[:alert] = "入力に誤りがあります"
         render :new, status: :unprocessable_entity
       end
     end

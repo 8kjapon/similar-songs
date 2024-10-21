@@ -1,5 +1,15 @@
 <h1 class="text-center mb-4">楽曲を登録</h1>
 <%= form_with model: @song_pair, local: true, class: "form-signin", data: { turbo: false } do |f| %>
+   <% if @song_pair.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @song_pair.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <h3 class="text-center mb-4">曲情報1</h3>
   <div data-controller="autocomplete">
     <%= f.fields_for :original_song do |song1_form| %>

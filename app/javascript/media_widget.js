@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {
   // 1つ目のURL入力欄に対する処理
   setupMediaWidget('media_url_1', 'media_player_1');
 

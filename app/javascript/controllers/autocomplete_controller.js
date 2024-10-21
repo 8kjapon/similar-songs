@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["songId", "songInput", "artistInput", "releaseDate", "mediaUrl", "songList1", "songList2", "artistList1", "artistList2"]
+  static targets = ["songInput", "artistInput", "releaseDate", "mediaUrl", "songList1", "songList2", "artistList1", "artistList2"]
 
   search() {
     const query = this.songInputTarget.value
@@ -65,7 +65,6 @@ export default class extends Controller {
   }
 
   setSongData(suggestion) {
-    this.songIdTarget.value = suggestion.id || '';
     this.songInputTarget.value = suggestion.title;
     this.artistInputTarget.value = suggestion.artists || '';
     this.releaseDateTarget.value = suggestion.release_date || '';

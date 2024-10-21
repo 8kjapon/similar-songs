@@ -1,24 +1,26 @@
 <% if @song_pair.similarity_category.id == 3 %>
-  <h1>サンプリング曲情報</h1>
+  <h1 class="text-center mb-4">サンプリング曲情報</h1>
 <% else %>
-  <h1>似てる曲情報</h1>
+  <h1 class="text-center mb-4">似てる曲情報</h1>
 <% end %>
 <div>
-  <h3><%= @song_pair.original_song.title %></h3>
-  <% @song_pair.original_song.artists.each do |artist| %>
-    <p><%= artist.name %></p>
+  <h3><%= link_to @song_pair.original_song.title, @song_pair.original_song %></h3>
+  <p>アーティスト名: <%= @song_pair.original_song.artist_list %></p>
+  <p>リリース年: <%= @song_pair.original_song.release_date %>年</p>
+  <%= render 'shared/media_widget', song: @song_pair.original_song %>
+  <p>説明: <%= @song_pair.original_song_description %></p>
+
+  <% if @song_pair.similarity_category.id == 3 %>
+    <h2 class="text-center mb-4">↓サンプリングされてる</h2>
+  <% else %>
+    <h2 class="text-center mb-4">↓似てる: <%= @song_pair.similarity_category.name %></h2>
   <% end %>
-  <p><%= @song_pair.original_song.release_date %>年</p>
-  <p><%= @song_pair.original_song.media_url %></p>
-  <p><%= @song_pair.original_song_description %></p>
-  <h3><%= @song_pair.similar_song.title %></h3>
-  <% @song_pair.similar_song.artists.each do |artist| %>
-    <p><%= artist.name %></p>
-  <% end %>
-  <p><%= @song_pair.similar_song.release_date %>年</p>
-  <p><%= @song_pair.similar_song.media_url %></p>
-  <p><%= @song_pair.similar_song_description %></p>
-  <p><%= @song_pair.similarity_category.name %></p>
+  
+  <h3><%= link_to @song_pair.similar_song.title, @song_pair.similar_song %></h3>
+  <p>アーティスト名: <%= @song_pair.similar_song.artist_list %></p>
+  <p>リリース年: <%= @song_pair.similar_song.release_date %>年</p>
+  <%= render 'shared/media_widget', song: @song_pair.similar_song %>
+  <p>説明: <%= @song_pair.similar_song_description %></p>
   <h3>登録したユーザー</h3>
   <p><%= @song_pair.user.name %></p>
 </div>

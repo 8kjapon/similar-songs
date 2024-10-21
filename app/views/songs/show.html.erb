@@ -1,5 +1,5 @@
 <h1 class="text-center mb-4">楽曲情報</h1>
-<div class="mb-4">
+<div class="mb-4 song-info-block">
   <h3><%= @song.title %></h3>
   <p>アーティスト名: 
     <% @song.artists.each do |artist| %>
@@ -7,19 +7,68 @@
     <% end %>
   </p>
   <p>リリース年: <%= @song.release_date %></p>
-  <% if @song.media_url_id.present? %>
-    <iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @song.media_url_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <% else %>
-    <p>YouTubeの動画が見つかりません。</p>
-  <% end %>
+  <%= render 'shared/media_widget', song: @song %>
 </div>
 <div>
-  <h4>この曲とメロディーが似てる曲</h4>
-  <% @song.pair_song_list(1) %>
+  <h4 class="text-center mb-4">この曲とメロディーが似てる曲</h4>
+  <div class="mb-4">
+    <% if @song.pair_song_list(1).present? %>
+      <% @song.pair_song_list(1).each do |song| %>
+        <div class="song-block d-flex align-items-center mb-3">
+            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
+              jacket
+            </div>
+            <div class="song-title">
+              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
+            </div>
+          </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <p>このカテゴリーの楽曲は登録されていません。</p>
+      </div>
+    <% end %>
+  </div>
 </div>
 <div>
-  <h4>この曲とジャンル・スタイルが似てる曲</h4>
+  <h4 class="text-center mb-4">この曲とジャンル・スタイルが似てる曲</h4>
+  <div class="mb-4">
+    <% if @song.pair_song_list(2).present? %>
+      <% @song.pair_song_list(2).each do |song| %>
+        <div class="song-block d-flex align-items-center mb-3">
+            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
+              jacket
+            </div>
+            <div class="song-title">
+              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", song, class: "text-dark" %></h3>
+            </div>
+          </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <p>このカテゴリーの楽曲は登録されていません。</p>
+      </div>
+    <% end %>
+  </div>
 </div>
 <div>
-  <h4>この曲がサンプリングしてる・されてる曲</h4>
+  <h4 class="text-center mb-4">この曲がサンプリングしてる・されてる曲</h4>
+  <div class="mb-4">
+    <% if @song.pair_song_list(3).present? %>
+      <% @song.pair_song_list(3).each do |song| %>
+        <div class="song-block d-flex align-items-center mb-3">
+            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
+              jacket
+            </div>
+            <div class="song-title">
+              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", song, class: "text-dark" %></h3>
+            </div>
+          </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <p>このカテゴリーの楽曲は登録されていません。</p>
+      </div>
+    <% end %>
+  </div>
 </div>
