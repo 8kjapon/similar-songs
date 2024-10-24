@@ -229,6 +229,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.2.1)
+    ransack (4.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rbs (2.8.4)
     rdoc (6.7.0)
       psych (>= 4.0.0)
@@ -332,6 +336,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)
+  ransack
   selenium-webdriver
   solargraph
   sorcery
