@@ -84,3 +84,5 @@ end
 gem "dotenv-rails"
 
 gem "sorcery"
+
+gem "ransack"

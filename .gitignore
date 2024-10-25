@@ -37,5 +37,6 @@
 
 /memo.md
 /.env
+/.env.production
 /config/credentials
 /config/credentials.yml.enc

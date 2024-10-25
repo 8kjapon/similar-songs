@@ -39,6 +39,24 @@ class Song < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "artist_list"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["artists"]
+  end
+
+  ransacker :artist_list do
+    Arel.sql <<-SQL
+      (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
+       FROM song_artists
+       JOIN artists ON song_artists.artist_id = artists.id
+       WHERE song_artists.song_id = songs.id
+       GROUP BY song_artists.song_id)
+    SQL
+  end
+
   private
 
   def release_date_check

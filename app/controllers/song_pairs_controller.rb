@@ -2,9 +2,14 @@ class SongPairsController < ApplicationController
   before_action :require_login, only: [:create]
 
   def index
-    @song_pairs = SongPair.all.order(created_at: :desc)
+    @q = SongPair.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:original_song, :similar_song, :similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
   end
   
+  def recent_page
+    @song_pairs = SongPair.includes(:original_song, :similar_song, :similarity_category, :original_song => :artists, :similar_song => :artists).all.order(created_at: :desc)
+  end
+
   def new
     @song_pair = SongPair.new
     @song_pair.build_original_song
