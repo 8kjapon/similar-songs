@@ -23,4 +23,12 @@ class SongPair < ApplicationRecord
     end
     return song
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "original_song_id", "similar_song_id", "similarity_category_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["original_song", "similar_song", "similarity_category"]
+  end
 end
