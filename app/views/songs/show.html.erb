@@ -45,7 +45,7 @@
               jacket
             </div>
             <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", song, class: "text-dark" %></h3>
+              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
             </div>
           </div>
       <% end %>
@@ -71,7 +71,7 @@
               jacket
             </div>
             <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", song, class: "text-dark" %></h3>
+              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
             </div>
           </div>
       <% end %>
