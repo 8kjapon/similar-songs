@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   resources :songs, only: [:show] do
+    member do
+      get 'melody', to: 'songs#melody_song_pairs'
+      get 'style', to: 'songs#style_song_pairs'
+      get 'sampling', to: 'songs#sampling_song_pairs'
+    end
     collection do
       get 'autocomplete'
     end

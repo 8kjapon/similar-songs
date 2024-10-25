@@ -25,9 +25,9 @@
       <div class="main-area d-flex flex-column align-items-center">
         <h1>『似ている』から始まる曲探し</h1>
         <%=link_to 'アカウント登録・ログインをして始める', signup_path %>
-        <%= search_form_for @q, url: song_pairs_path, method: :get, class: 'search-form' do |f| %>
-          <%= f.text_field :original_song_title_or_similar_song_title_or_original_song_artist_list_cont, placeholder: "曲名やアーティスト名を検索", class: "search-input" %>
-          <%= f.submit "検索", class: "search-submit" %>
+        <%= search_form_for @q, url: song_pairs_path, method: :get, class: 'd-flex input-group mb-3' do |f| %>
+          <%= f.text_field :original_song_title_or_similar_song_title_or_original_song_artist_list_cont, placeholder: "曲名やアーティスト名から検索", class: "form-control" %>
+          <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

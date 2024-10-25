@@ -15,6 +15,66 @@ class Song < ApplicationRecord
     extract_media_id(media_url)
   end
 
+  def melody_pairs
+    pair_song_list(1)
+  end
+
+  def style_pairs
+    pair_song_list(2)
+  end
+
+  def sampling_pairs
+    pair_song_list(3)
+  end
+
+  
+  def artist_list
+    artists.map(&:name).join(', ')
+  end
+  
+  def song_pair(song)
+    if song_pairs.find_by(similar_song_id: song.id).present?
+      song_pairs.find_by(similar_song_id: song.id)
+    else
+      similar_song_pairs.find_by(original_song_id: song.id)
+    end
+  end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "artist_list"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["artists"]
+  end
+  
+  ransacker :artist_list do
+    Arel.sql <<-SQL
+    (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
+    FROM song_artists
+    JOIN artists ON song_artists.artist_id = artists.id
+    WHERE song_artists.song_id = songs.id
+    GROUP BY song_artists.song_id)
+    SQL
+  end
+  
+  private
+  
+  def release_date_check
+    if release_date.present?
+      if release_date.to_i > Date.today.year
+        errors.add(:release_date, "は未来の数値にできません。")
+      end
+    end
+  end
+  
+  def extract_media_id(url)
+    return nil if url.blank?
+    reg_exp = %r{^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#\&\?]*).*}
+    match = url.match(reg_exp)
+    match[2] if match && match[2].length == 11
+  end
+  
   def pair_song_list(similarity_category_id)
     # 似てる曲(original側)として紐づけられてる曲一覧の取得
     song_list = song_pairs.where(similarity_category_id: similarity_category_id).map(&:similar_song)
@@ -25,52 +85,5 @@ class Song < ApplicationRecord
     # 曲一覧の結合と登録日順でソート
     song_list = song_list | similar_song_list
     song_list.sort_by{ |song| -song.created_at.to_i }
-  end
-
-  def artist_list
-    artists.map(&:name).join(', ')
-  end
-
-  def song_pair(song)
-    if song_pairs.find_by(similar_song_id: song.id).present?
-      song_pairs.find_by(similar_song_id: song.id)
-    else
-      similar_song_pairs.find_by(original_song_id: song.id)
-    end
-  end
-
-  def self.ransackable_attributes(auth_object = nil)
-    ["title", "artist_list"]
-  end
-
-  def self.ransackable_associations(auth_object = nil)
-    ["artists"]
-  end
-
-  ransacker :artist_list do
-    Arel.sql <<-SQL
-      (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
-       FROM song_artists
-       JOIN artists ON song_artists.artist_id = artists.id
-       WHERE song_artists.song_id = songs.id
-       GROUP BY song_artists.song_id)
-    SQL
-  end
-
-  private
-
-  def release_date_check
-    if release_date.present?
-      if release_date.to_i > Date.today.year
-        errors.add(:release_date, "は未来の数値にできません。")
-      end
-    end
-  end
-
-  def extract_media_id(url)
-    return nil if url.blank?
-    reg_exp = %r{^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#\&\?]*).*}
-    match = url.match(reg_exp)
-    match[2] if match && match[2].length == 11
   end
 end
