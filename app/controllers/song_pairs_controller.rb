@@ -1,5 +1,5 @@
 class SongPairsController < ApplicationController
-  before_action :require_login, only: [:create]
+  skip_before_action :require_login, only: %i[index show]
 
   def index
     @q = SongPair.ransack(params[:q])

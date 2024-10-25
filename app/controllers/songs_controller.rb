@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  skip_before_action :require_login, only: %i[show melody_song_pairs style_song_pairs sampling_song_pairs]
+
   def show
     @song = Song.includes(:artists, :song_pairs).find(params[:id])
   end
