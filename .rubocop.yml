@@ -1,0 +1,26 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "config/**/*"
+    - "node_modules/**/*"
+    - "vendor/**/*"
+    - "Gemfile"
+    - "Gemfile.lock"
+    - "test/**/*"
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_english_names
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: percent
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Layout/LineLength:
+  Max: 198
