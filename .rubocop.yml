@@ -1,5 +1,6 @@
 inherit_from: .rubocop_todo.yml
 AllCops:
+  NewCops: enable
   Exclude:
     - "bin/**/*"
     - "db/schema.rb"
@@ -24,3 +25,6 @@ Style/WordArray:
 
 Layout/LineLength:
   Max: 198
+
+Style/Documentation:
+  Enabled: false
