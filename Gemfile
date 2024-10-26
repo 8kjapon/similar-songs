@@ -66,10 +66,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  #追加分
+  # 追加分
   gem "solargraph"
-  gem 'pry-rails'
-  gem 'pry-byebug'
+  gem "pry-rails"
+  gem "pry-byebug"
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
 end
 
 group :test do
