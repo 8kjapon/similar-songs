@@ -10,7 +10,7 @@
   </p>
 </div>
 <div>
-  <%= render 'song_info', song_pair: @song_pair.original_song, song_description: @song_pair.original_song_description %>
+  <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description %>
 
   <% if @song_pair.similarity_category.id == 3 %>
     <h2 class="text-center mb-4">↓サンプリングされてる</h2>
@@ -18,7 +18,7 @@
     <h2 class="text-center mb-4">↓似てる: <%= @song_pair.similarity_category.name %></h2>
   <% end %>
   
-  <%= render 'song_info', song_pair: @song_pair.similar_song, song_description: @song_pair.similar_song_description %>
+  <%= render 'song_info', song: @song_pair.similar_song, song_description: @song_pair.similar_song_description %>
   
   <div class="user-info-block">
     <h3>登録したユーザー</h3>
