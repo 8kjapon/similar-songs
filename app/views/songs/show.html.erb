@@ -12,18 +12,11 @@
 <div>
   <h4 class="text-center mb-4">この曲とメロディーが似てる曲</h4>
   <div class="mb-4">
-    <% if @song.melody_pairs.present? %>
-      <% @song.melody_pairs.take(3).each do |song| %>
-        <div class="song-block d-flex align-items-center mb-3">
-            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-              jacket
-            </div>
-            <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
-            </div>
-          </div>
+    <% if @song.pair_song_list(similarity_category: 'melody').present? %>
+      <% @song.pair_song_list(similarity_category: 'melody').take(3).each do |pair_song| %>
+        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
       <% end %>
-      <% if @song.melody_pairs.count > 3 %>
+      <% if @song.pair_song_list(similarity_category: 'melody').count > 3 %>
         <div class="more-button d-flex justify-content-center">
           <%= link_to "全て表示", melody_song_path, class: "btn" %>
         </div>
@@ -38,18 +31,11 @@
 <div>
   <h4 class="text-center mb-4">この曲とジャンル・スタイルが似てる曲</h4>
   <div class="mb-4">
-    <% if @song.style_pairs.present? %>
-      <% @song.style_pairs.take(3).each do |song| %>
-        <div class="song-block d-flex align-items-center mb-3">
-            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-              jacket
-            </div>
-            <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
-            </div>
-          </div>
+    <% if @song.pair_song_list(similarity_category: 'style').present? %>
+      <% @song.pair_song_list(similarity_category: 'style').take(3).each do |pair_song| %>
+        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
       <% end %>
-      <% if @song.style_pairs.count > 3 %>
+      <% if @song.pair_song_list(similarity_category: 'style').count > 3 %>
         <div class="more-button d-flex justify-content-center">
           <%= link_to "全て表示", style_song_path, class: "btn" %>
         </div>
@@ -64,18 +50,11 @@
 <div>
   <h4 class="text-center mb-4">この曲がサンプリングしてる・されてる曲</h4>
   <div class="mb-4">
-    <% if @song.sampling_pairs.present? %>
-      <% @song.sampling_pairs.take(3).each do |song| %>
-        <div class="song-block d-flex align-items-center mb-3">
-            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-              jacket
-            </div>
-            <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
-            </div>
-          </div>
+    <% if @song.pair_song_list(similarity_category: 'sampling').present? %>
+      <% @song.pair_song_list(similarity_category: 'sampling').take(3).each do |pair_song| %>
+        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
       <% end %>
-      <% if @song.sampling_pairs.count > 3 %>
+      <% if @song.pair_song_list(similarity_category: 'sampling').count > 3 %>
         <div class="more-button d-flex justify-content-center">
           <%= link_to "全て表示", sampling_song_path, class: "btn" %>
         </div>

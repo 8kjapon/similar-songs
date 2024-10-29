@@ -14,19 +14,27 @@ class Song < ApplicationRecord
   def media_url_id
     extract_media_id(media_url)
   end
+  
+  def pair_song_list(similarity_category: nil)
+    similarity_category_id = case similarity_category
+                              when 'melody'
+                                1
+                              when 'style'
+                                2
+                              when 'sampling'
+                                3
+                              end
 
-  def melody_pairs
-    pair_song_list(1)
+    # 似てる曲(original側)として紐づけられてる曲一覧の取得
+    song_list = song_pairs.where(similarity_category_id: similarity_category_id).map(&:similar_song)
+    
+    # 似てる曲(similar側)として紐づけられてる曲一覧の取得
+    similar_song_list = similar_song_pairs.where(similarity_category_id: similarity_category_id).map(&:original_song)
+    
+    # 曲一覧の結合と登録日順でソート
+    song_list = song_list | similar_song_list
+    song_list.sort_by{ |song| -song.created_at.to_i }
   end
-
-  def style_pairs
-    pair_song_list(2)
-  end
-
-  def sampling_pairs
-    pair_song_list(3)
-  end
-
   
   def artist_list
     artists.map(&:name).join(', ')
@@ -75,15 +83,4 @@ class Song < ApplicationRecord
     match[2] if match && match[2].length == 11
   end
   
-  def pair_song_list(similarity_category_id)
-    # 似てる曲(original側)として紐づけられてる曲一覧の取得
-    song_list = song_pairs.where(similarity_category_id: similarity_category_id).map(&:similar_song)
-    
-    # 似てる曲(similar側)として紐づけられてる曲一覧の取得
-    similar_song_list = similar_song_pairs.where(similarity_category_id: similarity_category_id).map(&:original_song)
-    
-    # 曲一覧の結合と登録日順でソート
-    song_list = song_list | similar_song_list
-    song_list.sort_by{ |song| -song.created_at.to_i }
-  end
 end

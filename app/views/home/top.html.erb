@@ -1,7 +1,7 @@
 <div>
   <h1 class="text-center mb-4">最近登録された曲</h1>
   <div class="mb-4">
-    <%= render "shared/song_block", song_pairs: @song_pairs %>
+    <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
     <div class="more-button d-flex justify-content-center">
       <%= link_to "もっと見る", recent_path, class: "btn" %>
     </div>
