@@ -1,0 +1,7 @@
+<div class="song-info-block">
+  <h3><%= link_to song_pair.title, song_pair %></h3>
+  <p>アーティスト名: <%= song_pair.artist_list %></p>
+  <p>リリース年: <%= song_pair.release_date %>年</p>
+  <%= render 'shared/media_widget', song: song_pair %>
+  <p>説明: <%= song_description %></p>
+</div>
