@@ -1,31 +1,6 @@
 <h1 class="text-center mb-4">楽曲情報</h1>
-<div class="mb-4 song-info-block">
-  <h3><%= @song.title %></h3>
-  <p>アーティスト名: 
-    <% @song.artists.each do |artist| %>
-      <%= artist.name %>
-    <% end %>
-  </p>
-  <p>リリース年: <%= @song.release_date %></p>
-</div>
+<%= render 'song_info', song: @song, media_widget: false %>
 <div>
   <h4 class="text-center mb-4">この曲とメロディーが似てる曲</h4>
-  <div class="mb-4">
-    <% if @song.melody_pairs.present? %>
-      <% @song.melody_pairs.each do |song| %>
-        <div class="song-block d-flex align-items-center mb-3">
-            <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-              jacket
-            </div>
-            <div class="song-title">
-              <h3 class="mb-1"><%= link_to "#{song.artist_list} - #{song.title}", @song.song_pair(song), class: "text-dark" %></h3>
-            </div>
-          </div>
-      <% end %>
-    <% else %>
-      <div class="text-center">
-        <p>このカテゴリーの楽曲は登録されていません。</p>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'shared/song_block', song: @song, similarity_category: 'melody', maximum: 0 %>
 </div>

@@ -58,7 +58,6 @@ class SongPairsController < ApplicationController
 
   def show
     @song_pair = SongPair.find(params[:id])
-    # ahoy.track_visit
   end
 
   private

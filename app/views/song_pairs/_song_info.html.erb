@@ -1,0 +1,7 @@
+<div class="mb-4 song-info-block">
+  <h3><%= link_to song.title, song %></h3>
+  <p>アーティスト名: <%= song.artist_list %></p>
+  <p>リリース年: <%= song.release_date %></p>
+  <%= render 'shared/media_widget', song: song %>
+  <p>説明: <%= song_description %></p>
+</div>
