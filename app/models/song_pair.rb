@@ -31,4 +31,9 @@ class SongPair < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["original_song", "similar_song", "similarity_category"]
   end
+
+  def page_view_count(base_url)
+    url = "#{base_url}/song_pairs/#{id}"
+    Ahoy::Visit.where(landing_page: url).count
+  end
 end

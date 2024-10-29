@@ -4,6 +4,12 @@
   <h1 class="text-center mb-4">似てる曲情報</h1>
 <% end %>
 <div>
+  <p class="text-center">
+    <%# 確認用 人気曲ページが完成次第削除 %>
+    閲覧数: <%= @song_pair.page_view_count(request.base_url) %>
+  </p>
+</div>
+<div>
   <h3><%= link_to @song_pair.original_song.title, @song_pair.original_song %></h3>
   <p>アーティスト名: <%= @song_pair.original_song.artist_list %></p>
   <p>リリース年: <%= @song_pair.original_song.release_date %>年</p>
