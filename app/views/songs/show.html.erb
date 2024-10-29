@@ -11,58 +11,13 @@
 </div>
 <div>
   <h4 class="text-center mb-4">この曲とメロディーが似てる曲</h4>
-  <div class="mb-4">
-    <% if @song.pair_song_list(similarity_category: 'melody').present? %>
-      <% @song.pair_song_list(similarity_category: 'melody').take(3).each do |pair_song| %>
-        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
-      <% end %>
-      <% if @song.pair_song_list(similarity_category: 'melody').count > 3 %>
-        <div class="more-button d-flex justify-content-center">
-          <%= link_to "全て表示", melody_song_path, class: "btn" %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="text-center">
-        <p>このカテゴリーの楽曲は登録されていません。</p>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'shared/song_block', song: @song, similarity_category: 'melody', maximum: 3 %>
 </div>
 <div>
   <h4 class="text-center mb-4">この曲とジャンル・スタイルが似てる曲</h4>
-  <div class="mb-4">
-    <% if @song.pair_song_list(similarity_category: 'style').present? %>
-      <% @song.pair_song_list(similarity_category: 'style').take(3).each do |pair_song| %>
-        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
-      <% end %>
-      <% if @song.pair_song_list(similarity_category: 'style').count > 3 %>
-        <div class="more-button d-flex justify-content-center">
-          <%= link_to "全て表示", style_song_path, class: "btn" %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="text-center">
-        <p>このカテゴリーの楽曲は登録されていません。</p>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'shared/song_block', song: @song, similarity_category: 'style', maximum: 3 %>
 </div>
 <div>
   <h4 class="text-center mb-4">この曲がサンプリングしてる・されてる曲</h4>
-  <div class="mb-4">
-    <% if @song.pair_song_list(similarity_category: 'sampling').present? %>
-      <% @song.pair_song_list(similarity_category: 'sampling').take(3).each do |pair_song| %>
-        <%= render 'shared/song_block', pair_song: pair_song, song: @song %>
-      <% end %>
-      <% if @song.pair_song_list(similarity_category: 'sampling').count > 3 %>
-        <div class="more-button d-flex justify-content-center">
-          <%= link_to "全て表示", sampling_song_path, class: "btn" %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="text-center">
-        <p>このカテゴリーの楽曲は登録されていません。</p>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'shared/song_block', song: @song, similarity_category: 'sampling', maximum: 3 %>
 </div>

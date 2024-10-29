@@ -15,7 +15,7 @@ class Song < ApplicationRecord
     extract_media_id(media_url)
   end
   
-  def pair_song_list(similarity_category: nil)
+  def pair_song_list(similarity_category: nil, maximum: 0)
     similarity_category_id = case similarity_category
                               when 'melody'
                                 1
@@ -33,7 +33,11 @@ class Song < ApplicationRecord
     
     # 曲一覧の結合と登録日順でソート
     song_list = song_list | similar_song_list
-    song_list.sort_by{ |song| -song.created_at.to_i }
+    if maximum > 0
+      song_list.sort_by{ |song| -song.created_at.to_i }.take(maximum)
+    else
+      song_list.sort_by{ |song| -song.created_at.to_i }
+    end
   end
   
   def artist_list

@@ -1,8 +1,29 @@
-<div class="song-block d-flex align-items-center mb-3">
-  <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-    jacket
-  </div>
-  <div class="song-title">
-    <h3 class="mb-1"><%= link_to "#{pair_song.artist_list} - #{pair_song.title}", song.song_pair(pair_song), class: "text-dark" %></h3>
-  </div>
+<div class="mb-4">
+  <% if song.pair_song_list(similarity_category: similarity_category).present? %>
+    <% song.pair_song_list(similarity_category: similarity_category, maximum: maximum).each do |pair_song| %>
+      <div class="song-block d-flex align-items-center mb-3">
+        <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
+          jacket
+        </div>
+        <div class="song-title">
+          <h3 class="mb-1"><%= link_to "#{pair_song.artist_list} - #{pair_song.title}", song.song_pair(pair_song), class: "text-dark" %></h3>
+        </div>
+      </div>
+    <% end %>
+    <% if song.pair_song_list(similarity_category: similarity_category).count > maximum && maximum != 0 %>
+      <div class="more-button d-flex justify-content-center">
+        <% if similarity_category == 'melody' %>
+          <%= link_to "全て表示", melody_song_path, class: "btn" %>
+        <% elsif similarity_category == 'style' %>
+          <%= link_to "全て表示", style_song_path, class: "btn" %>
+        <% elsif similarity_category == 'sampling' %>
+          <%= link_to "全て表示", sampling_song_path, class: "btn" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="text-center">
+      <p>このカテゴリーの楽曲は登録されていません。</p>
+    </div>
+  <% end %>
 </div>
