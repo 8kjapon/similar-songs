@@ -15,20 +15,7 @@
         </div>
       <% end %>
     <% else %>
-      <% @song_pairs.each do |song_pair| %>
-        <div class="song-block d-flex align-items-center mb-3">
-          <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-            jacket
-          </div>
-          <div class="song-title">
-            <h3 class="mb-1"><%= link_to "#{song_pair.original_song.artist_list} - #{song_pair.original_song.title}", song_pair, class: "text-dark" %></h3>
-            <p class="mb-0">→似てる曲: <%= song_pair.similar_song.artist_list %> - <%= song_pair.similar_song.title %></p>
-          </div>
-          <div class="song-category ms-auto">
-            <%= link_to "カテゴリー: #{song_pair.similarity_category.name}", "#"%>
-          </div>
-        </div>
-      <% end %>
+      <%= render "shared/song_block", song_pairs: @song_pairs %>
     <% end %>
   </div>
 </div>
