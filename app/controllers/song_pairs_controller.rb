@@ -1,13 +1,14 @@
 class SongPairsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
+  before_action :track_ahoy_visit, only: %i[show]
 
   def index
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:original_song, :similar_song, :similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
   end
   
   def recent_page
-    @song_pairs = SongPair.includes(:original_song, :similar_song, :similarity_category, :original_song => :artists, :similar_song => :artists).all.order(created_at: :desc)
+    @song_pairs = SongPair.includes(:similarity_category, :original_song => :artists, :similar_song => :artists).all.order(created_at: :desc)
   end
 
   def new
@@ -57,6 +58,7 @@ class SongPairsController < ApplicationController
 
   def show
     @song_pair = SongPair.find(params[:id])
+    # ahoy.track_visit
   end
 
   private
