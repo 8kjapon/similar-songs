@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
   resources :song_pairs, only: [:index, :new, :create, :show]
   get 'recent', to: 'song_pairs#recent_page'
+  get 'popular', to: 'song_pairs#popularity_page'
   resources :artists, only: [] do
     collection do
       get 'autocomplete'
