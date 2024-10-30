@@ -72,7 +72,7 @@ https://www.figma.com/design/3bjsOa8nyyGksM4QTVnIXz/240930_similar-songs?node-id
 
 # ER図
 MVPリリースまでに必要な最低限の機能のER図になります。
-[![Image from Gyazo](https://i.gyazo.com/dfa5d15e9118a423d3c4c31b566e63f6.png)](https://gyazo.com/dfa5d15e9118a423d3c4c31b566e63f6)
+[![Image from Gyazo](https://i.gyazo.com/30d1064d7d70e8f4ec5ec51eaaf3afc2.png)](https://gyazo.com/30d1064d7d70e8f4ec5ec51eaaf3afc2)
 ### 各テーブルについて
 - users: ユーザーの基本データを格納
 - songs: 各曲の基本データを格納

@@ -3,6 +3,7 @@ class SongPair < ApplicationRecord
   belongs_to :original_song, class_name: 'Song'
   belongs_to :similar_song, class_name: 'Song'
   belongs_to :similarity_category
+  has_many :song_pair_evalutions, dependencies: :destroy
   
   validates :original_song_id, uniqueness: { scope: :similar_song_id }
   validates :original_song_description, presence: true
