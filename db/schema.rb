@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_30_185907) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_30_200348) do
   create_table "ahoy_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "visit_id"
     t.bigint "user_id"
@@ -59,14 +59,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_185907) do
     t.index ["song_id"], name: "index_song_artists_on_song_id"
   end
 
-  create_table "song_pair_evalutions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "song_pair_evaluations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "song_pair_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["song_pair_id"], name: "index_song_pair_evalutions_on_song_pair_id"
-    t.index ["user_id", "song_pair_id"], name: "index_song_pair_evalutions_on_user_id_and_song_pair_id", unique: true
-    t.index ["user_id"], name: "index_song_pair_evalutions_on_user_id"
+    t.index ["song_pair_id"], name: "index_song_pair_evaluations_on_song_pair_id"
+    t.index ["user_id", "song_pair_id"], name: "index_song_pair_evaluations_on_user_id_and_song_pair_id", unique: true
+    t.index ["user_id"], name: "index_song_pair_evaluations_on_user_id"
   end
 
   create_table "song_pairs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -105,8 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_185907) do
 
   add_foreign_key "song_artists", "artists"
   add_foreign_key "song_artists", "songs"
-  add_foreign_key "song_pair_evalutions", "song_pairs"
-  add_foreign_key "song_pair_evalutions", "users"
+  add_foreign_key "song_pair_evaluations", "song_pairs"
+  add_foreign_key "song_pair_evaluations", "users"
   add_foreign_key "song_pairs", "similarity_categories"
   add_foreign_key "song_pairs", "songs", column: "original_song_id"
   add_foreign_key "song_pairs", "songs", column: "similar_song_id"

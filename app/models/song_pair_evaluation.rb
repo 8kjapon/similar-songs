@@ -1,4 +1,4 @@
-class SongPairEvalution < ApplicationRecord
+class SongPairEvaluation < ApplicationRecord
   belongs_to :user
   belongs_to :song_pair
 

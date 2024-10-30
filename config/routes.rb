@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :song_pairs, only: %i[index new create show]
   get 'recent', to: 'song_pairs#recent_page'
   get 'popular', to: 'song_pairs#popularity_page'
-  resources :song_pair_evalutions, only: %i[create destroy]
+  resources :song_pair_evaluations, only: %i[create destroy]
   resources :artists, only: %i[] do
     collection do
       get 'autocomplete'
