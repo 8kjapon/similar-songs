@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :song_pairs
-  has_many :song_pair_evaluations, dependencies: :destroy
+  has_many :song_pair_evaluations, dependent: :destroy
   has_many :evaluated_song_pairs, through: :song_pair_evaluations, source: :song_pair
 
   validates :name, presence: true, length: {minimum:3, maximum:255}
@@ -18,7 +18,7 @@ class User < ApplicationRecord
     evaluated_song_pairs.destroy(song_pair)
   end
 
-  def song_pair_evaluation?(song_pair)
+  def song_pair_evaluation(song_pair)
     evaluated_song_pairs.include?(song_pair)
   end
 end
