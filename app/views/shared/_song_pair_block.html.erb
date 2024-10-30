@@ -1,4 +1,4 @@
-<% song_pairs.each do |song_pair| %>
+<% song_pairs.take(defined?(maximum) && maximum || song_pairs.size).each do |song_pair| %>
   <div class="song-pair-block d-flex align-items-center mb-3">
     <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
       jacket

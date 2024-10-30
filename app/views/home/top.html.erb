@@ -1,7 +1,7 @@
 <div>
   <h1 class="text-center mb-4">最近登録された曲</h1>
   <div class="mb-4">
-    <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
+    <%= render "shared/song_pair_block", song_pairs: @recent_song_pairs, maximum: 5 %>
     <div class="more-button d-flex justify-content-center">
       <%= link_to "もっと見る", recent_path, class: "btn" %>
     </div>
@@ -10,22 +10,9 @@
 <div>
   <h1 class="text-center mb-4">人気曲</h1>
   <div class="mb-4">
-    <% 5.times do %>
-      <div class="song-block d-flex align-items-center mb-3">
-        <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-          jacket
-        </div>
-        <div class="song-title">
-          <h3 class="mb-1"><%= link_to "アーティスト名 - 曲名", "#", class: "text-dark" %></h3>
-          <p class="mb-0">→似てる曲: <%= link_to "アーティスト名 - 曲名", "#", class: "text-muted" %></p>
-        </div>
-        <div class="song-category ms-auto">
-          <%= link_to "カテゴリー: メロディー", "#"%>
-        </div>
-      </div>
-    <% end %>
+    <%= render "shared/song_pair_block", song_pairs: @popularity_song_pairs, maximum: 5 %>
     <div class="more-button d-flex justify-content-center">
-      <%= link_to "もっと見る", "#", class: "btn" %>
+      <%= link_to "もっと見る", popular_path, class: "btn" %>
     </div>
   </div>
 </div>
