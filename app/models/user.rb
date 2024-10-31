@@ -18,7 +18,7 @@ class User < ApplicationRecord
     evaluated_song_pairs.destroy(song_pair)
   end
 
-  def song_pair_evaluation(song_pair)
+  def song_pair_evaluated?(song_pair)
     evaluated_song_pairs.include?(song_pair)
   end
 end
