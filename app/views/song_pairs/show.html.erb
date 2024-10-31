@@ -20,8 +20,14 @@
   
   <%= render 'song_info', song: @song_pair.similar_song, song_description: @song_pair.similar_song_description %>
   
-  <div class="user-info-block">
+  <div class="user-info-block text-center mb-4">
     <h3>登録したユーザー</h3>
     <p><%= @song_pair.user.name %></p>
+  </div>
+
+  <div class="evaluate_button_block text-center mb-4">
+    <h3>評価</h3>
+    <p>似てると思ったら評価(SIM!)</p>
+    <%= render 'evaluate_button', song_pair: @song_pair %>
   </div>
 </div>
