@@ -57,17 +57,20 @@ footer {
     border-radius: 7px;
     margin-bottom: 10px;
     display: flex;
-    .song-jacket {
-        border-radius: 7px 0px 0px 7px;
-        width: 75px;
-        height: 75px;
-        background-color: #FF7171;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-    }
 }
 
+.song-jacket-container {
+    border-radius: 7px 0px 0px 7px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    position: relative;
+    .song-jacket {
+        clip-path: inset(45px 105px 45px 105px);
+        transform: scale(0.28);
+        object-fit: cover;
+    }
+}
 
 // .song-title {
 //     margin-top: auto;
