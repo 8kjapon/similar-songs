@@ -2,8 +2,8 @@
   <% if song.pair_song_list(similarity_category: similarity_category).present? %>
     <% song.pair_song_list(similarity_category: similarity_category, maximum: maximum).each do |pair_song| %>
       <div class="song-block d-flex align-items-center mb-3">
-        <div class="song-jacket d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-          jacket
+        <div class="song-jacket-container d-flex align-items-center justify-content-center flex-shrink-0 me-3">
+          <%= image_tag "https://img.youtube.com/vi/#{pair_song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
         </div>
         <div class="song-title">
           <h3 class="mb-1"><%= link_to "#{pair_song.artist_list} - #{pair_song.title}", song.song_pair(pair_song), class: "text-dark" %></h3>

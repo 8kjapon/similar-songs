@@ -1,7 +1,17 @@
 <div class="mb-4 song-info-block">
-  <h3><%= link_to song.title, song %></h3>
-  <p>アーティスト名: <%= song.artist_list %></p>
-  <p>リリース年: <%= song.release_date %></p>
+  <div class="d-flex">
+    <div class="song-info">
+      <h3><%= link_to song.title, song %></h3>
+      <p>アーティスト名: <%= song.artist_list %></p>
+      <p>リリース年: <%= song.release_date %></p>
+    </div>
+    <div class="song-jacket-container ms-auto">
+      <%= image_tag "https://img.youtube.com/vi/#{song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
+    </div>
+  </div>
   <%= render 'shared/media_widget', song: song %>
-  <p>説明: <%= song_description %></p>
+  <div class="song-description">
+    <h5>説明:</h5>
+    <p><%= song_description %></p>
+  </div>
 </div>
