@@ -1,5 +1,8 @@
 <div>
   <h1 class="text-center mb-4">人気曲</h1>
+  <div class="d-flex justify-content-center">
+    <%= render "shared/filter" %>
+  </div>
   <div class="mb-4">
     <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
   </div>

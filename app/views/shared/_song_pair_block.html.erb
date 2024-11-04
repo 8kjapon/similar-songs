@@ -1,7 +1,6 @@
 <% song_pairs.take(defined?(maximum) && maximum || song_pairs.size).each do |song_pair| %>
   <div class="song-pair-block d-flex align-items-center mb-3">
     <div class="song-jacket-container d-flex align-items-center justify-content-center flex-shrink-0 me-3">
-      <%# jacket %>
       <%= image_tag "https://img.youtube.com/vi/#{song_pair.original_song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
     </div>
     <div class="song-title">

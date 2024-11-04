@@ -8,11 +8,13 @@ class SongPairsController < ApplicationController
   end
   
   def recent_page
-    @song_pairs = SongPair.includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
+    @q = SongPair.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
   end
 
   def popularity_page
-    @song_pairs = SongPair.includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
+    @q = SongPair.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
   end
 
   def new
