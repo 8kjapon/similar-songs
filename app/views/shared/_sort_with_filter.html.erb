@@ -1,0 +1,10 @@
+<%= form_with method: :get, local: true do %>
+  <%= hidden_field_tag "q[original_song_title_or_similar_song_title_or_original_song_artist_list_cont]", params.dig(:q, :original_song_title_or_similar_song_title_or_original_song_artist_list_cont) %>
+  <div class="d-flex align-items-center">
+    <%= label_tag :sort_by, "並べ替え:" %>
+    <%= select_tag :sort_by, options_for_select([["曲名", "song_title"], ["アーティスト名", "artist_name"], ["登録日", "created_at"]], selected: params[:sort_by] || "created_at"), onchange: "this.form.submit()", class: "mx-2" %>
+    <%= select_tag :order, options_for_select([["降順", "desc"], ["昇順", "asc"]], selected: params[:order] || "desc"), onchange: "this.form.submit()", class: "mx-2" %>
+    <%= label_tag :category, "カテゴリー:" %>
+    <%= select_tag "q[similarity_category_id_eq]", options_from_collection_for_select(SimilarityCategory.all, :id, :name, params.dig(:q, :similarity_category_id_eq)), include_blank: "全て", onchange: "this.form.submit()", class: "mx-2" %>
+  </div>
+<% end %>

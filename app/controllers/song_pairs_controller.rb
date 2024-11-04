@@ -1,18 +1,36 @@
 class SongPairsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
   before_action :track_ahoy_visit, only: %i[show]
+  before_action :check_login_for_sort_and_filter, only: %i[index]
 
   def index
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists)
+
+    @song_pairs = case params[:sort_by]
+                  when "song_title"
+                    @song_pairs.joins(:original_song).group('song_pairs.id').reorder('songs.title' => params[:order])
+                  when "artist_name"
+                    if params[:order] == "asc"
+                      @song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }
+                    else
+                      @song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse
+                    end
+                  when "created_at"
+                    @song_pairs.reorder(created_at: params[:order]) 
+                  else
+                    @song_pairs.order(created_at: :desc)
+                  end
   end
   
   def recent_page
-    @song_pairs = SongPair.includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
+    @q = SongPair.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
   end
 
   def popularity_page
-    @song_pairs = SongPair.includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
+    @q = SongPair.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
   end
 
   def new
@@ -78,5 +96,15 @@ class SongPairsController < ApplicationController
       original_song_attributes: [:title, :release_date, :media_url, artists_attributes: [:name]],
       similar_song_attributes: [:title, :release_date, :media_url, artists_attributes: [:name]]
     )
+  end
+
+  def check_login_for_sort_and_filter
+    if params[:sort_by].present? || params[:order].present?
+      unless logged_in?
+        params.delete(:sort_by)
+        params.delete(:order)
+        params[:q].delete(:similarity_category_id_eq)
+      end
+    end
   end
 end
