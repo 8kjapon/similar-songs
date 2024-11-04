@@ -37,7 +37,7 @@ document.addEventListener("turbo:load", () => {
 
     if (mediaId) {
       const embedUrl = `https://www.youtube.com/embed/${mediaId}`;
-      const iframeHtml = `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      const iframeHtml = `<div class="media-widget"><iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
       playerElement.innerHTML = iframeHtml;
     } else {
       playerElement.innerHTML = '';
