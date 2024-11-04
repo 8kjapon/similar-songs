@@ -17,10 +17,16 @@ class SongPairsController < ApplicationController
 
   def new
     @song_pair = SongPair.new
-    @song_pair.build_original_song
+    if params[:original_song_id]
+      original_song = Song.find(params[:original_song_id])
+      @song_pair.build_original_song(title: original_song.title, release_date: original_song.release_date, media_url: original_song.media_url)
+      @song_pair.original_song.artists.build(name: original_song.artist_list)
+    else
+      @song_pair.build_original_song
+      @song_pair.original_song.artists.build if @song_pair.original_song.artists.blank?
+    end
+    
     @song_pair.build_similar_song
-
-    @song_pair.original_song.artists.build if @song_pair.original_song.artists.blank?
     @song_pair.similar_song.artists.build if @song_pair.similar_song.artists.blank?
 
     @categories = SimilarityCategory.all
