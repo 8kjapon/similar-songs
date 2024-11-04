@@ -1,5 +1,8 @@
 <div>
   <h1 class="text-center mb-4">検索結果</h1>
+  <div class="d-flex justify-content-center">
+    <%= render "shared/sort_with_filter" %>
+  </div>
   <div class="mb-4">
     <% if @song_pairs.blank? %>
       <div class="text-center mb-3">
