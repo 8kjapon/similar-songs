@@ -25,7 +25,7 @@ class SongPairsController < ApplicationController
   
   def recent_page
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc)
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc).page(params[:page])
   end
 
   def popularity_page
