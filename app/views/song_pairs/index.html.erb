@@ -23,6 +23,7 @@
       <% end %>
     <% else %>
       <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
+      <%= paginate @song_pairs %>
     <% end %>
   </div>
 </div>

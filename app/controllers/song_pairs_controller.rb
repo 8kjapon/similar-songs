@@ -12,15 +12,17 @@ class SongPairsController < ApplicationController
                     @song_pairs.joins(:original_song).group('song_pairs.id').reorder('songs.title' => params[:order])
                   when "artist_name"
                     if params[:order] == "asc"
-                      @song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }
+                      Kaminari.paginate_array(@song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase })
                     else
-                      @song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse
+                      Kaminari.paginate_array(@song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse)
                     end
                   when "created_at"
                     @song_pairs.reorder(created_at: params[:order]) 
                   else
                     @song_pairs.order(created_at: :desc)
                   end
+                  
+    @song_pairs = @song_pairs.page(params[:page])
   end
   
   def recent_page
@@ -31,6 +33,7 @@ class SongPairsController < ApplicationController
   def popularity_page
     @q = SongPair.ransack(params[:q])
     @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
+    @song_pairs = Kaminari.paginate_array(@song_pairs).page(params[:page])
   end
 
   def new

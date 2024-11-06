@@ -147,6 +147,40 @@ footer {
     align-items: center;
 }
 
+.pagination {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginate-button {
+    height: 60px;
+    width: 10%;
+    background-color: #FF7171;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 3px;
+}
+
+
+.paginate-button-page {
+    height: 60px;
+    width: 60px;
+    background-color: #FFCACA;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0 3px;
+}
+
+.current {
+    background-color: #FF7171;
+}
+
 .alert {
     border-radius: 0;
 }
