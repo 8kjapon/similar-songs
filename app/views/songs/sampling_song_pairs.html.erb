@@ -2,5 +2,5 @@
 <%= render 'song_info', song: @song, media_widget: false %>
 <div>
   <h4 class="text-center mb-4">この曲がサンプリングしてる・されてる曲</h4>
-  <%= render 'shared/song_block', song: @song, similarity_category: 'sampling', maximum: 0 %>
+  <%= render 'song_block', song: @song, pair_song_list: @pair_song_list %>
 </div>

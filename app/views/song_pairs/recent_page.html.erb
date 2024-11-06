@@ -5,5 +5,6 @@
   </div>
   <div class="mb-4">
     <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
+    <%= paginate @song_pairs %>
   </div>
 </div>

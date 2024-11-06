@@ -90,3 +90,5 @@ gem "sorcery"
 gem "ransack"
 
 gem "ahoy_matey"
+
+gem "kaminari"
