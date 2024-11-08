@@ -13,7 +13,6 @@ export default class extends Controller {
     fetch(`/songs/autocomplete?query=${query}`)
       .then(response => response.json())
       .then(data => {
-        console.log("Artist autocomplete results:", data);
         this.showSuggestions(this.currentSongListTarget(), data, (suggestion) => {
           this.setSongData(suggestion)
         })
@@ -21,9 +20,7 @@ export default class extends Controller {
   }
 
   searchArtist() {
-    console.log("Input target for artist:", this.inputTarget);
     const query = this.artistInputTarget.value
-    console.log("Search query for artist:", query);
     if (query.length < 2) {
       this.clearSuggestions(this.currentArtistListTarget())
       return
@@ -32,7 +29,6 @@ export default class extends Controller {
     fetch(`/artists/autocomplete?query=${query}`)
       .then(response => response.json())
       .then(data => {
-        console.log("Artist autocomplete results:", data);
         this.showSuggestions(this.currentArtistListTarget(), data, (suggestion) => {
           this.artistInputTarget.value = suggestion
         })
@@ -42,13 +38,10 @@ export default class extends Controller {
   // 現在の入力フィールドに対応する曲候補リストを取得
   currentSongListTarget() {
     if (this.hasSongList1Target && this.songInputTarget.dataset.target === "autocomplete.songInput") {
-      // console.log("Song list target 1 found:", this.songList1Target);
       return this.songList1Target
     } else if (this.hasSongList2Target && this.songInputTarget.dataset.target === "autocomplete.songInput") {
-      // console.log("Song list target 2 found:", this.songList2Target);
       return this.songList2Target
     } else {
-      // console.log("No song list target found");
       return null;
     }
   }
@@ -56,10 +49,8 @@ export default class extends Controller {
   // 現在の入力フィールドに対応するアーティスト候補リストを取得
   currentArtistListTarget() {
     if (this.hasArtistList1Target && this.artistInputTarget.dataset.target === "autocomplete.artistInput") {
-      console.log("Artist list target 1 found:", this.artistList1Target);
       return this.artistList1Target
     } else if (this.hasArtistList2Target && this.artistInputTarget.dataset.target === "autocomplete.artistInput") {
-      console.log("Artist list target 2 found:", this.artistList2Target);
       return this.artistList2Target
     }
   }
