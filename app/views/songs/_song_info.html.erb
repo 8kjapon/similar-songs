@@ -16,7 +16,7 @@
     <% if logged_in? %>
       <%= link_to "この曲と似てる楽曲を登録", new_song_pair_path(original_song_id: song.id) %>
     <% else %>
-      <%= link_to "アカウント登録・ログインをしてこの曲と似てる楽曲を登録", signup_path %>
+      <%= link_to "アカウント登録・ログインをしてこの曲と似てる楽曲を登録", login_path %>
     <% end %>
   </div>
 </div>
