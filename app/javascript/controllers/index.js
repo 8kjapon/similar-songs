@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import AutoCompleteController from "./autocomplete_controller"
 application.register("autocomplete", AutoCompleteController)
+
+import MultiStepFormController from "./multi_step_form_controller"
+application.register("multi-step-form", MultiStepFormController)

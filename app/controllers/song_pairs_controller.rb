@@ -51,6 +51,8 @@ class SongPairsController < ApplicationController
     @song_pair.similar_song.artists.build if @song_pair.similar_song.artists.blank?
 
     @categories = SimilarityCategory.all
+
+    @current_step = 0
   end
 
   def create
@@ -71,17 +73,13 @@ class SongPairsController < ApplicationController
 
         if @song_pair.save
           redirect_to @song_pair, notice: '曲のペアが登録されました'
-        else
-          @song_pair.errors.merge!(e.record.errors)
-          @categories = SimilarityCategory.all
-          render :new, status: :unprocessable_entity
-          flash[:alert] = "入力に誤りがあります"
         end
-
+        
       rescue ActiveRecord::RecordInvalid => e
-        # バリデーションエラーが発生した場合にフォームを再表示
         @song_pair.errors.merge!(e.record.errors)
         @categories = SimilarityCategory.all
+        @current_step = 2
+        flash.now[:alert] = "入力に誤りがあります"
         render :new, status: :unprocessable_entity
       end
     end
