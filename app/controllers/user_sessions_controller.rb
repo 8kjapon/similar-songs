@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_to root_path, notice: 'ログインしました'
     else
-      flash.now[:alert] = 'メールアドレスまたはパスワードが正しくありません。'
+      flash.now[:alert] = 'メールアドレスまたはパスワードが正しくありません'
       render :new
     end
   end
