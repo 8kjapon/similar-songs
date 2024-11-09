@@ -8,25 +8,19 @@ class SongsController < ApplicationController
   def melody_song_pairs
     @song = Song.includes(:artists, :song_pairs).find(params[:id])
     @pair_song_list = Kaminari.paginate_array(@song.pair_song_list(similarity_category: 'melody')).page(params[:page])
-    unless @song.pair_song_list(similarity_category: 'melody').count > 3
-      redirect_to song_path
-    end
+    redirect_to song_path unless @song.pair_song_list(similarity_category: 'melody').count > 3
   end
 
   def style_song_pairs
     @song = Song.includes(:artists, :song_pairs).find(params[:id])
     @pair_song_list = Kaminari.paginate_array(@song.pair_song_list(similarity_category: 'style')).page(params[:page])
-    unless @song.pair_song_list(similarity_category: 'style').count > 3
-      redirect_to song_path
-    end
+    redirect_to song_path unless @song.pair_song_list(similarity_category: 'style').count > 3
   end
 
   def sampling_song_pairs
     @song = Song.includes(:artists, :song_pairs).find(params[:id])
     @pair_song_list = Kaminari.paginate_array(@song.pair_song_list(similarity_category: 'sampling')).page(params[:page])
-    unless @song.pair_song_list(similarity_category: 'sampling').count > 3
-      redirect_to song_path
-    end
+    redirect_to song_path unless @song.pair_song_list(similarity_category: 'sampling').count > 3
   end
 
   def autocomplete

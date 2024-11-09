@@ -5,34 +5,20 @@ class SongPairsController < ApplicationController
 
   def index
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists)
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists)
 
-    @song_pairs = case params[:sort_by]
-                  when "song_title"
-                    @song_pairs.joins(:original_song).group('song_pairs.id').reorder('songs.title' => params[:order])
-                  when "artist_name"
-                    if params[:order] == "asc"
-                      Kaminari.paginate_array(@song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase })
-                    else
-                      Kaminari.paginate_array(@song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse)
-                    end
-                  when "created_at"
-                    @song_pairs.reorder(created_at: params[:order]) 
-                  else
-                    @song_pairs.order(created_at: :desc)
-                  end
-                  
-    @song_pairs = @song_pairs.page(params[:page])
+    @song_pairs = sort_song_pairs(@song_pairs).page(params[:page])
   end
-  
+
   def recent_page
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).order(created_at: :desc).page(params[:page])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists).order(created_at: :desc).page(params[:page])
   end
 
   def popularity_page
     @q = SongPair.ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, :original_song => :artists, :similar_song => :artists).sort_by{ |song_pair| song_pair.page_view_count(request.base_url) }.reverse
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists)
+    @song_pairs = @song_pairs.sort_by { |song_pair| song_pair.page_view_count(request.base_url) }.reverse
     @song_pairs = Kaminari.paginate_array(@song_pairs).page(params[:page])
   end
 
@@ -46,7 +32,7 @@ class SongPairsController < ApplicationController
       @song_pair.build_original_song
       @song_pair.original_song.artists.build if @song_pair.original_song.artists.blank?
     end
-    
+
     @song_pair.build_similar_song
     @song_pair.similar_song.artists.build if @song_pair.similar_song.artists.blank?
 
@@ -59,29 +45,24 @@ class SongPairsController < ApplicationController
     @song_pair = SongPair.new(song_pair_params)
 
     ActiveRecord::Base.transaction do
-      begin
-        # 曲1の保存
-        original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
+      # 曲1の保存
+      original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
 
-        # 曲2の保存
-        similar_song = @song_pair.add_song(song_pair_params[:similar_song_attributes])
+      # 曲2の保存
+      similar_song = @song_pair.add_song(song_pair_params[:similar_song_attributes])
 
-        # 曲ペアの保存
-        @song_pair.original_song = original_song
-        @song_pair.similar_song = similar_song
-        @song_pair.user = current_user
+      # 曲ペアの保存
+      @song_pair.original_song = original_song
+      @song_pair.similar_song = similar_song
+      @song_pair.user = current_user
 
-        if @song_pair.save
-          redirect_to @song_pair, notice: '曲のペアが登録されました'
-        end
-        
-      rescue ActiveRecord::RecordInvalid => e
-        @song_pair.errors.merge!(e.record.errors)
-        @categories = SimilarityCategory.all
-        @current_step = 2
-        flash.now[:alert] = "入力に誤りがあります"
-        render :new, status: :unprocessable_entity
-      end
+      redirect_to @song_pair, notice: '曲のペアが登録されました' if @song_pair.save
+    rescue ActiveRecord::RecordInvalid => e
+      @song_pair.errors.merge!(e.record.errors)
+      @categories = SimilarityCategory.all
+      @current_step = 2
+      flash.now[:alert] = "入力に誤りがあります"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -94,18 +75,34 @@ class SongPairsController < ApplicationController
   def song_pair_params
     params.require(:song_pair).permit(
       :original_song_description, :similar_song_description, :similarity_category_id,
-      original_song_attributes: [:title, :release_date, :media_url, artists_attributes: [:name]],
-      similar_song_attributes: [:title, :release_date, :media_url, artists_attributes: [:name]]
+      original_song_attributes: [:title, :release_date, :media_url, { artists_attributes: [:name] }],
+      similar_song_attributes: [:title, :release_date, :media_url, { artists_attributes: [:name] }]
     )
   end
 
   def check_login_for_sort_and_filter
-    if params[:sort_by].present? || params[:order].present?
-      unless logged_in?
-        params.delete(:sort_by)
-        params.delete(:order)
-        params[:q].delete(:similarity_category_id_eq)
+    return unless params[:sort_by].present? || params[:order].present?
+    return if logged_in?
+
+    params.delete(:sort_by)
+    params.delete(:order)
+    params[:q].delete(:similarity_category_id_eq)
+  end
+
+  def sort_song_pairs(song_pairs)
+    case params[:sort_by]
+    when "song_title"
+      song_pairs.joins(:original_song).group('song_pairs.id').reorder('songs.title' => params[:order])
+    when "artist_name"
+      if params[:order] == "asc"
+        Kaminari.paginate_array(song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase })
+      else
+        Kaminari.paginate_array(song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse)
       end
+    when "created_at"
+      song_pairs.reorder(created_at: params[:order])
+    else
+      song_pairs.order(created_at: :desc)
     end
   end
 end
