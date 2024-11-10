@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :song_pair_evaluations, dependent: :destroy
   has_many :evaluated_song_pairs, through: :song_pair_evaluations, source: :song_pair
 
-  validates :name, presence: true, length: {minimum:3, maximum:255}
+  validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

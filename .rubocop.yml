@@ -10,7 +10,7 @@ AllCops:
     - "Gemfile"
     - "Gemfile.lock"
     - "test/**/*"
-    - "app/models/**/*"
+    # - "app/models/**/*"
     - "app/views/**/*"
     - "db/migrate/**/*"
     - "app/javascript/**/*"

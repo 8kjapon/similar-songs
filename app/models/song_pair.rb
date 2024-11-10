@@ -4,7 +4,7 @@ class SongPair < ApplicationRecord
   belongs_to :similar_song, class_name: 'Song'
   belongs_to :similarity_category
   has_many :song_pair_evaluations, dependent: :destroy
-  
+
   validates :original_song_id, uniqueness: { scope: :similar_song_id }
   validates :original_song_description, presence: true
   validates :similar_song_description, presence: true
@@ -18,18 +18,18 @@ class SongPair < ApplicationRecord
     song.update!(song_attributes.except(:artists_attributes))
 
     # アーティストの保存
-    song_attributes[:artists_attributes].each do |_, artist_attributes|
+    song_attributes[:artists_attributes].each_value do |artist_attributes|
       artist = Artist.find_or_create_by!(name: artist_attributes[:name])
       SongArtist.find_or_create_by!(song: song, artist: artist)
     end
-    return song
+    song
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     ["created_at", "original_song_id", "similar_song_id", "similarity_category_id"]
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     ["original_song", "similar_song", "similarity_category"]
   end
 
