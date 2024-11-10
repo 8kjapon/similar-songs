@@ -1,6 +1,9 @@
 inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
   Exclude:
     - "bin/**/*"
     - "db/schema.rb"
@@ -10,7 +13,7 @@ AllCops:
     - "Gemfile"
     - "Gemfile.lock"
     - "test/**/*"
-    # - "app/models/**/*"
+    - "app/models/**/*"
     - "app/views/**/*"
     - "db/migrate/**/*"
     - "app/javascript/**/*"

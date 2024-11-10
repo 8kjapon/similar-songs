@@ -1,3 +1,4 @@
+# Ahoy(アクセス記録用Gem)の設定用モデル
 module Ahoy
   class Event < ApplicationRecord
     include Ahoy::QueryMethods

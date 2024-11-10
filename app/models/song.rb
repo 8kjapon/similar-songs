@@ -11,11 +11,14 @@ class Song < ApplicationRecord
 
   accepts_nested_attributes_for :artists
 
+  # 記録されてるYouTubeのURLからID部分を抽出
   def media_url_id
     extract_media_id(media_url)
   end
 
+  # 該当する曲と関連する似てる曲・サンプリング曲の一覧を取得
   def pair_song_list(similarity_category: nil, maximum: 0)
+    # similarity_categoryのidを引数で受け取ったカテゴリー名から指定できるようにハッシュを設定
     similarity_category_id = { 'melody' => 1, 'style' => 2, 'sampling' => 3 }
 
     # 似てる曲(original側)として紐づけられてる曲一覧の取得
@@ -33,10 +36,12 @@ class Song < ApplicationRecord
     end
   end
 
+  # 該当する曲と紐づけられたアーティストの一覧をコンマ区切りで出力
   def artist_list
     artists.map(&:name).join(', ')
   end
 
+  # 該当する曲の含まれる似てる曲・サンプリング曲の組み合わせ(SongPair)を取得
   def song_pair(song)
     if song_pairs.find_by(similar_song_id: song.id).present?
       song_pairs.find_by(similar_song_id: song.id)
@@ -45,14 +50,17 @@ class Song < ApplicationRecord
     end
   end
 
+  # ransackでの検索対象カラムを設定
   def self.ransackable_attributes(_auth_object = nil)
     ["title", "artist_list"]
   end
 
+  # ransackで関連するデータを検索対象にできるように設定
   def self.ransackable_associations(_auth_object = nil)
     ["artists"]
   end
 
+  # ransackでartist_listからアーティスト一覧を取得出来るように設定
   ransacker :artist_list do
     Arel.sql <<-SQL
     (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
@@ -65,16 +73,22 @@ class Song < ApplicationRecord
 
   private
 
+  # リリース年が正常な数値かチェックする処理
   def release_date_check
+    # リリース年が未入力、未来を指す数値でない場合は処理を終了
     return unless release_date.present?
     return unless release_date.to_i > Date.today.year
 
+    # リリース年が未来を指す数値の場合にエラーを追加
     errors.add(:release_date, "は未来の数値にできません。")
   end
 
+  # 引数として受け取ったYouTubeのURLからID部分を抽出する処理
   def extract_media_id(url)
+    # 引数がブランクな値であれば処理を終了
     return nil if url.blank?
 
+    # 正規表現を使用してIDを抽出
     reg_exp = %r{^.*(youtu.be/|v/|u/\w/|embed/|watch\?v=|&v=)([^#\&\?]*).*}
     match = url.match(reg_exp)
     match[2] if match && match[2].length == 11

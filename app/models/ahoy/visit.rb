@@ -1,3 +1,4 @@
+# Ahoy(アクセス記録用Gem)の設定用モデル
 module Ahoy
   class Visit < ApplicationRecord
     self.table_name = "ahoy_visits"
