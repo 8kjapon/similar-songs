@@ -29,6 +29,10 @@ class SongPairsController < ApplicationController
     @song_pairs = Kaminari.paginate_array(@song_pairs).page(params[:page])
   end
 
+  def show
+    @song_pair = SongPair.find(params[:id])
+  end
+
   def new
     @song_pair = SongPair.new
 
@@ -79,10 +83,6 @@ class SongPairsController < ApplicationController
       flash.now[:alert] = "入力に誤りがあります"
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @song_pair = SongPair.find(params[:id])
   end
 
   private
