@@ -4,12 +4,6 @@
   <h1 class="text-center mb-4">似てる曲情報</h1>
 <% end %>
 <div>
-  <p class="text-center">
-    <%# 確認用 人気曲ページが完成次第削除 %>
-    閲覧数: <%= @song_pair.page_view_count(request.base_url) %>
-  </p>
-</div>
-<div>
   <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description %>
 
   <% if @song_pair.similarity_category.id == 3 %>
