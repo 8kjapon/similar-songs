@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_30_200348) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_10_221922) do
   create_table "ahoy_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "visit_id"
     t.bigint "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_200348) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_song_artists_on_artist_id"
+    t.index ["song_id", "artist_id"], name: "index_song_artists_on_song_id_and_artist_id", unique: true
     t.index ["song_id"], name: "index_song_artists_on_song_id"
   end
 
@@ -78,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_30_200348) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["original_song_id", "similar_song_id"], name: "index_song_pairs_on_original_song_id_and_similar_song_id", unique: true
     t.index ["original_song_id"], name: "index_song_pairs_on_original_song_id"
     t.index ["similar_song_id"], name: "index_song_pairs_on_similar_song_id"
     t.index ["similarity_category_id"], name: "index_song_pairs_on_similarity_category_id"

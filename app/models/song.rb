@@ -1,8 +1,8 @@
 class Song < ApplicationRecord
-  has_many :song_artists
+  has_many :song_artists, dependent: :nullify
   has_many :artists, through: :song_artists
-  has_many :song_pairs, class_name: "SongPair", foreign_key: :original_song_id
-  has_many :similar_song_pairs, class_name: "SongPair", foreign_key: :similar_song_id
+  has_many :song_pairs, class_name: "SongPair", foreign_key: :original_song_id, inverse_of: :original_song, dependent: :nullify
+  has_many :similar_song_pairs, class_name: "SongPair", foreign_key: :similar_song_id, inverse_of: :similar_song, dependent: :nullify
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :media_url, presence: true, format: { with: %r{\A(https://www\.youtube\.com/watch\?v=|https://youtu\.be/)[\w-]+\z}, message: "は有効なYouTubeリンクである必要があります" }
@@ -43,11 +43,7 @@ class Song < ApplicationRecord
 
   # 該当する曲の含まれる似てる曲・サンプリング曲の組み合わせ(SongPair)を取得
   def song_pair(song)
-    if song_pairs.find_by(similar_song_id: song.id).present?
-      song_pairs.find_by(similar_song_id: song.id)
-    else
-      similar_song_pairs.find_by(original_song_id: song.id)
-    end
+    song_pairs.find_by(similar_song_id: song.id).presence || similar_song_pairs.find_by(original_song_id: song.id)
   end
 
   # ransackでの検索対象カラムを設定
@@ -62,7 +58,7 @@ class Song < ApplicationRecord
 
   # ransackでartist_listからアーティスト一覧を取得出来るように設定
   ransacker :artist_list do
-    Arel.sql <<-SQL
+    Arel.sql <<-SQL.squish
     (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
     FROM song_artists
     JOIN artists ON song_artists.artist_id = artists.id
@@ -76,8 +72,8 @@ class Song < ApplicationRecord
   # リリース年が正常な数値かチェックする処理
   def release_date_check
     # リリース年が未入力、未来を指す数値でない場合は処理を終了
-    return unless release_date.present?
-    return unless release_date.to_i > Date.today.year
+    return if release_date.blank?
+    return unless release_date.to_i > Time.zone.today.year
 
     # リリース年が未来を指す数値の場合にエラーを追加
     errors.add(:release_date, "は未来の数値にできません。")

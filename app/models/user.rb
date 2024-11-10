@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  has_many :song_pairs
+  has_many :song_pairs, dependent: :nullify
   has_many :song_pair_evaluations, dependent: :destroy
   has_many :evaluated_song_pairs, through: :song_pair_evaluations, source: :song_pair
 
