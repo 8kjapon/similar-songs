@@ -1,15 +1,22 @@
+// オートコンプリート機能用のコード
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+  // オートコンプリートのターゲットを指定
   static targets = ["songInput", "artistInput", "releaseDate", "mediaUrl", "songList1", "songList2", "artistList1", "artistList2"]
 
+  // 楽曲情報の検索
   search() {
+    // 入力を取得
     const query = this.songInputTarget.value
+
+    // 入力が2文字未満の場合はサジェストを表示しない
     if (query.length < 2) {
       this.clearSuggestions(this.currentSongListTarget())
       return
     }
 
+    // サジェストの取得と表示の処理
     fetch(`/songs/autocomplete?query=${query}`)
       .then(response => response.json())
       .then(data => {
@@ -19,13 +26,18 @@ export default class extends Controller {
       })
   }
 
+  // アーティスト情報の検索
   searchArtist() {
+    // 入力を取得
     const query = this.artistInputTarget.value
+
+    // 入力が2文字未満の場合はサジェストを表示しない
     if (query.length < 2) {
       this.clearSuggestions(this.currentArtistListTarget())
       return
     }
 
+    // サジェストの取得と表示の処理
     fetch(`/artists/autocomplete?query=${query}`)
       .then(response => response.json())
       .then(data => {
@@ -55,6 +67,7 @@ export default class extends Controller {
     }
   }
 
+  // オートコンプリート部分の処理
   setSongData(suggestion) {
     this.songInputTarget.value = suggestion.title;
     this.artistInputTarget.value = suggestion.artists || '';

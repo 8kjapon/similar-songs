@@ -13,10 +13,8 @@ AllCops:
     - "Gemfile"
     - "Gemfile.lock"
     - "test/**/*"
-    # - "app/models/**/*"
-    - "app/views/**/*"
     - "db/migrate/**/*"
-    - "app/javascript/**/*"
+    # - "app/javascript/**/*"
 
 Style/SpecialGlobalVars:
   EnforcedStyle: use_english_names
