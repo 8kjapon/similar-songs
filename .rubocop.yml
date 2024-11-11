@@ -14,7 +14,7 @@ AllCops:
     - "Gemfile.lock"
     - "test/**/*"
     - "db/migrate/**/*"
-    - "app/javascript/**/*"
+    # - "app/javascript/**/*"
 
 Style/SpecialGlobalVars:
   EnforcedStyle: use_english_names

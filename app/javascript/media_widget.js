@@ -1,3 +1,4 @@
+// 楽曲登録フォームでメディアのウィジェットを自動表示する機能用のコード
 document.addEventListener("turbo:load", () => {
   // 1つ目のURL入力欄に対する処理
   setupMediaWidget('media_url_1', 'media_player_1');
@@ -7,21 +8,28 @@ document.addEventListener("turbo:load", () => {
   
   // ウィジェットをセットアップする関数
   function setupMediaWidget(inputId, playerId) {
+    // 入力されたURLを取得
     const mediaUrlField = document.getElementById(inputId);
+
+    // ウィジェット(プレイヤー)表示用のエリアを取得
     const mediaPlayer = document.getElementById(playerId);
 
+    // 必要情報がある場合はウィジェットを表示
     if (mediaUrlField && mediaPlayer) {
+      // ウィジェットを表示
       updateMediaPlayer(mediaUrlField.value, mediaPlayer)
 
+      // URLの手動入力を監視
       mediaUrlField.addEventListener('input', () => {
         updateMediaPlayer(mediaUrlField.value, mediaPlayer)
       });
 
+      // URLの自動入力を監視(オートコンプリート等での自動入力対応)
       mediaUrlField.addEventListener('change', () => {
         updateMediaPlayer(mediaUrlField.value, mediaPlayer)
       });
 
-      // 値が自動で入力されてもチェックできるように定期的に監視
+      // 上記の入力監視に対応しきれない場合に備えて定期監視
       let previousValue = mediaUrlField.value;
       setInterval(() => {
         if (mediaUrlField.value !== previousValue) {
@@ -32,9 +40,12 @@ document.addEventListener("turbo:load", () => {
     }
   }
 
+  // ウィジェット(プレイヤー)表示用の処理
   function updateMediaPlayer(url, playerElement) {
+    // URLからYouTubeの動画IDを取得
     const mediaId = extractMediaId(url);
 
+    // IDが有効なら表示、取得できなければ何も表示しない
     if (mediaId) {
       const embedUrl = `https://www.youtube.com/embed/${mediaId}`;
       const iframeHtml = `<div class="media-widget"><iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
