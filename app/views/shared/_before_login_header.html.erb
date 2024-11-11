@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <% unless current_page?(login_path) || current_page?(signup_path) %>
+  <% unless request.path == login_path || request.path == signup_path %>
     <div class="header-image text-white">
       <div class="main-area d-flex flex-column align-items-center">
         <h1>『似ている』から始まる曲探し</h1>

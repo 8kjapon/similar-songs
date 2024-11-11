@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_path, notice: 'ユーザー登録が完了しました'
     else
-      render :new
+      flash.now[:alert] = "入力に誤りがあります"
+      render :new, status: :unprocessable_entity
     end
   end
 
