@@ -1,11 +1,13 @@
-<div class="normal-button text-center">
+<div class="evaluate-button">
   <% if logged_in? %>
-    <% if current_user.song_pair_evaluated?(song_pair) %>
-      <%= link_to "SIM!を取り消す", song_pair_evaluation_path(current_user.song_pair_evaluations.find_by(song_pair_id: song_pair.id)), data: { turbo_method: :delete }%>
-    <% else %>
-      <%= link_to "SIM!する", song_pair_evaluations_path(song_pair_id: song_pair.id), data: { turbo_method: :post } %>
-    <% end %>
-    <p>SIM!数: <%= song_pair.song_pair_evaluations.count %></p>
+    <div>
+      <% if current_user.song_pair_evaluated?(song_pair) %>
+        <%= link_to "SIM!を取り消す", song_pair_evaluation_path(current_user.song_pair_evaluations.find_by(song_pair_id: song_pair.id)), data: { turbo_method: :delete }%>
+      <% else %>
+        <%= link_to "SIM!する", song_pair_evaluations_path(song_pair_id: song_pair.id), data: { turbo_method: :post } %>
+      <% end %>
+      <p>SIM!数: <%= song_pair.song_pair_evaluations.count %></p>
+    </div>
   <% else %>
     <%= link_to "アカウント登録・ログインをして似てる曲を評価", login_path %>
   <% end %>
