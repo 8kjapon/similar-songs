@@ -1,17 +1,4 @@
 // Entry point for your Sass build
-@media (max-width: 768px) {
-    // h3 {
-    //     font-size: 1rem;
-    // }
-    // p {
-    //     font-size: 0.5rem;
-    // }
-    iframe {
-        width: 320px;
-        height: 180px;
-    }
-}
-
 .btn {
     background-color: #FF7171;
     color: #000;
@@ -64,6 +51,10 @@ label {
 iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
+    @media (max-width: 768px) {
+        width: 320px;
+        height: 180px;
+    }
 }
 
 body {
