@@ -64,7 +64,7 @@ class SongPairsController < ApplicationController
     # SongPairとそれに関連するデータの保存に失敗した場合にエラーを検出
     ActiveRecord::Base.transaction do
       # 関連データのバリデーションを事前チェック
-      # @song_pair.validate_associated_songs_and_artists
+      @song_pair.validate_associated_songs_and_artists
 
       # 曲1の保存
       original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
