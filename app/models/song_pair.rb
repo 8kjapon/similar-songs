@@ -41,12 +41,34 @@ class SongPair < ApplicationRecord
 
   # ransackでの検索対象カラムを設定
   def self.ransackable_attributes(_auth_object = nil)
-    ["created_at", "original_song_id", "similar_song_id", "similarity_category_id"]
+    ["created_at", "original_song_id", "similar_song_id", "similarity_category_id", "original_song_artist_list", "similar_song_artist_list"]
   end
 
   # ransackで関連するデータを検索対象にできるように設定
   def self.ransackable_associations(_auth_object = nil)
     ["original_song", "similar_song", "similarity_category"]
+  end
+
+  # ransackでoriginal_song_artist_listからアーティスト一覧を取得出来るように設定
+  ransacker :original_song_artist_list do
+    Arel.sql <<-SQL.squish
+    (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
+    FROM song_artists
+    JOIN artists ON song_artists.artist_id = artists.id
+    WHERE song_artists.song_id = song_pairs.original_song_id
+    GROUP BY song_artists.song_id)
+    SQL
+  end
+
+  # ransackでsimilar_song_artist_listからアーティスト一覧を取得出来るように設定
+  ransacker :similar_song_artist_list do
+    Arel.sql <<-SQL.squish
+    (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
+    FROM song_artists
+    JOIN artists ON song_artists.artist_id = artists.id
+    WHERE song_artists.song_id = song_pairs.similar_song_id
+    GROUP BY song_artists.song_id)
+    SQL
   end
 
   # 該当するSongPairの閲覧数を出力する処理
@@ -67,6 +89,7 @@ class SongPair < ApplicationRecord
     validate_songs_and_artists(original_song, "曲情報1", :original_song_description)
     validate_songs_and_artists(similar_song, "曲情報2", :similar_song_description)
     
+    # エラーが発生した場合は保存処理の中止
     raise ActiveRecord::RecordInvalid.new(self) if errors.any?
   end
   
@@ -74,6 +97,7 @@ class SongPair < ApplicationRecord
 
   # 楽曲とそのアーティストに関するバリデーションチェックを行う処理
   def validate_songs_and_artists(song, song_label, song_description)
+    # 問題があればエラーに追加
     unless song.valid?
       song.errors.full_messages.uniq.each do |message|
         error_message = "#{song_label}の#{message}"
@@ -81,6 +105,7 @@ class SongPair < ApplicationRecord
       end
     end
 
+    # 楽曲説明のチェック
     errors.add(song_description, "#{song_label}#{I18n.t("errors.messages.blank_song_description")}") if send(song_description).blank?
   end
 end

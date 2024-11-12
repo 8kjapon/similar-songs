@@ -48,23 +48,12 @@ class Song < ApplicationRecord
 
   # ransackでの検索対象カラムを設定
   def self.ransackable_attributes(_auth_object = nil)
-    ["title", "artist_list"]
+    ["title"]
   end
 
   # ransackで関連するデータを検索対象にできるように設定
   def self.ransackable_associations(_auth_object = nil)
     ["artists"]
-  end
-
-  # ransackでartist_listからアーティスト一覧を取得出来るように設定
-  ransacker :artist_list do
-    Arel.sql <<-SQL.squish
-    (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
-    FROM song_artists
-    JOIN artists ON song_artists.artist_id = artists.id
-    WHERE song_artists.song_id = songs.id
-    GROUP BY song_artists.song_id)
-    SQL
   end
 
   private
