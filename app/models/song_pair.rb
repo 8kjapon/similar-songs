@@ -14,10 +14,10 @@ class SongPair < ApplicationRecord
 
   # 引数で受け取った楽曲・アーティスト情報を記録する処理
   def add_song(song_attributes)
-    # 既存のデータとして存在するかチェック
+    # 既存のデータとして存在するかチェック(条件は曲名とアーティスト)
     existing_song = Song.joins(:artists).where(
       title: song_attributes[:title],
-      artists: { name: song_attributes[:artists_attributes].values.map { |a| a[:name] } }
+      artists: { name: song_attributes[:artists_attributes].values.pluck(:name) }
     ).first
 
     # 既存のデータがあればそちらを、なければ新規でデータを作成
@@ -83,16 +83,18 @@ class SongPair < ApplicationRecord
   def similarity_category_name
     I18n.t("similarity_category.#{similarity_category.name}")
   end
-  
+
   # 関連するモデルも含めた全バリデーションチェック
   def validate_associated_songs_and_artists
     validate_songs_and_artists(original_song, "曲情報1", :original_song_description)
     validate_songs_and_artists(similar_song, "曲情報2", :similar_song_description)
-    
-    # エラーが発生した場合は保存処理の中止
+
+    # エラーが発生した場合は保存処理の中止(rubocopの指摘を一部除外)
+    # rubocop:disable Style/RaiseArgs
     raise ActiveRecord::RecordInvalid.new(self) if errors.any?
+    # rubocop:enable Style/RaiseArgs
   end
-  
+
   private
 
   # 楽曲とそのアーティストに関するバリデーションチェックを行う処理
@@ -106,6 +108,6 @@ class SongPair < ApplicationRecord
     end
 
     # 楽曲説明のチェック
-    errors.add(song_description, "#{song_label}#{I18n.t("errors.messages.blank_song_description")}") if send(song_description).blank?
+    errors.add(song_description, "#{song_label}#{I18n.t('errors.messages.blank_song_description')}") if send(song_description).blank?
   end
 end

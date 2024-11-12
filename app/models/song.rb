@@ -83,7 +83,7 @@ class Song < ApplicationRecord
   def media_url_format
     # URLが入力されており、形式が正しい場合は処理を終了
     return if media_url.present? && media_url.match?(%r{\A(https://www\.youtube\.com/watch\?v=|https://youtu\.be/)([\w-]{11})\z})
-    
+
     errors.add(:media_url, I18n.t('errors.messages.invalid_media_url'))
   end
 end
