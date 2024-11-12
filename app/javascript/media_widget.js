@@ -21,11 +21,15 @@ document.addEventListener("turbo:load", () => {
 
       // URLの手動入力を監視
       mediaUrlField.addEventListener('input', () => {
+        const normalizedUrl = normalizeYouTubeUrl(mediaUrlField.value);
+        mediaUrlField.value = normalizedUrl;
         updateMediaPlayer(mediaUrlField.value, mediaPlayer)
       });
 
       // URLの自動入力を監視(オートコンプリート等での自動入力対応)
       mediaUrlField.addEventListener('change', () => {
+        const normalizedUrl = normalizeYouTubeUrl(mediaUrlField.value);
+        mediaUrlField.value = normalizedUrl;
         updateMediaPlayer(mediaUrlField.value, mediaPlayer)
       });
 
@@ -34,6 +38,8 @@ document.addEventListener("turbo:load", () => {
       setInterval(() => {
         if (mediaUrlField.value !== previousValue) {
           previousValue = mediaUrlField.value;
+          const normalizedUrl = normalizeYouTubeUrl(mediaUrlField.value);
+          mediaUrlField.value = normalizedUrl;
           updateMediaPlayer(mediaUrlField.value, mediaPlayer)
         }
       }, 1000);  // 1秒ごとにチェック
@@ -53,6 +59,15 @@ document.addEventListener("turbo:load", () => {
     } else {
       playerElement.innerHTML = '';
     }
+  }
+
+  // YouTubeのURLをシンプルな形式に変換する処理
+  function normalizeYouTubeUrl(url) {
+    const mediaId = extractMediaId(url);
+    if (mediaId) {
+      return `https://www.youtube.com/watch?v=${mediaId}`;
+    }
+    return url;
   }
 
   // 動画IDを抽出する関数

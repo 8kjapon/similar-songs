@@ -49,7 +49,7 @@ class SongPairsController < ApplicationController
     @song_pair.build_similar_song
     @song_pair.similar_song.artists.build if @song_pair.similar_song.artists.blank?
 
-    @categories = SimilarityCategory.all
+    @categories = get_similarity_category
 
     # ステップ入力のスタート時ステップの設定(0 = 注意事項ページ)
     @current_step = 0
@@ -60,6 +60,9 @@ class SongPairsController < ApplicationController
 
     # SongPairとそれに関連するデータの保存に失敗した場合にエラーを検出
     ActiveRecord::Base.transaction do
+      # 関連データのバリデーションを事前チェック
+      @song_pair.validate_associated_songs_and_artists
+
       # 曲1の保存
       original_song = @song_pair.add_song(song_pair_params[:original_song_attributes])
 
@@ -71,11 +74,11 @@ class SongPairsController < ApplicationController
       @song_pair.similar_song = similar_song
       @song_pair.user = current_user
 
-      redirect_to @song_pair, notice: '曲のペアが登録されました' if @song_pair.save
+      redirect_to @song_pair, notice: '曲のペアが登録されました' if @song_pair.save!
     rescue ActiveRecord::RecordInvalid => e
       # エラーメッセージを設定
       @song_pair.errors.merge!(e.record.errors)
-      @categories = SimilarityCategory.all
+      @categories = get_similarity_category
 
       # 楽曲情報入力ステップから再開出来るようにステップの設定
       @current_step = 2
@@ -124,6 +127,14 @@ class SongPairsController < ApplicationController
       song_pairs.reorder(created_at: params[:order])
     else
       song_pairs.order(created_at: :desc)
+    end
+  end
+
+  # 似てるカテゴリーをi18nで翻訳後に格納して出力する処理
+  def get_similarity_category
+    SimilarityCategory.all.map do |category|
+      category.name = t("similarity_category.#{category.name}")
+      category
     end
   end
 end
