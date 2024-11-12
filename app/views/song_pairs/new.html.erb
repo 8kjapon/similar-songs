@@ -73,12 +73,12 @@
         <% end %>
         <div class="mb-3">
           <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
-          <%= song1_form.number_field :release_date, class: "form-control", data: { field: 'year', target: "autocomplete.releaseDate" } %>
+          <%= song1_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song1_form.object.release_date), {}, class: "form-select", data: { field: 'year', target: "autocomplete.releaseDate" } %>
         </div>
         <div class="mb-3">
           <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
           <%= song1_form.text_field :media_url, class: "form-control", id: "media_url_1", data: { target: "autocomplete.mediaUrl" } %>
-          <p>YouTubeに対応しています。</p>
+          <p>YouTubeのURLに対応しています。</p>
         </div>
         <div class="mb-3">
           <div id="media_player_1"></div>
@@ -110,12 +110,12 @@
         <% end %>
         <div class="mb-3">
           <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
-          <%= song2_form.number_field :release_date, class: "form-control", data: { field: 'year', target: "autocomplete.releaseDate" } %>
+          <%= song2_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song2_form.object.release_date), {}, class: "form-select", data: { field: 'year', target: "autocomplete.releaseDate" } %>
         </div>
         <div class="mb-3">
           <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
           <%= song2_form.text_field :media_url, class: "form-control", id: "media_url_2", data: { target: "autocomplete.mediaUrl" } %>
-          <p>YouTubeに対応しています。</p>
+          <p>YouTubeのURLに対応しています。</p>
         </div>
         <div class="mb-3">
           <div id="media_player_2"></div>

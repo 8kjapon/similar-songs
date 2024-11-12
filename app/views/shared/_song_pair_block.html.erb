@@ -8,7 +8,7 @@
       <p class="mb-0">→似てる曲: <%= song_pair.similar_song.artist_list %> - <%= song_pair.similar_song.title %></p>
     </div>
     <div class="song-category ms-auto">
-      <%= link_to "カテゴリー: #{song_pair.similarity_category.name}", "#"%>
+      <%= link_to "カテゴリー: #{song_pair.similarity_category_name}", "#"%>
     </div>
   </div>
 <% end %>

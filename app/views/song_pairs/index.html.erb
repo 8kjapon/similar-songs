@@ -2,7 +2,7 @@
   <h1 class="text-center mb-4">検索結果</h1>
   <div class="d-flex justify-content-center mb-4">
     <% if logged_in? %>
-      <%= render "shared/sort_with_filter" %>
+      <%= render "shared/sort_with_filter", categories: @categories %>
     <% else %>
       <div class="text-center">
         <p>並べ替え:</p>

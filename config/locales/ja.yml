@@ -1,0 +1,49 @@
+ja:
+  views:
+    user_sessions:
+      email: "メールアドレス"
+      password: "パスワード"
+      submit: "ログイン"
+  similarity_category:
+    melody: "メロディー"
+    style: "ジャンル・スタイル"
+    sampling: "サンプリング"
+  activerecord:
+    models:
+      artist: "アーティスト"
+      similarity_category: "カテゴリー"
+      song_artist: "楽曲のアーティスト"
+      song_pair_evaluation: "SIM!"
+      song_pair: "似てる曲の組み合わせ"
+      song: "楽曲"
+      user: "ユーザー"
+    attributes:
+      artist:
+        name: "アーティスト名"
+      similarity_category:
+        name: "カテゴリー名"
+      song_pair:
+        original_song_description: "曲1の説明"
+        similar_song_description: "曲2の説明"
+      song:
+        title: "曲名"
+        release_date: "リリース年"
+        media_url: "メディアURL"
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワードの再確認"
+    errors:
+      messages:
+        blank: "%{attribute}が入力されていません"
+      models:
+        song_pair:
+          attributes:
+            original_song_id:
+              taken: "既に存在している曲の組み合わせです"
+  errors:
+    format: "%{message}"
+    messages:
+      invalid_media_url: "メディアURLが入力されていないか、形式が正しくありません"
+      blank_song_description: "の説明が入力されていません"

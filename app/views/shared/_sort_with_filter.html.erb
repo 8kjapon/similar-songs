@@ -1,5 +1,5 @@
 <%= form_with method: :get, local: true do %>
-  <%= hidden_field_tag "q[original_song_title_or_similar_song_title_or_original_song_artist_list_cont]", params.dig(:q, :original_song_title_or_similar_song_title_or_original_song_artist_list_cont) %>
+  <%= hidden_field_tag "q[original_song_title_or_similar_song_title_or_original_song_artist_list_or_similar_song_artist_list_cont]", params.dig(:q, :original_song_title_or_similar_song_title_or_original_song_artist_list_or_similar_song_artist_list_cont) %>
   <div class="sort-filter-selectors">
     <div class="sort-select d-flex align-items-center">
       <%= label_tag :sort_by, "並べ替え:" %>
@@ -8,7 +8,7 @@
     </div>
     <div class="filter-select d-flex align-items-center">
       <%= label_tag :category, "カテゴリー:" %>
-      <%= select_tag "q[similarity_category_id_eq]", options_from_collection_for_select(SimilarityCategory.all, :id, :name, params.dig(:q, :similarity_category_id_eq)), include_blank: "全て", onchange: "this.form.submit()", class: "form-select" %>
+      <%= select_tag "q[similarity_category_id_eq]", options_from_collection_for_select(categories, :id, :name, params.dig(:q, :similarity_category_id_eq)), include_blank: "全て", onchange: "this.form.submit()", class: "form-select" %>
     </div>
   </div>
 <% end %>

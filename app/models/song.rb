@@ -5,8 +5,8 @@ class Song < ApplicationRecord
   has_many :similar_song_pairs, class_name: "SongPair", foreign_key: :similar_song_id, inverse_of: :similar_song, dependent: :nullify
 
   validates :title, presence: true, length: { maximum: 255 }
-  validates :media_url, presence: true, format: { with: %r{\A(https://www\.youtube\.com/watch\?v=|https://youtu\.be/)[\w-]+\z}, message: "は有効なYouTubeリンクである必要があります" }
-
+  # validates :media_url, presence: true, format: { with: %r{\A(https://www\.youtube\.com/watch\?v=|https://youtu\.be/)[\w-]+\z} }
+  validate :media_url_format
   validate :release_date_check
 
   accepts_nested_attributes_for :artists
@@ -48,23 +48,12 @@ class Song < ApplicationRecord
 
   # ransackでの検索対象カラムを設定
   def self.ransackable_attributes(_auth_object = nil)
-    ["title", "artist_list"]
+    ["title"]
   end
 
   # ransackで関連するデータを検索対象にできるように設定
   def self.ransackable_associations(_auth_object = nil)
     ["artists"]
-  end
-
-  # ransackでartist_listからアーティスト一覧を取得出来るように設定
-  ransacker :artist_list do
-    Arel.sql <<-SQL.squish
-    (SELECT GROUP_CONCAT(artists.name SEPARATOR ', ')
-    FROM song_artists
-    JOIN artists ON song_artists.artist_id = artists.id
-    WHERE song_artists.song_id = songs.id
-    GROUP BY song_artists.song_id)
-    SQL
   end
 
   private
@@ -88,5 +77,13 @@ class Song < ApplicationRecord
     reg_exp = %r{^.*(youtu.be/|v/|u/\w/|embed/|watch\?v=|&v=)([^#\&\?]*).*}
     match = url.match(reg_exp)
     match[2] if match && match[2].length == 11
+  end
+
+  # メディアURLの形式と空欄であるかどうかをチェック
+  def media_url_format
+    # URLが入力されており、形式が正しい場合は処理を終了
+    return if media_url.present? && media_url.match?(%r{\A(https://www\.youtube\.com/watch\?v=|https://youtu\.be/)([\w-]{11})\z})
+
+    errors.add(:media_url, I18n.t('errors.messages.invalid_media_url'))
   end
 end
