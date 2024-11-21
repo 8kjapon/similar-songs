@@ -358,7 +358,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
-  font-awesome-sass
+  font-awesome-sass (~> 6.5.2)
   jbuilder
   jsbundling-rails
   kaminari
