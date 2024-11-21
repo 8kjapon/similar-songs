@@ -93,6 +93,4 @@ gem "ahoy_matey"
 
 gem "kaminari"
 
-gem "font-awesome-sass", "~> 6.5.2"
-
 gem "meta-tags"
