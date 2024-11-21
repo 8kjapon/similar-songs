@@ -115,6 +115,9 @@ GEM
       logger
     faraday-net_http (3.3.0)
       net-http
+    ffi (1.17.0-x86_64-linux-gnu)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -161,6 +164,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.22.1)
+      actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.1)
@@ -279,6 +284,8 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     safely_block (0.4.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.25.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -353,9 +360,11 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  font-awesome-sass (~> 6.5.2)
   jbuilder
   jsbundling-rails
   kaminari
+  meta-tags
   mysql2 (~> 0.5)
   pry-byebug
   pry-rails

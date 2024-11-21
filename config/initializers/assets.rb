@@ -10,3 +10,7 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+Rails.application.config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fonts")
+Rails.application.config.assets.paths << Rails.root.join("usr", "local", "bundle", "gems", "font-awesome-sass-6.5.2", "assets", "fonts/font-awesome")
+Rails.application.config.assets.precompile += %w( *.eot *.svg *.ttf *.woff *.woff2 )

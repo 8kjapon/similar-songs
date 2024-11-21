@@ -40,3 +40,4 @@
 /.env.production
 /config/credentials
 /config/credentials.yml.enc
+/maint_bin
