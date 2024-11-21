@@ -115,6 +115,9 @@ GEM
       logger
     faraday-net_http (3.3.0)
       net-http
+    ffi (1.17.0-x86_64-linux-gnu)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -279,6 +282,8 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     safely_block (0.4.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.25.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -353,6 +358,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  font-awesome-sass
   jbuilder
   jsbundling-rails
   kaminari

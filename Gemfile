@@ -92,3 +92,5 @@ gem "ransack"
 gem "ahoy_matey"
 
 gem "kaminari"
+
+gem "font-awesome-sass"
