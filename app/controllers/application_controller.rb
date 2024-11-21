@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def prepare_meta_tags(options = {})
     site_name = "musim"
-    title = "musim: 『似ている』から始まる曲探し"
+    title = "『似ている』から始まる曲探し"
     description = "似ている曲から新しい曲への出会いを。"
     current_url = request.original_url
 
