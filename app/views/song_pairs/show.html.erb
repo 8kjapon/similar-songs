@@ -24,4 +24,16 @@
     <p>似てると思ったら評価(SIM!)</p>
     <%= render 'evaluate_button', song_pair: @song_pair %>
   </div>
+
+  <div class="text-center mb-4">
+    <h3>シェア</h3>
+    <div class="share-field">
+      <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode_www_form_component('musim: 『似ている』から始まる曲探し')}&url=#{URI.encode_www_form_component(request.original_url)}", target: "_blank", rel: "noopener", class: "share-button share-button-twitter" do %>
+        <i class="fa-brands fa-x-twitter"></i>
+      <% end %>
+      <%= link_to "https://social-plugins.line.me/lineit/share?url=#{CGI.escape(request.original_url)}", target: "_blank", rel: "noopener", class: "share-button share-button-line" do %>
+        <span>LINE</span>
+      <% end %>
+    </div>
+  </div>
 </div>

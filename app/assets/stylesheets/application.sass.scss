@@ -22,6 +22,15 @@ label {
     white-space: nowrap;
 }
 
+.share-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+        margin: 0;
+    }
+}
+
 .sort-filter-selectors {
     display: flex;
     align-items: center;
@@ -66,6 +75,7 @@ body {
 
 main {
     color: #fff;
+    margin-top: 2em;
     margin-bottom: 30px;
 }
 
@@ -212,6 +222,26 @@ footer {
         width: 100%;
         white-space: nowrap;
     }
+}
+
+.share-button {
+    margin-left: 0.5em;
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    background-color: #FF7171;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.share-button-twitter {
+    color: #000;
+    background-color: #fff;
+}
+
+.share-button-line {
+    color: #fff;
+    background-color: #00c300;
 }
 
 .evaluate-button {
