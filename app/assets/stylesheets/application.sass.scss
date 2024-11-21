@@ -1,6 +1,6 @@
 // Entry point for your Sass build
-$fa-font-path: "/assets/font-awesome";
-@import "font-awesome";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
 
 .btn {
     background-color: #FF7171;
