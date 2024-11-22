@@ -11,6 +11,9 @@
             <%= link_to '楽曲を登録', new_song_pair_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
+            <%= link_to 'マイページ', mypage_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
             <%= link_to 'ログアウト', logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
           </li>
         </ul>

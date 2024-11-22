@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "home#top"
   resources :users, only: %i[new create]
+  get 'mypage', to: 'users#show', as: :mypage
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'login', to: 'user_sessions#new'
