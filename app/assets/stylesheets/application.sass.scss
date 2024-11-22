@@ -308,3 +308,25 @@ footer {
 .hidden {
     display: none;
 }
+
+.user-info {
+    background-color: #fff;
+    color: #000;
+    border-radius: 7px;
+    padding: 1em 2em;
+    p {
+        margin-bottom: 0;
+    }
+    @media (max-width: 425px) {
+        p {
+            font-size: 0.8em;
+        }
+        padding: 1em 1em;
+    }
+    .song-info {
+        min-height: 96px;
+        @media (max-width: 425px) {
+            min-height: 70px;
+        }
+    }
+}

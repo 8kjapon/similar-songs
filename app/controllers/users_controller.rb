@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+    @song_pairs = SongPair.includes(:similarity_category, original_song: :artists, similar_song: :artists).where(user_id: @user.id)
+  end
+
   private
 
   def user_params
