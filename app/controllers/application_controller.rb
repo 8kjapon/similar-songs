@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       site: site_name,
       title: title,
       description: description,
-      keywords: %w[music similar songs],
+      keywords: ['music', 'similar', 'songs'],
       og: {
         url: current_url,
         site_name: site_name,
