@@ -22,3 +22,20 @@
     <% end %>
   </div>
 </div>
+<div>
+  <h2 class="text-center mb-4">評価した曲</h2>
+  <div class="mb-4">
+    <% if @evaluated_song_pairs.present? %>
+      <%= render "shared/song_pair_block", song_pairs: @evaluated_song_pairs, maximum: 5 %>
+      <% if @evaluated_song_pairs.count > 5 %>
+        <div class="more-button d-flex justify-content-center">
+          <%= link_to "全て表示", evaluated_songs_path, class: "btn" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <p>楽曲が登録されていません。</p>
+      </div>
+    <% end %>
+  </div>
+</div>

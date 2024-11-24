@@ -24,4 +24,9 @@ class User < ApplicationRecord
   def song_pair_evaluated?(song_pair)
     evaluated_song_pairs.include?(song_pair)
   end
+
+  # 評価済みのSongPairを評価日時の降順で出力する処理
+  def evaluated_song_pairs_ordered
+    evaluated_song_pairs.select('song_pairs.*, MAX(song_pair_evaluations.created_at) AS evaluation_date').joins(:song_pair_evaluations).group('song_pairs.id').order('evaluation_date DESC')
+  end
 end

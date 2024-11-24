@@ -4,17 +4,25 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @song_pairs = SongPair.includes(:similarity_category, original_song: :artists, similar_song: :artists).where(user_id: @user.id).order(created_at: :desc)
+    @song_pairs = @user.song_pairs.includes(:similarity_category, original_song: :artists, similar_song: :artists).order(created_at: :desc)
+    @evaluated_song_pairs = @user.evaluated_song_pairs.merge(SongPairEvaluation.order(created_at: :desc)).includes(:similarity_category, original_song: :artists, similar_song: :artists)
   end
 
   def submit_songs
     @user = current_user
-    @q = SongPair.where(user_id: @user.id).ransack(params[:q])
-    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists)
+    @q = @user.song_pairs.ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists).page(params[:page])
     @categories = similarity_category
 
     # データの並べ替え
     @song_pairs = sort_song_pairs(@song_pairs).page(params[:page])
+  end
+
+  def evaluated_songs
+    @user = current_user
+    @q = @user.evaluated_song_pairs_ordered.ransack(params[:q])
+    @evaluated_song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists).page(params[:page])
+    @categories = similarity_category
   end
 
   def new

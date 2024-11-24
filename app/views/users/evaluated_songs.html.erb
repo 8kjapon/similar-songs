@@ -1,0 +1,17 @@
+<% set_meta_tags(title: "評価した曲") %>
+<div>
+  <h1 class="text-center mb-4">評価した曲</h1>
+  <div class="d-flex justify-content-center mb-4">
+    <%= render "shared/filter", categories: @categories %>
+  </div>
+  <div class="mb-4">
+    <% if @evaluated_song_pairs.present? %>
+      <%= render "shared/song_pair_block", song_pairs: @evaluated_song_pairs %>
+      <%= paginate @evaluated_song_pairs %>
+    <% else %>
+      <div class="text-center mb-3">
+        <p>楽曲が見つかりませんでした。</p>
+      </div>
+    <% end %>
+  </div>
+</div>
