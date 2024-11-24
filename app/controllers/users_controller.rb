@@ -2,6 +2,21 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: %i[new create]
 
+  def show
+    @user = current_user
+    @song_pairs = SongPair.includes(:similarity_category, original_song: :artists, similar_song: :artists).where(user_id: @user.id).order(created_at: :desc)
+  end
+
+  def submit_songs
+    @user = current_user
+    @q = SongPair.where(user_id: @user.id).ransack(params[:q])
+    @song_pairs = @q.result(distinct: true).includes(:similarity_category, original_song: :artists, similar_song: :artists)
+    @categories = similarity_category
+
+    # データの並べ替え
+    @song_pairs = sort_song_pairs(@song_pairs).page(params[:page])
+  end
+
   def new
     @user = User.new
   end
@@ -14,11 +29,6 @@ class UsersController < ApplicationController
       flash.now[:alert] = "入力に誤りがあります"
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @user = current_user
-    @song_pairs = SongPair.includes(:similarity_category, original_song: :artists, similar_song: :artists).where(user_id: @user.id)
   end
 
   private

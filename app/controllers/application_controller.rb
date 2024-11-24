@@ -41,4 +41,32 @@ class ApplicationController < ActionController::Base
 
     set_meta_tags(options)
   end
+
+  # 似てるカテゴリーをi18nで翻訳後に格納して出力する処理
+  def similarity_category
+    SimilarityCategory.all.map do |category|
+      category.name = t("similarity_category.#{category.name}")
+      category
+    end
+  end
+
+  # 検索ページの並べ替え機能用の処理
+  def sort_song_pairs(song_pairs)
+    # 並べ替え用のパラメーターを元に処理を決定
+    case params[:sort_by]
+    when "song_title" # 曲名順
+      song_pairs.joins(:original_song).group('song_pairs.id').reorder('songs.title' => params[:order])
+    when "artist_name" # アーティスト名順
+      # 並び順(params[:order])に合わせて並べ替え
+      if params[:order] == "asc"
+        Kaminari.paginate_array(song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase })
+      else
+        Kaminari.paginate_array(song_pairs.sort_by { |song_pair| song_pair.original_song.artist_list.downcase }.reverse)
+      end
+    when "created_at" # 登録日順
+      song_pairs.reorder(created_at: params[:order])
+    else
+      song_pairs.order(created_at: :desc)
+    end
+  end
 end

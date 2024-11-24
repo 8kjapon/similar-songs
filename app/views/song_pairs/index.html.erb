@@ -13,7 +13,10 @@
     <% end %>
   </div>
   <div class="mb-4">
-    <% if @song_pairs.blank? %>
+    <% if @song_pairs.present? %>
+      <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
+      <%= paginate @song_pairs %>
+    <% else %>
       <div class="text-center mb-3">
         <p>楽曲が見つかりませんでした。</p>
       </div>
@@ -26,9 +29,6 @@
           <%= link_to "アカウント登録・ログインをして楽曲を登録", login_path, class: "btn" %>
         </div>
       <% end %>
-    <% else %>
-      <%= render "shared/song_pair_block", song_pairs: @song_pairs %>
-      <%= paginate @song_pairs %>
     <% end %>
   </div>
 </div>
