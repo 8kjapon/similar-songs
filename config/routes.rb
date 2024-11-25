@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   # ユーザー関連
   resources :users, only: %i[new create]
-  get 'mypage', to: 'users#show', as: :mypage
+  get 'mypage', to: 'users#mypage'
   get 'mypage/submit_songs', to: 'users#submit_songs', as: :submit_songs
   get 'mypage/evaluated_songs', to: 'users#evaluated_songs', as: :evaluated_songs
+  get 'mypage/edit', to: 'users#edit', as: :edit_mypage
+  patch 'mypage', to: 'users#update'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
   get 'login', to: 'user_sessions#new'
