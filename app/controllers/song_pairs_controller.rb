@@ -58,6 +58,12 @@ class SongPairsController < ApplicationController
     @current_step = 0
   end
 
+  def edit
+    @song_pair = SongPair.find(params[:id])
+    @categories = similarity_category
+    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
+  end
+
   def create
     @song_pair = SongPair.new(song_pair_params)
 
@@ -91,12 +97,6 @@ class SongPairsController < ApplicationController
     end
   end
 
-  def edit
-    @song_pair = SongPair.find(params[:id])
-    @categories = similarity_category
-    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
-  end
-
   def update
     @song_pair = SongPair.find(params[:id])
     redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
@@ -107,6 +107,14 @@ class SongPairsController < ApplicationController
       flash.now[:alert] = "入力に誤りがあります"
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @song_pair = SongPair.find(params[:id])
+    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
+
+    @song_pair.destroy
+    redirect_to root_path, notice: "曲情報を削除しました"
   end
 
   private
