@@ -5,6 +5,11 @@
 <% else %>
   <h1 class="text-center mb-4">似てる曲情報</h1>
 <% end %>
+<% if current_user.song_pair_own?(@song_pair) %>
+  <div class="text-center mb-4">
+    <%= link_to '曲情報を編集する', edit_song_pair_path %>
+  </div>
+<% end %>
 <div>
   <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description %>
 
