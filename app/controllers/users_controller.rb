@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: %i[new create]
 
-  def show
+  def mypage
     @user = current_user
     @song_pairs = @user.song_pairs.includes(:similarity_category, original_song: :artists, similar_song: :artists).order(created_at: :desc)
     @evaluated_song_pairs = @user.evaluated_song_pairs.merge(SongPairEvaluation.order(created_at: :desc)).includes(:similarity_category, original_song: :artists, similar_song: :artists)
