@@ -29,4 +29,9 @@ class User < ApplicationRecord
   def evaluated_song_pairs_ordered
     evaluated_song_pairs.select('song_pairs.*, MAX(song_pair_evaluations.created_at) AS evaluation_date').joins(:song_pair_evaluations).group('song_pairs.id').order('evaluation_date DESC')
   end
+
+  # SongPairの登録者かどうかを判断する処理
+  def song_pair_own?(song_pair)
+    song_pairs.include?(song_pair)
+  end
 end

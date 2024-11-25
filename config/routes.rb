@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   # 楽曲組み合わせ関連
-  resources :song_pairs, only: %i[index new create show]
+  resources :song_pairs, only: %i[index new create show edit update]
   get 'recent', to: 'song_pairs#recent_page'
   get 'popular', to: 'song_pairs#popularity_page'
   resources :song_pair_evaluations, only: %i[create destroy]
