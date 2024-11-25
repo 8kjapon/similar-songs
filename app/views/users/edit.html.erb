@@ -1,0 +1,10 @@
+<h1 class="text-center mb-4">ユーザー情報の編集</h1>
+<%= form_with model: @user, url: mypage_path, method: :patch, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="d-grid mb-3">
+    <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>

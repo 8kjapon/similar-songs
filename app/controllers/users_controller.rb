@@ -29,13 +29,27 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = current_user
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
       redirect_to login_path, notice: 'ユーザー登録が完了しました'
     else
-      flash.now[:alert] = "入力に誤りがあります"
+      flash.now[:alert] = '入力に誤りがあります'
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_update_params)
+      redirect_to mypage_path, notice: 'ユーザー情報を更新しました'
+    else
+      flash.now[:alert] = '入力に誤りがあります'
+      render :edit
     end
   end
 
@@ -43,5 +57,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:name)
   end
 end

@@ -1,9 +1,14 @@
 <% set_meta_tags(title: "マイページ", og: { title: "マイページ" }) %>
 <h1 class="text-center mb-4">マイページ</h1>
-<div class="mb-5 user-info">
-  <p>ユーザー名: <%= @user.name %></p>
-  <p>登録日: <%= @user.created_at.strftime('%Y年%m月%d日') %></p>
-  <p>楽曲登録数: <%= @song_pairs.count %></p>
+<div class="mb-5 user-info d-flex align-items-center">
+  <div>
+    <p>ユーザー名: <%= @user.name %></p>
+    <p>登録日: <%= @user.created_at.strftime('%Y年%m月%d日') %></p>
+    <p>楽曲登録数: <%= @song_pairs.count %></p>
+  </div>
+  <div class="ms-auto">
+    <%= link_to "編集", edit_mypage_path %>
+  </div>
 </div>
 <div>
   <h2 class="text-center mb-4">登録した曲</h2>
