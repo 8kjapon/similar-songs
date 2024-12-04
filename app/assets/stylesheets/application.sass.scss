@@ -330,3 +330,10 @@ footer {
         }
     }
 }
+
+.rule {
+    text-align: center;
+    @media (max-width: 425px) {
+        text-align: left;
+    }
+}
