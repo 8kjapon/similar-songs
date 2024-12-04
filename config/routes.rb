@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # ルート
   root "home#top"
 
+  # 静的ページ
+  get 'rule', to: 'static_pages#rule'
+
   # ユーザー関連
   resources :users, only: %i[new create]
   get 'mypage', to: 'users#mypage'
