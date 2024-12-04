@@ -1,4 +1,4 @@
-<div class="media-widget">
+<div class="media-widget" id="<%= defined?(element_id) && element_id + "-media-widget" || "media-widget" %>" data-controller="media" data-media-target="widget">
   <% if song.media_url_id.present? %>
       <iframe src="https://www.youtube.com/embed/<%= song.media_url_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <% else %>

@@ -5,13 +5,13 @@
 <% else %>
   <h1 class="text-center mb-4">似てる曲情報</h1>
 <% end %>
-<% if current_user.song_pair_own?(@song_pair) %>
+<% if logged_in? && current_user.song_pair_own?(@song_pair) %>
   <div class="text-center mb-4">
     <%= link_to '曲情報を編集する', edit_song_pair_path %>
   </div>
 <% end %>
 <div>
-  <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description %>
+  <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description, element_id: 'original-song' %>
 
   <% if @song_pair.similarity_category.id == 3 %>
     <h2 class="text-center mb-4">↓サンプリングされてる</h2>
@@ -19,7 +19,7 @@
     <h2 class="text-center mb-4">↓似てる: <%= @song_pair.similarity_category_name %></h2>
   <% end %>
   
-  <%= render 'song_info', song: @song_pair.similar_song, song_description: @song_pair.similar_song_description %>
+  <%= render 'song_info', song: @song_pair.similar_song, song_description: @song_pair.similar_song_description, element_id: 'similar-song' %>
   
   <div class="user-info-block text-center mb-4">
     <h3>登録したユーザー</h3>
