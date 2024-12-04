@@ -2,10 +2,13 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application";
 
-import AutoCompleteController from "./autocomplete_controller"
-application.register("autocomplete", AutoCompleteController)
+import AutoCompleteController from "./autocomplete_controller";
+application.register("autocomplete", AutoCompleteController);
 
-import MultiStepFormController from "./multi_step_form_controller"
-application.register("multi-step-form", MultiStepFormController)
+import MultiStepFormController from "./multi_step_form_controller";
+application.register("multi-step-form", MultiStepFormController);
+
+import MediaController from "./media_controller";
+application.register("media", MediaController);

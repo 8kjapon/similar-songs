@@ -1,4 +1,4 @@
-<div class="mb-4 song-info-block">
+<div class="mb-4 song-info-block" id="<%= element_id %>-info">
   <div class="d-flex">
     <div class="song-info">
       <h3><%= link_to song.title, song %></h3>
@@ -9,9 +9,9 @@
       <%= image_tag "https://img.youtube.com/vi/#{song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
     </div>
   </div>
-  <%= render 'shared/media_widget', song: song %>
-  <div class="song-description">
+  <%= render 'shared/media_widget', song: song, element_id: element_id %>
+  <div class="song-description" id="<%= element_id %>-description" data-controller="media">
     <h5>説明:</h5>
-    <p><%= song_description %></p>
+    <p><%= parse_time_links(song_description, "#{element_id}-media-widget") %></p>
   </div>
 </div>
