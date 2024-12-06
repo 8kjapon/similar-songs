@@ -1,5 +1,5 @@
 class AutocompleteController < ApplicationController
-  skip_before_action :require_login, only: %i[search songs artists]
+  skip_before_action :require_login, only: %i[search]
 
   # 検索フォーム用の処理
   def search
