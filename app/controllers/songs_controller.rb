@@ -26,20 +26,6 @@ class SongsController < ApplicationController
     @pair_song_list = Kaminari.paginate_array(@song.pair_song_list(similarity_category: 'sampling')).page(params[:page])
   end
 
-  # 楽曲登録フォームのオートコンプリート機能用の処理
-  def autocomplete
-    query = "%#{params[:query]}%"
-    songs = Song.where("title LIKE ?", query).limit(10)
-    render json: songs.map { |song|
-      {
-        title: song.title,
-        artists: song.artists.map(&:name).join(','),
-        release_date: song.release_date,
-        media_url: song.media_url
-      }
-    }
-  end
-
   private
 
   # 該当する曲と関連する似てる曲・サンプリング曲一覧が3曲未満の場合に楽曲ページにリダイレクトする処理
