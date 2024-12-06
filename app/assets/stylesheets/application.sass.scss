@@ -337,3 +337,14 @@ footer {
         text-align: left;
     }
 }
+
+.search-form {
+    position: relative;
+    width: 100%;
+}
+
+.list-group {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
