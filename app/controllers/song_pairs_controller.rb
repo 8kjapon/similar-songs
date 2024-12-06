@@ -1,5 +1,5 @@
 class SongPairsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show autocomplete]
+  skip_before_action :require_login, only: %i[index show]
   before_action :track_ahoy_visit, only: %i[show]
   before_action :check_login_for_sort_and_filter, only: %i[index]
 
@@ -115,18 +115,6 @@ class SongPairsController < ApplicationController
 
     @song_pair.destroy
     redirect_to root_path, notice: "曲情報を削除しました"
-  end
-
-  # 検索フォームのオートコンプリート用処理
-  def autocomplete
-    query = params[:q] || ""
-    songs = Song.where("title LIKE ?", "%#{query}%")
-    artists = Artist.where("name LIKE ?", "%#{query}%")
-
-    results = songs.map { |song| { id: song.id, text: "#{song.title} - 楽曲", label: "#{song.title}" } } +
-              artists.map { |artist| { id: artist.id, text: "#{artist.name} - アーティスト", label: "#{artist.name}" } }
-
-    render partial: "autocomplete_results", locals: { results: results }
   end
 
   private

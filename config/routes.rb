@@ -26,14 +26,14 @@ Rails.application.routes.draw do
       get 'sampling', to: 'songs#sampling_song_pairs'
     end
     collection do
-      get 'autocomplete'
+      get 'autocomplete', to: 'autocomplete#songs'
     end
   end
 
   # 楽曲組み合わせ関連
   resources :song_pairs, only: %i[index new create show edit update destroy] do
     collection do
-      get 'autocomplete'
+      get 'autocomplete', to: 'autocomplete#search'
     end
   end
   get 'recent', to: 'song_pairs#recent_page'
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # アーティスト関連
   resources :artists, only: %i[] do
     collection do
-      get 'autocomplete'
+      get 'autocomplete', to: 'autocomplete#artists'
     end
   end
 end
