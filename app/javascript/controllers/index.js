@@ -15,3 +15,6 @@ application.register("multi-step-form", MultiStepFormController)
 
 import SearchAutocompleteController from "stimulus-autocomplete";
 application.register("search-autocomplete", SearchAutocompleteController);
+
+import ArtistAutocompleteController from "stimulus-autocomplete";
+application.register("artist-autocomplete", ArtistAutocompleteController);

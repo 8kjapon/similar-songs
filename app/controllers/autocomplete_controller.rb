@@ -28,8 +28,10 @@ class AutocompleteController < ApplicationController
 
   # 楽曲登録フォームのアーティスト用の処理
   def artists
-    query = "%#{params[:query]}%"
+    query = "%#{params[:q]}%"
     artists = Artist.where("name LIKE ?", query).limit(10)
-    render json: artists.pluck(:name)
+
+    results = artists.map { |artist| { id: artist.id, text: artist.name } }
+    render partial: "artist", locals: { results: results }
   end
 end

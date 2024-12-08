@@ -65,10 +65,11 @@
           <ul data-autocomplete-target="songList1" class="autocomplete-list"></ul>
         </div>
         <%= song1_form.fields_for :artists do |artist1_form| %>
-          <div class="mb-3">
+          <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
-            <%= artist1_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.artistInput" } %>
-            <ul data-autocomplete-target="artistList1" class="autocomplete-list"></ul>
+            <%= artist1_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", target: "autocomplete.artistInput" } %>
+            <%= artist1_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
+            <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
@@ -102,10 +103,11 @@
           <ul data-autocomplete-target="songList2" class="autocomplete-list"></ul>
         </div>
         <%= song2_form.fields_for :artists do |artist2_form| %>
-          <div class="mb-3">
+          <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
-            <%= artist2_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.artistInput" } %>
-            <ul data-autocomplete-target="artistList2" class="autocomplete-list"></ul>
+            <%= artist2_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", target: "autocomplete.artistInput" } %>
+            <%= artist2_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
+            <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
