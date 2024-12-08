@@ -57,27 +57,29 @@
 
     <h3 class="text-center mb-4">曲情報1</h3>
     <p class="text-center">曲の情報を入力してください。</p>
-    <div data-controller="autocomplete">
+    <div data-controller="autocomplete" data-autocomplete-url-value=<%= autocomplete_songs_path %>>
       <%= f.fields_for :original_song do |song1_form| %>
-        <div class="mb-3">
+        <div class="mb-3 song-submit-form">
           <%= song1_form.label :title, "曲名", class: "form-label" %>
-          <%= song1_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.songInput" } %>
-          <ul data-autocomplete-target="songList1" class="autocomplete-list"></ul>
+          <%= song1_form.text_field :title, class: "form-control", data: { autocomplete_target: "input" } %>
+          <%= song1_form.hidden_field :title, data: { autocomplete_target: "hidden" } %>
+          <ul class="list-group" data-autocomplete-target="results"></ul>
         </div>
         <%= song1_form.fields_for :artists do |artist1_form| %>
-          <div class="mb-3">
+          <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
-            <%= artist1_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.artistInput" } %>
-            <ul data-autocomplete-target="artistList1" class="autocomplete-list"></ul>
+            <%= artist1_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
+            <%= artist1_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
+            <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
           <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
-          <%= song1_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song1_form.object.release_date), {}, class: "form-select", data: { field: 'year', target: "autocomplete.releaseDate" } %>
+          <%= song1_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song1_form.object.release_date), {}, class: "form-select", data: { field: 'year', autocomplete_target: "releaseDate" } %>
         </div>
         <div class="mb-3">
           <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
-          <%= song1_form.text_field :media_url, class: "form-control", id: "media_url_1", data: { target: "autocomplete.mediaUrl" } %>
+          <%= song1_form.text_field :media_url, class: "form-control", id: "media_url_1", data: { autocomplete_target: "mediaUrl" } %>
           <p>YouTubeのURLに対応しています。</p>
         </div>
         <div class="mb-3">
@@ -94,27 +96,28 @@
 
     <h3 class="text-center mb-4">曲情報2</h3>
     <p class="text-center">似てる曲の情報を入力してください。<br>※サンプリングカテゴリーであれば曲情報1で入力した曲をサンプリングしている曲になります。</p>
-    <div data-controller="autocomplete">
+    <div data-controller="autocomplete" data-autocomplete-url-value=<%= autocomplete_songs_path %>>
       <%= f.fields_for :similar_song do |song2_form| %>
-        <div class="mb-3">
+        <div class="mb-3 song-submit-form">
           <%= song2_form.label :title, "曲名", class: "form-label" %>
-          <%= song2_form.text_field :title, class: "form-control", data: { action: "input->autocomplete#search", target: "autocomplete.songInput" } %>
-          <ul data-autocomplete-target="songList2" class="autocomplete-list"></ul>
+          <%= song2_form.text_field :title, class: "form-control", data: { autocomplete_target: "input" } %>
+          <ul class="list-group" data-autocomplete-target="results"></ul>
         </div>
         <%= song2_form.fields_for :artists do |artist2_form| %>
-          <div class="mb-3">
+          <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
-            <%= artist2_form.text_field :name, class: "form-control", data: { action: "input->autocomplete#searchArtist", target: "autocomplete.artistInput" } %>
-            <ul data-autocomplete-target="artistList2" class="autocomplete-list"></ul>
+            <%= artist2_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
+            <%= artist2_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
+            <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
           <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
-          <%= song2_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song2_form.object.release_date), {}, class: "form-select", data: { field: 'year', target: "autocomplete.releaseDate" } %>
+          <%= song2_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song2_form.object.release_date), {}, class: "form-select", data: { field: 'year', autocomplete_target: "releaseDate" } %>
         </div>
         <div class="mb-3">
           <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
-          <%= song2_form.text_field :media_url, class: "form-control", id: "media_url_2", data: { target: "autocomplete.mediaUrl" } %>
+          <%= song2_form.text_field :media_url, class: "form-control", id: "media_url_2", data: { autocomplete_target: "mediaUrl" } %>
           <p>YouTubeのURLに対応しています。</p>
         </div>
         <div class="mb-3">

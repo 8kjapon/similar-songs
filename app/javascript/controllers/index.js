@@ -7,11 +7,15 @@ import { application } from "./application"
 import AutocompleteController from "./autocomplete_controller"
 application.register("autocomplete", AutocompleteController)
 
+import SearchAutocompleteController from "stimulus-autocomplete";
+application.register("search-autocomplete", SearchAutocompleteController);
+
+import ArtistAutocompleteController from "stimulus-autocomplete";
+application.register("artist-autocomplete", ArtistAutocompleteController);
+
 import MediaController from "./media_controller"
 application.register("media", MediaController)
 
 import MultiStepFormController from "./multi_step_form_controller"
 application.register("multi-step-form", MultiStepFormController)
 
-import SearchAutocompleteController from "stimulus-autocomplete";
-application.register("search-autocomplete", SearchAutocompleteController);
