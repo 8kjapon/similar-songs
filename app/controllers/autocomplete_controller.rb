@@ -19,7 +19,7 @@ class AutocompleteController < ApplicationController
     results = songs.map do |song|
       {
         id: song.id,
-        text: "#{song.title} - #{song.artists.map(&:name).join(", ")}",
+        text: "#{song.title} - #{song.artists.map(&:name).join(', ')}",
         label: song.title,
         artist: song.artists.map(&:name).join(", "),
         release_date: song.release_date,
