@@ -14,16 +14,20 @@ class AutocompleteController < ApplicationController
 
   # 楽曲登録フォームの楽曲用の処理
   def songs
-    query = "%#{params[:query]}%"
+    query = "%#{params[:q]}%"
     songs = Song.where("title LIKE ?", query).limit(10)
-    render json: songs.map { |song|
+    results = songs.map do |song|
       {
-        title: song.title,
-        artists: song.artists.map(&:name).join(','),
+        id: song.id,
+        text: "#{song.title} - #{song.artists.map(&:name).join(", ")}",
+        label: song.title,
+        artist: song.artists.map(&:name).join(", "),
         release_date: song.release_date,
         media_url: song.media_url
       }
-    }
+    end
+
+    render partial: "autocomplete/song_submit", locals: { results: results }
   end
 
   # 楽曲登録フォームのアーティスト用の処理

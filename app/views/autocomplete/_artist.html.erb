@@ -1,5 +1,5 @@
 <% results.each do |result| %>
-  <li class="list-group-item" role="option" data-id="<%= result[:id] %>" data-value="<%= result[:text] %>">
+  <li class="list-group-item" role="option" data-autocomplete-value="<%= result[:id] %>" data-autocomplete-label="<%= result[:text] %>">
     <%= result[:text] %>
   </li>
 <% end %>
