@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
+  enum :role, { general: 'general', admin: 'admin' }
+  validates :role, inclusion: { in: roles.keys }
+
   # SongPairが評価された場合の処理
   def song_pair_evaluation(song_pair)
     evaluated_song_pairs << song_pair
@@ -33,5 +36,10 @@ class User < ApplicationRecord
   # SongPairの登録者かどうかを判断する処理
   def song_pair_own?(song_pair)
     song_pairs.include?(song_pair)
+  end
+
+  # 管理者識別用の処理
+  def admin?
+    role == 'admin'
   end
 end
