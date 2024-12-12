@@ -7,7 +7,7 @@ module Admin
     private
 
     def require_admin
-      redirect_to ENV["REDIRECT_PATH"], allow_other_host: true unless current_user&.admin?
+      redirect_to ENV.fetch("REDIRECT_PATH"), allow_other_host: true unless current_user&.admin?
     end
   end
 end
