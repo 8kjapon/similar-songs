@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboards#top"
     resources :song_pairs, only: %i[index edit update destroy]
+    resources :songs, only: %i[index edit update destroy]
   end
 
   # 楽曲関連

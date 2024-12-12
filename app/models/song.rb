@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-  has_many :song_artists, dependent: :nullify
+  has_many :song_artists, dependent: :destroy
   has_many :artists, through: :song_artists
   has_many :song_pairs, class_name: "SongPair", foreign_key: :original_song_id, inverse_of: :original_song, dependent: :nullify
   has_many :similar_song_pairs, class_name: "SongPair", foreign_key: :similar_song_id, inverse_of: :similar_song, dependent: :nullify
@@ -44,6 +44,10 @@ class Song < ApplicationRecord
   # 該当する曲の含まれる似てる曲・サンプリング曲の組み合わせ(SongPair)を取得
   def song_pair(song)
     song_pairs.find_by(similar_song_id: song.id).presence || similar_song_pairs.find_by(original_song_id: song.id)
+  end
+
+  def song_pairs_count
+    song_pairs.count + similar_song_pairs.count
   end
 
   # ransackでの検索対象カラムを設定

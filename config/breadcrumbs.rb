@@ -44,3 +44,13 @@ crumb :edit_admin_song_pair do |song_pair|
   link "#{song_pair.original_song.title} x #{song_pair.similar_song.title}", song_pair
   parent :admin_song_pairs
 end
+
+crumb :admin_songs do
+  link "楽曲", admin_songs_path
+  parent :admin_root
+end
+
+crumb :edit_admin_song do |song|
+  link "#{song.artist_list} - #{song.title}"
+  parent :admin_songs
+end
