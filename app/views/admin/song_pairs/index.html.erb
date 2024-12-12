@@ -1,0 +1,39 @@
+<%= render 'admin/shared/content_header', header_title: "似てる曲組み合わせ" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>original_song</th>
+            <th>similar_song</th>
+            <th>カテゴリー</th>
+            <th>ユーザー</th>
+            <th></th>
+            <th>登録日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @song_pairs.each do |song_pair| %>
+            <tr>
+              <td><%= song_pair.id %></td>
+              <td><%= song_pair.original_song.artist_list %> / <%= song_pair.original_song.title %></td>
+              <td><%= song_pair.similar_song.artist_list %> / <%= song_pair.similar_song.title %></td>
+              <td><%= song_pair.similarity_category_name %></td>
+              <td><%= song_pair.user.name %></td>
+              <td>
+                <%= link_to "閲覧", song_pair_path(song_pair) %>
+                <%= link_to "編集", edit_admin_song_pair_path(song_pair) %>
+                <%= link_to "削除", admin_song_pair_path(song_pair), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %>
+              </td>
+              <td><%= song_pair.created_at.strftime('%Y年%m月%d日') %></td>
+              <td><%= song_pair.updated_at.strftime('%Y年%m月%d日') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

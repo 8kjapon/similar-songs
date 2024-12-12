@@ -35,7 +35,7 @@
     <p>リリース年: <%= @song_pair.similar_song.release_date %></p>
     <%= render 'shared/media_widget', song: @song_pair.similar_song %>
     <div class="mb-3">
-      <%= f.label :similar_song_description, "曲1の説明", class: "form-label" %>
+      <%= f.label :similar_song_description, "曲2の説明", class: "form-label" %>
       <%= f.text_area :similar_song_description, class: "form-control" %>
       <p>注目して欲しいポイントや似てると思ったポイントを記載してください。<br>例) 01:20辺りのメロディ</p>
     </div>
