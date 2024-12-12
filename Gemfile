@@ -94,3 +94,5 @@ gem "ahoy_matey"
 gem "kaminari"
 
 gem "meta-tags"
+
+gem "gretel"

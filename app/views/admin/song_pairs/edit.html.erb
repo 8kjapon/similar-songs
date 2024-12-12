@@ -1,0 +1,72 @@
+<% breadcrumb :edit_admin_song_pair, @song_pair %>
+<%= render 'admin/shared/content_header', header_title: "似てる曲組み合わせの編集" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <%= form_with model: @song_pair, url: admin_song_pair_path(@song_pair), local: true do |f| %>
+        <% if @song_pair.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @song_pair.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <h3 class="text-center mb-4">カテゴリー</h3>
+        <div class="mb-3">
+          <%= f.collection_select :similarity_category_id, @categories, :id, :name, {}, { class: 'form-select' } %>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>曲情報1</th>
+              <th>曲情報2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>曲名</td>
+              <td><%= @song_pair.original_song.title %></td>
+              <td><%= @song_pair.similar_song.title %></td>
+            </tr>
+            <tr>
+              <td>アーティスト名</td>
+              <td><%= @song_pair.original_song.artist_list %></td>
+              <td><%= @song_pair.similar_song.artist_list %></td>
+            </tr>
+            <tr>
+              <td>リリース年</td>
+              <td><%= @song_pair.original_song.release_date %></td>
+              <td><%= @song_pair.similar_song.release_date %></td>
+            </tr>
+            <tr>
+              <td>メディアURL</td>
+              <td>
+                <%= render 'shared/media_widget', song: @song_pair.original_song %>
+                <%= @song_pair.original_song.media_url %>
+              </td>
+              <td>
+                <%= render 'shared/media_widget', song: @song_pair.similar_song %>
+                <%= @song_pair.similar_song.media_url %>
+              </td>
+            </tr>
+            <tr>
+              <td>説明</td>
+              <td>
+                <%= f.text_area :original_song_description, class: "form-control" %>
+              </td>
+              <td>
+                <%= f.text_area :similar_song_description, class: "form-control" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mb-4">
+          <%= f.submit "編集を完了", class: "btn btn-primary btn-block mx-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

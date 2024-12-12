@@ -62,14 +62,12 @@
         <div class="mb-3 song-submit-form">
           <%= song1_form.label :title, "曲名", class: "form-label" %>
           <%= song1_form.text_field :title, class: "form-control", data: { autocomplete_target: "input" } %>
-          <%= song1_form.hidden_field :title, data: { autocomplete_target: "hidden" } %>
           <ul class="list-group" data-autocomplete-target="results"></ul>
         </div>
         <%= song1_form.fields_for :artists do |artist1_form| %>
           <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
             <%= artist1_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
-            <%= artist1_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
             <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
@@ -107,7 +105,6 @@
           <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
             <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
             <%= artist2_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
-            <%= artist2_form.hidden_field :name, data: { artist_autocomplete_target: "hidden" } %>
             <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>

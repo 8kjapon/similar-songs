@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # 管理者関連
   namespace :admin do
     root "dashboards#top"
+    resources :song_pairs, only: %i[index edit update destroy]
   end
 
   # 楽曲関連
