@@ -1,0 +1,51 @@
+<% breadcrumb :edit_admin_song, @song %>
+<%= render 'admin/shared/content_header', header_title: "楽曲情報の編集" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <%= form_with model: @song, url: admin_song_path(@song), local: true, data: { turbo: false } do |f| %>
+        <% if @song.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @song.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>楽曲情報</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :title %></td>
+              <td><%= f.text_field :title, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td>アーティスト名</td>
+              <td><%= @song.artist_list %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :release_date %></td>
+              <td><%= f.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), f.object.release_date), {}, class: "form-select", data: { field: 'year' } %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :media_url %></td>
+              <td>
+                <div id="media_player_1"></div>
+                <%= f.text_field :media_url, id: "media_url_1", class: "form-control" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mb-4">
+          <%= f.submit "編集を完了", class: "btn btn-primary btn-block mx-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
