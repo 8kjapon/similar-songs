@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
+  # 管理者関連
+  namespace :admin do
+    root "dashboards#top"
+  end
+
   # 楽曲関連
   resources :songs, only: %i[show] do
     member do
