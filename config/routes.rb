@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :song_pairs, only: %i[index edit update destroy]
     resources :songs, only: %i[index edit update destroy]
     resources :artists, only: %i[index edit update destroy]
+    resources :users, only: %i[index edit update destroy]
   end
 
   # 楽曲関連
