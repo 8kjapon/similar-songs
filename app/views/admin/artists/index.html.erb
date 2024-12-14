@@ -1,0 +1,38 @@
+<% breadcrumb :admin_artists %>
+<%= render 'admin/shared/content_header', header_title: "アーティスト" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>アーティスト名</th>
+            <th>楽曲数</th>
+            <th>似ている曲組み合わせ数</th>
+            <th></th>
+            <th>登録日時</th>
+            <th>更新日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @artists.each do |artist| %>
+            <tr>
+              <td><%= artist.id %></td>
+              <td><%= artist.name %></td>
+              <td><%= artist.songs.count %></td>
+              <td><%= artist.song_pairs.count %></td>
+              <td>
+                <%# link_to "閲覧", artist_path(artist) %>
+                <%= link_to "編集", edit_admin_artist_path(artist) %>
+                <%= link_to "削除", admin_artist_path(artist), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %>
+              </td>
+              <td><%= artist.created_at.strftime('%Y年%m月%d日') %></td>
+              <td><%= artist.updated_at.strftime('%Y年%m月%d日') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

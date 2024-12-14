@@ -1,0 +1,36 @@
+<% breadcrumb :edit_admin_artist, @artist %>
+<%= render 'admin/shared/content_header', header_title: "アーティスト情報の編集" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <%= form_with model: @artist, url: admin_artist_path(@artist), local: true do |f| %>
+        <% if @artist.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @artist.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>アーティスト情報</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :name %></td>
+              <td><%= f.text_field :name, class: "form-control" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mb-4">
+          <%= f.submit "編集を完了", class: "btn btn-primary btn-block mx-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

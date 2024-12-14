@@ -46,6 +46,7 @@ class Song < ApplicationRecord
     song_pairs.find_by(similar_song_id: song.id).presence || similar_song_pairs.find_by(original_song_id: song.id)
   end
 
+  # 該当する曲の含まれる似てる曲・サンプリング曲の組み合わせ数を取得
   def song_pairs_count
     song_pairs.count + similar_song_pairs.count
   end
