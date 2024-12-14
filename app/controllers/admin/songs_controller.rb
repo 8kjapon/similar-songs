@@ -31,7 +31,7 @@ module Admin
     end
 
     private
-    
+
     def song_params
       params.require(:song).permit(:title, :release_date, :media_url)
     end
