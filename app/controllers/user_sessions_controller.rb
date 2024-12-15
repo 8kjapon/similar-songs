@@ -7,6 +7,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
+      @user.update(last_login_at: Time.current)
       redirect_to root_path, notice: 'ログインしました'
     else
       flash.now[:alert] = 'メールアドレスまたはパスワードが正しくありません'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_10_132127) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_14_211921) do
   create_table "ahoy_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "visit_id"
     t.bigint "user_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_10_132127) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role", default: "general", null: false
+    t.datetime "last_login_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -1,0 +1,44 @@
+<% breadcrumb :edit_admin_user, @user %>
+<%= render 'admin/shared/content_header', header_title: "ユーザー情報の編集" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <%= form_with model: @user, url: admin_user_path(@user), local: true do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @user.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ユーザー情報</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ユーザー名</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :role %></td>
+              <td><%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] }, {}, class: 'form-select' %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mb-4">
+          <%= f.submit "編集を完了", class: "btn btn-primary btn-block mx-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

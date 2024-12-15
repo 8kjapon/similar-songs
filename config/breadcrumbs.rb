@@ -39,3 +39,21 @@ crumb :edit_admin_artist do |artist|
   link artist.name
   parent :admin_artists
 end
+
+# ユーザー一覧
+crumb :admin_users do
+  link "ユーザー", admin_users_path
+  parent :admin_root
+end
+
+# ユーザー編集
+crumb :edit_admin_user do |user|
+  link user.name
+  parent :admin_users
+end
+
+# ユーザーの登録した似てる曲組み合わせ
+crumb :song_pairs_admin_user do |user|
+  link "#{user.name}の登録した似てる曲組み合わせ"
+  parent :admin_users
+end
