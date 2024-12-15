@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # お問い合わせ関連
+  resources :contacts, only: %i[new create]
+
   # 楽曲関連
   resources :songs, only: %i[show] do
     member do

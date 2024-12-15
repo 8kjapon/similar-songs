@@ -17,6 +17,7 @@ ja:
       song_pair: "似てる曲の組み合わせ"
       song: "楽曲"
       user: "ユーザー"
+      contact: "お問い合わせ"
     attributes:
       artist:
         name: "アーティスト名"
@@ -34,6 +35,8 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワードの再確認"
+      contact:
+        message: "お問い合わせ内容"
     errors:
       messages:
         blank: "%{attribute}が入力されていません"
