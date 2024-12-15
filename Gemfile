@@ -72,6 +72,7 @@ group :development do
   gem "pry-byebug"
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
+  gem "letter_opener"
 end
 
 group :test do
