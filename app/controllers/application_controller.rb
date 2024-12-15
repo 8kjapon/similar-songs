@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :set_search
+  before_action :check_login_history, if: -> { logged_in? }
   skip_before_action :track_ahoy_visit
   before_action :prepare_meta_tags
 
@@ -68,5 +69,13 @@ class ApplicationController < ActionController::Base
     else
       song_pairs.order(created_at: :desc)
     end
+  end
+
+  # ログイン履歴が存在していない場合に記録
+  def check_login_history
+    # ログイン履歴が存在している場合は処理をスキップ
+    return if current_user.last_login_at.presence
+
+    current_user.update(last_login_at: Time.current)
   end
 end

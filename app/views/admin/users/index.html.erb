@@ -1,0 +1,46 @@
+<% breadcrumb :admin_users %>
+<%= render 'admin/shared/content_header', header_title: "ユーザー" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ユーザー名</th>
+            <th>メールアドレス</th>
+            <th>権限</th>
+            <th>似てる曲組み合わせ</th>
+            <th></th>
+            <th>登録日時</th>
+            <th>更新日時</th>
+            <th>最終ログイン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td>
+                <%= user.song_pairs.count %>
+                <% if user.song_pairs.presence %>
+                  <%= link_to "一覧", song_pairs_admin_user_path(user) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "編集", edit_admin_user_path(user) %>
+                <%= link_to "削除", admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %>
+              </td>
+              <td><%= user.created_at.strftime('%Y年%m月%d日') %></td>
+              <td><%= user.updated_at.strftime('%Y年%m月%d日') %></td>
+              <td><%= user.last_login_at.strftime('%Y年%m月%d日') if user.last_login_at.presence %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

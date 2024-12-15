@@ -20,10 +20,15 @@ Rails.application.routes.draw do
 
   # 管理者関連
   namespace :admin do
-    root "dashboards#top"
+    root 'dashboards#top'
     resources :song_pairs, only: %i[index edit update destroy]
     resources :songs, only: %i[index edit update destroy]
     resources :artists, only: %i[index edit update destroy]
+    resources :users, only: %i[index edit update destroy] do
+      member do
+        get 'song_pairs', to: 'users#song_pairs'
+      end
+    end
   end
 
   # 楽曲関連
