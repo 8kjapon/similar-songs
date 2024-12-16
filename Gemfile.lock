@@ -160,6 +160,11 @@ GEM
       childprocess (~> 5.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
+    letter_opener_web (3.0.0)
+      actionmailer (>= 6.1)
+      letter_opener (~> 1.9)
+      railties (>= 6.1)
+      rexml
     logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -369,7 +374,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
-  letter_opener
+  letter_opener_web (~> 3.0)
   meta-tags
   mysql2 (~> 0.5)
   pry-byebug

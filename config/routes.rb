@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   # お問い合わせ関連
   resources :contacts, only: %i[new create]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # 楽曲関連
   resources :songs, only: %i[show] do
