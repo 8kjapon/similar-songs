@@ -97,3 +97,5 @@ gem "kaminari"
 gem "meta-tags"
 
 gem "gretel"
+
+gem "aws-sdk-rails"
