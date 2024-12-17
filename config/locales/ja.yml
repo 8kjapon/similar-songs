@@ -10,7 +10,7 @@ ja:
       category:
         songs: "このカテゴリーの楽曲は登録されていません"
       media:
-        youtube: "YouTubeの動画が見つかりません。"
+        youtube: "YouTubeの動画が見つかりません"
     share:
       musim: "musimをシェア!"
       twitter: "musim: 『似ている』から始まる曲探し"
@@ -211,8 +211,8 @@ ja:
     flash_message:
       alert:
         user:
-          password:
-          change_email:
+          password: "パスワードに誤りがあります"
+          change_email: "新しいメールアドレスが現在のメールアドレスと同じです"
         user_sessions: "メールアドレスまたはパスワードが正しくありません"
         edit_permit_error: "編集権限がありません"
         form_error: "入力に誤りがあります"
