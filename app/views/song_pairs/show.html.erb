@@ -1,39 +1,39 @@
 <% set_meta_tags(title: "#{@song_pair.original_song.title} × #{@song_pair.similar_song.title}") %>
 <% set_meta_tags(og: { title: "#{@song_pair.original_song.title} × #{@song_pair.similar_song.title}" }) %>
 <% if @song_pair.similarity_category.id == 3 %>
-  <h1 class="text-center mb-4">サンプリング曲情報</h1>
+  <h1 class="text-center mb-4"><%= t("views.song_pairs.show.title.sampling") %></h1>
 <% else %>
-  <h1 class="text-center mb-4">似てる曲情報</h1>
+  <h1 class="text-center mb-4"><%= t("views.song_pairs.show.title.similar") %></h1>
 <% end %>
 <% if logged_in? && current_user.song_pair_own?(@song_pair) %>
   <div class="text-center mb-4">
-    <%= link_to '曲情報を編集する', edit_song_pair_path %>
+    <%= link_to t("views.song_pairs.show.edit"), edit_song_pair_path %>
   </div>
 <% end %>
 <div>
   <%= render 'song_info', song: @song_pair.original_song, song_description: @song_pair.original_song_description, element_id: 'original-song' %>
 
   <% if @song_pair.similarity_category.id == 3 %>
-    <h2 class="text-center mb-4">↓サンプリングされてる</h2>
+    <h2 class="text-center mb-4">↓<%= t("views.song_pairs.show.pair_info.sampling") %></h2>
   <% else %>
-    <h2 class="text-center mb-4">↓似てる: <%= @song_pair.similarity_category_name %></h2>
+    <h2 class="text-center mb-4">↓<%= t("views.song_pairs.show.pair_info.similar") %>: <%= @song_pair.similarity_category_name %></h2>
   <% end %>
   
   <%= render 'song_info', song: @song_pair.similar_song, song_description: @song_pair.similar_song_description, element_id: 'similar-song' %>
   
   <div class="user-info-block text-center mb-4">
-    <h3>登録したユーザー</h3>
+    <h3><%= t("views.song_pairs.show.user") %></h3>
     <p><%= @song_pair.user.name %></p>
   </div>
 
   <div class="evaluate_button_block text-center mb-4">
-    <h3>評価</h3>
-    <p>似てると思ったら評価(SIM!)</p>
+    <h3><%= t("views.song_pairs.show.evaluate.heading") %></h3>
+    <p><%= t("views.song_pairs.show.evaluate.guide") %></p>
     <%= render 'evaluate_button', song_pair: @song_pair %>
   </div>
 
   <div class="text-center mb-4">
-    <h3>シェア</h3>
+    <h3><%= t("views.song_pairs.show.share") %></h3>
     <div class="share-field">
       <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode_www_form_component('musim: 『似ている』から始まる曲探し')}&url=#{URI.encode_www_form_component(request.original_url)}", target: "_blank", rel: "noopener", class: "share-button share-button-twitter" do %>
         <i class="fa-brands fa-x-twitter"></i>
