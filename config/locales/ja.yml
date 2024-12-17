@@ -25,6 +25,18 @@ ja:
       song: "楽曲"
       artist: "アーティスト"
     song_pairs:
+      index:
+        title: "検索結果"
+        not_found: "楽曲が見つかりませんでした。"
+        submit: "楽曲を登録する"
+        signup_to_submit: "アカウント登録・ログインをして楽曲を登録"
+        sort:
+          label: "並べ替え"
+          signup_to_use: "アカウント登録・ログインをして並べ替え機能を使う"
+      popularity:
+        title: "人気曲"
+      recent:
+        title: "最近登録された曲"
       new:
         title: "楽曲を登録"
         notes:
@@ -86,6 +98,13 @@ ja:
           guide: "似てると思ったら評価(SIM!)"
         share: "シェア"
         edit: "曲情報を編集する"
+      edit:
+        title: 曲情報を編集
+        category: "カテゴリー"
+        submit: "編集を完了"
+        destroy:
+          button: "曲情報を削除する"
+          confirm: "曲情報を削除しますか？(組み合わせ情報のみ削除されます)"
       evaluate:
         evaluation: "SIM!する"
         unevaluation: "SIM!を取り消す"

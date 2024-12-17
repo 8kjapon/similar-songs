@@ -1,14 +1,14 @@
-<% set_meta_tags(title: "検索結果") %>
-<% set_meta_tags(og: { title: "検索結果" }) %>
+<% set_meta_tags(title: t("views.song_pairs.index.title")) %>
+<% set_meta_tags(og: { title: t("views.song_pairs.index.title") }) %>
 <div>
-  <h1 class="text-center mb-4">検索結果</h1>
+  <h1 class="text-center mb-4"><%= t("views.song_pairs.index.title") %></h1>
   <div class="d-flex justify-content-center mb-4">
     <% if logged_in? %>
       <%= render "shared/sort_with_filter", categories: @categories %>
     <% else %>
       <div class="text-center">
-        <p>並べ替え:</p>
-        <p><%= link_to "アカウント登録・ログインをして並べ替え機能を使う", login_path %></p>
+        <p><%= t("views.song_pairs.index.sort.label") %>:</p>
+        <p><%= link_to t("views.song_pairs.index.sort.signup_to_use"), login_path %></p>
       </div>
     <% end %>
   </div>
@@ -18,15 +18,15 @@
       <%= paginate @song_pairs %>
     <% else %>
       <div class="text-center mb-3">
-        <p>楽曲が見つかりませんでした。</p>
+        <p><%= t("views.song_pairs.index.not_found") %></p>
       </div>
       <% if logged_in? %>
         <div class="normal-button d-flex justify-content-center">
-          <%= link_to "楽曲を登録する", new_song_pair_path, class: "btn" %>
+          <%= link_to t("views.song_pairs.index.submit"), new_song_pair_path, class: "btn" %>
         </div>
       <% else %>
         <div class="normal-button d-flex justify-content-center">
-          <%= link_to "アカウント登録・ログインをして楽曲を登録", login_path, class: "btn" %>
+          <%= link_to t("views.song_pairs.index.signup_to_submit"), login_path, class: "btn" %>
         </div>
       <% end %>
     <% end %>
