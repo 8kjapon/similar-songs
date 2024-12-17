@@ -61,7 +61,7 @@ class SongPairsController < ApplicationController
   def edit
     @song_pair = SongPair.find(params[:id])
     @categories = similarity_category
-    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
+    redirect_to @song_pair, alert: t("views.flash_message.alert.edit_permit_error") unless @song_pair.user == current_user
   end
 
   def create
@@ -83,7 +83,7 @@ class SongPairsController < ApplicationController
       @song_pair.similar_song = similar_song
       @song_pair.user = current_user
 
-      redirect_to @song_pair, notice: '楽曲が登録されました' if @song_pair.save!
+      redirect_to @song_pair, notice: t("views.flash_message.notice.song.submit") if @song_pair.save!
     rescue ActiveRecord::RecordInvalid => e
       # エラーメッセージを設定
       @song_pair.errors.merge!(e.record.errors)
@@ -92,29 +92,29 @@ class SongPairsController < ApplicationController
       # 楽曲情報入力ステップから再開出来るようにステップの設定
       @current_step = 2
 
-      flash.now[:alert] = "入力に誤りがあります"
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     @song_pair = SongPair.find(params[:id])
-    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
+    redirect_to @song_pair, alert: t("views.flash_message.alert.edit_permit_error") unless @song_pair.user == current_user
     if @song_pair.update(song_pair_update_params)
-      redirect_to @song_pair, notice: "楽曲情報を更新しました"
+      redirect_to @song_pair, notice: t("views.flash_message.notice.song.update")
     else
       @categories = similarity_category
-      flash.now[:alert] = "入力に誤りがあります"
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @song_pair = SongPair.find(params[:id])
-    redirect_to @song_pair, alert: "編集権限がありません" unless @song_pair.user == current_user
+    redirect_to @song_pair, alert: t("views.flash_message.alert.edit_permit_error") unless @song_pair.user == current_user
 
     @song_pair.destroy
-    redirect_to root_path, notice: "曲情報を削除しました"
+    redirect_to root_path, notice: t("views.flash_message.notice.song.destroy")
   end
 
   private

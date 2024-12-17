@@ -8,15 +8,15 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
     if @user
       @user.update(last_login_at: Time.current)
-      redirect_to root_path, notice: 'ログインしました'
+      redirect_to root_path, notice: t("views.flash_message.notice.user_sessions.login")
     else
-      flash.now[:alert] = 'メールアドレスまたはパスワードが正しくありません'
+      flash.now[:alert] = t("views.flash_message.alert.user_sessions")
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     logout
-    redirect_to root_path, notice: 'ログアウトしました', status: :see_other
+    redirect_to root_path, notice: t("views.flash_message.notice.user_sessions.logout"), status: :see_other
   end
 end

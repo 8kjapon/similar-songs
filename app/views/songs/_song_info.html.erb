@@ -2,8 +2,8 @@
   <div class="d-flex">
     <div class="song-info">
       <h3><%= song.title %></h3>
-      <p>アーティスト名: <%= song.artist_list %></p>
-      <p>リリース年: <%= song.release_date %></p>
+      <p><%= t("activerecord.attributes.artist.name") %>: <%= song.artist_list %></p>
+      <p><%= t("activerecord.attributes.song.release_date") %>: <%= song.release_date %></p>
     </div>
     <div class="song-jacket-container ms-auto">
       <%= image_tag "https://img.youtube.com/vi/#{song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
@@ -14,11 +14,12 @@
   <% end %>
   <div class="normal-button d-flex justify-content-center">
     <% if logged_in? %>
-      <%= link_to "この曲と似てる楽曲を登録", new_song_pair_path(original_song_id: song.id) %>
+      <%= link_to t("views.songs.song_info.submit"), new_song_pair_path(original_song_id: song.id) %>
     <% else %>
       <%= link_to login_path, class: "text-center" do %>
-        <p>アカウント登録・ログインをして</p>
-        <p>この曲と似てる楽曲を登録</p>
+        <% t("views.songs.song_info.signup_to_submit").each do |content| %>
+          <p><%= content %></p>
+        <% end %>
       <% end %>
     <% end %>
   </div>

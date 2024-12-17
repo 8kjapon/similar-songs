@@ -1,16 +1,16 @@
 <% set_meta_tags(title: "#{@song.artist_list} - #{@song.title}") %>
 <% set_meta_tags(og: { title: "#{@song.artist_list} - #{@song.title}" }) %>
-<h1 class="text-center mb-4">楽曲情報</h1>
+<h1 class="text-center mb-4"><%= t("views.songs.show.title") %></h1>
 <%= render 'song_info', song: @song, media_widget: true %>
 <div>
-  <h4 class="text-center mb-4">この曲とメロディーが似てる曲</h4>
+  <h4 class="text-center mb-4"><%= t("views.songs.show.heading.melody") %></h4>
   <%= render 'shared/song_block', song: @song, similarity_category: 'melody', maximum: 3 %>
 </div>
 <div>
-  <h4 class="text-center mb-4">この曲とジャンル・スタイルが似てる曲</h4>
+  <h4 class="text-center mb-4"><%= t("views.songs.show.heading.style") %></h4>
   <%= render 'shared/song_block', song: @song, similarity_category: 'style', maximum: 3 %>
 </div>
 <div>
-  <h4 class="text-center mb-4">この曲がサンプリングしてる・されてる曲</h4>
+  <h4 class="text-center mb-4"><%= t("views.songs.show.heading.sampling") %></h4>
   <%= render 'shared/song_block', song: @song, similarity_category: 'sampling', maximum: 3 %>
 </div>
