@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_email
+    @user = current_user
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -53,7 +57,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_email
+    @user = current_user
+    # パスワード認証
+    unless @user.valid_password?(user_email_params[:password])
+      flash.now[:alert] = t("views.flash_message.alert.user.password")
+      render :edit_email, status: :unprocessable_entity
+      return
+    end
+
+    # メールアドレス検証
+    if @user.email == user_email_params[:new_email]
+      flash.now[:alert] = t("views.flash_message.alert.user.change_email")
+      render :edit_email, status: :unprocessable_entity
+      return
+    end
+
+    if @user.update(email: user_email_params[:new_email])
+      redirect_to mypage_path, notice: t("views.flash_message.notice.user.update")
+    else
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
+      render :edit_email, status: :unprocessable_entity
+    end
+
+  end
+
   private
+
+  def user_email_params
+    params.require(:user).permit(:new_email, :password)
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
