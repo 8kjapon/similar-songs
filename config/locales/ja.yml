@@ -73,6 +73,10 @@ ja:
             - "例) 01:20辺りのメロディ"
         media_tip: "YouTubeのURLに対応しています。"
         submit: "曲を登録"
+      evaluate:
+        evaluation: "SIM!する"
+        unevaluation: "SIM!を取り消す"
+        signup_to_evaluate: "アカウント登録・ログインをして似てる曲を評価"
     user_sessions:
       title: "ログイン"
       email:
@@ -121,6 +125,11 @@ ja:
       order_option:
         desc: "降順"
         asc: "昇順"
+    media_widget:
+      not_found: "YouTubeの動画が見つかりません。"
+    search_form:
+      placeholder: "曲名やアーティスト名から検索"
+      submit: "検索"
     flash_message:
       alert:
         user_sessions: "メールアドレスまたはパスワードが正しくありません"

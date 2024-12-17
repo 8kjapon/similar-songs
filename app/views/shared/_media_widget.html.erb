@@ -2,6 +2,6 @@
   <% if song.media_url_id.present? %>
       <iframe src="https://www.youtube.com/embed/<%= song.media_url_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   <% else %>
-    <p>YouTubeの動画が見つかりません。</p>
+    <p><%= t("views.media_widget.not_found") %></p>
   <% end %>
 </div>
