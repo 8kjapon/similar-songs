@@ -8,13 +8,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <%= link_to '楽曲を登録', new_song_pair_path, class: 'nav-link' %>
+            <%= link_to t("views.header.nav.song_submit"), new_song_pair_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'マイページ', mypage_path, class: 'nav-link' %>
+            <%= link_to t("views.header.nav.mypage"), mypage_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'ログアウト', logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
+            <%= link_to t("views.header.nav.logout"), logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
           </li>
         </ul>
       </div>
@@ -22,7 +22,7 @@
   </div>
   <div class="header-image text-white">
     <div class="main-area d-flex flex-column align-items-center">
-      <h1>『似ている』から始まる曲探し</h1>
+      <h1><%= t("views.header.heading") %></h1>
       <%= render "shared/search_form" %>
     </div>
   </div>

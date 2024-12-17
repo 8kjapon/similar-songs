@@ -1,17 +1,17 @@
-<h1 class="text-center mb-4">ログイン</h1>
+<h1 class="text-center mb-4"><%= t("views.user_sessions.title") %></h1>
 <%= form_with url: login_path, local: true, class: "form-signin" do |f| %>
   <div class="mb-3">
-    <%= f.label :email, t('views.user_sessions.email'), class: "form-label" %>
-    <%= f.email_field :email, class: "form-control", placeholder: "メールアドレスを入力", autofocus: true %>
+    <%= f.label :email, t('views.user_sessions.email.label'), class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", placeholder: t('views.user_sessions.email.placeholder'), autofocus: true %>
   </div>
   <div class="mb-3">
-    <%= f.label :password, t('views.user_sessions.password'), class: "form-label" %>
-    <%= f.password_field :password, class: "form-control", placeholder: "パスワードを入力" %>
+    <%= f.label :password, t('views.user_sessions.password.label'), class: "form-label" %>
+    <%= f.password_field :password, class: "form-control", placeholder: t('views.user_sessions.password.placeholder') %>
   </div>
   <div class="d-grid mb-3">
     <%= f.submit t('views.user_sessions.submit'), class: "btn btn-primary btn-block" %>
   </div>
   <div class="mb-3 text-center">
-    <%= link_to "アカウントを作成する", signup_path %>
+    <%= link_to t('views.user_sessions.signup'), signup_path %>
   </div>
 <% end %>
