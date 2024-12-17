@@ -182,6 +182,7 @@ ja:
     footer:
       developer: "開発者"
       rule: "利用ルール"
+      contact: "お問い合わせ"
     filter_sort:
       category: "カテゴリー"
       sort: "並べ替え"
@@ -200,6 +201,7 @@ ja:
         user_sessions: "メールアドレスまたはパスワードが正しくありません"
         edit_permit_error: "編集権限がありません"
         form_error: "入力に誤りがあります"
+        contacts: "入力に誤りがあります"
       notice:
         user:
           submit: "ユーザー登録が完了しました"
@@ -211,6 +213,7 @@ ja:
           submit: "楽曲が登録されました"
           update: "楽曲情報を更新しました"
           destroy: "楽曲情報を削除しました"
+        contacts: "お問い合わせを送信しました"
     static_pages:
       rule:
         title: "利用ルール"
@@ -232,7 +235,12 @@ ja:
             heading: "サービスに関する質問や問い合わせについて"
             content:
               - "開発者ページより運営・開発者のウェブサイトやX(Twitter)へアクセスすることが可能ですのでそちらからお気軽にご相談ください。"
-
+  mailer:
+    contact:
+      confirmation_email:
+        subject: "お問い合わせ内容の確認"
+      notification_email:
+        subject: "新しいお問い合わせがありました"
   similarity_category:
     melody: "メロディー"
     style: "ジャンル・スタイル"

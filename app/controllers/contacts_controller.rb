@@ -8,9 +8,9 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.confirmation_email(@contact).deliver_now
       ContactMailer.notification_email(@contact).deliver_now
-      redirect_to root_path, notice: "お問い合わせを送信しました"
+      redirect_to root_path, notice: t("views.flash_message.notice.contacts")
     else
-      flash.now[:alert] = "入力に誤りがあります"
+      flash.now[:alert] = t("views.flash_message.alert.contacts")
       render :new, status: :unprocessable_entity
     end
   end
