@@ -1,6 +1,6 @@
-<% set_meta_tags(title: "評価した曲") %>
+<% set_meta_tags(title: t("views.users.evaluated_songs.title")) %>
 <div>
-  <h1 class="text-center mb-4">評価した曲</h1>
+  <h1 class="text-center mb-4"><%= t("views.users.evaluated_songs.title") %></h1>
   <div class="d-flex justify-content-center mb-4">
     <%= render "shared/filter", categories: @categories %>
   </div>
@@ -10,7 +10,7 @@
       <%= paginate @evaluated_song_pairs %>
     <% else %>
       <div class="text-center mb-3">
-        <p>楽曲が見つかりませんでした。</p>
+        <p><%= t("views.not_found.song_pairs") %></p>
       </div>
     <% end %>
   </div>

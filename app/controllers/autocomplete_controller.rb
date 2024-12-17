@@ -6,8 +6,8 @@ class AutocompleteController < ApplicationController
     songs = Song.where("title LIKE ?", "%#{params[:q]}%")
     artists = Artist.where("name LIKE ?", "%#{params[:q]}%")
 
-    results = songs.map { |song| { id: song.id, text: "#{song.title} - 楽曲", label: song.title } } +
-              artists.map { |artist| { id: artist.id, text: "#{artist.name} - アーティスト", label: artist.name } }
+    results = songs.map { |song| { id: song.id, text: "#{song.title} - #{t('views.autocomplete.song')}", label: song.title } } +
+              artists.map { |artist| { id: artist.id, text: "#{artist.name} - #{t('views.autocomplete.artist')}", label: artist.name } }
 
     render partial: "search", locals: { results: results }
   end

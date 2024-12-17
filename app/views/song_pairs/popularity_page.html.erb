@@ -1,7 +1,7 @@
-<% set_meta_tags(title: "人気曲") %>
-<% set_meta_tags(og: { title: "人気曲" }) %>
+<% set_meta_tags(title: t("views.song_pairs.popularity.title")) %>
+<% set_meta_tags(og: { title: t("views.song_pairs.popularity.title") }) %>
 <div>
-  <h1 class="text-center mb-4">人気曲</h1>
+  <h1 class="text-center mb-4"><%= t("views.song_pairs.popularity.title") %></h1>
   <div class="d-flex justify-content-center mb-4">
     <%= render "shared/filter", categories: @categories %>
   </div>

@@ -1,7 +1,7 @@
-<% set_meta_tags(title: "最近登録された曲") %>
-<% set_meta_tags(og: { title: "最近登録された曲" }) %>
+<% set_meta_tags(title: t("views.song_pairs.recent.title")) %>
+<% set_meta_tags(og: { title: t("views.song_pairs.recent.title") }) %>
 <div>
-  <h1 class="text-center mb-4">最近登録された曲</h1>
+  <h1 class="text-center mb-4"><%= t("views.song_pairs.recent.title") %></h1>
   <div class="d-flex justify-content-center mb-4">
     <%= render "shared/filter", categories: @categories %>
   </div>

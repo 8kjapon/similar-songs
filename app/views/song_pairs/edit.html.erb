@@ -1,4 +1,4 @@
-<h1 class="text-center mb-4">曲情報を編集</h1>
+<h1 class="text-center mb-4"><%= t("views.song_pairs.edit.title") %></h1>
 <%= form_with model: @song_pair, url: song_pair_path(@song_pair), local: true do |f| %>
   <% if @song_pair.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -9,41 +9,48 @@
       </ul>
     </div>
   <% end %>
-  <h3 class="text-center mb-4">カテゴリー</h3>
+  <h3 class="text-center mb-4"><%= t("views.song_pairs.edit.category") %></h3>
   <div class="mb-3">
     <%= f.collection_select :similarity_category_id, @categories, :id, :name, {}, { class: 'form-select' } %>
   </div>
 
-  <h3 class="text-center mb-4">曲情報1</h3>
+  <h3 class="text-center mb-4"><%= t("views.song_pairs.new.song_1.heading") %></h3>
   <div>
-    <h3>曲名: <%= @song_pair.original_song.title %></h3>
-    <p>アーティスト名: <%= @song_pair.original_song.artist_list %></p>
-    <p>リリース年: <%= @song_pair.original_song.release_date %></p>
+    <h3><%= t("activerecord.attributes.song.title") %>: <%= @song_pair.original_song.title %></h3>
+    <p><%= t("activerecord.attributes.artist.name") %>: <%= @song_pair.original_song.artist_list %></p>
+    <p><%= t("activerecord.attributes.song.release_date") %>: <%= @song_pair.original_song.release_date %></p>
     <%= render 'shared/media_widget', song: @song_pair.original_song %>
     <div class="mb-3">
-      <%= f.label :original_song_description, "曲1の説明", class: "form-label" %>
+      <%= f.label :original_song_description, class: "form-label" %>
       <%= f.text_area :original_song_description, class: "form-control" %>
-      <p>注目して欲しいポイントや似てると思ったポイントを記載してください。<br>例) 01:20辺りのメロディ</p>
+      <p>
+        <% t("views.song_pairs.new.song_1.tip").each do |tip| %>
+          <%= tip %><br>
+        <% end %>
+      </p>
     </div>
   </div>
 
-  <h3 class="text-center mb-4">曲情報2</h3>
-  <p class="text-center">※サンプリングカテゴリーであれば曲情報1で入力した曲をサンプリングしている曲になります。</p>
+  <h3 class="text-center mb-4"><%= t("views.song_pairs.new.song_2.heading") %></h3>
   <div>
-    <h3>曲名: <%= @song_pair.similar_song.title %></h3>
-    <p>アーティスト名: <%= @song_pair.similar_song.artist_list %></p>
-    <p>リリース年: <%= @song_pair.similar_song.release_date %></p>
+    <h3><%= t("activerecord.attributes.song.title") %>: <%= @song_pair.similar_song.title %></h3>
+    <p><%= t("activerecord.attributes.artist.name") %>: <%= @song_pair.similar_song.artist_list %></p>
+    <p><%= t("activerecord.attributes.song.release_date") %>: <%= @song_pair.similar_song.release_date %></p>
     <%= render 'shared/media_widget', song: @song_pair.similar_song %>
     <div class="mb-3">
-      <%= f.label :similar_song_description, "曲2の説明", class: "form-label" %>
+      <%= f.label :similar_song_description, class: "form-label" %>
       <%= f.text_area :similar_song_description, class: "form-control" %>
-      <p>注目して欲しいポイントや似てると思ったポイントを記載してください。<br>例) 01:20辺りのメロディ</p>
+      <p>
+        <% t("views.song_pairs.new.song_2.tip").each do |tip| %>
+          <%= tip %><br>
+        <% end %>
+      </p>
     </div>
   </div>
   <div class="d-flex justify-content-center mb-4">
-    <%= f.submit "編集を完了", class: "btn btn-primary btn-block mx-3" %>
+    <%= f.submit t("views.song_pairs.edit.submit"), class: "btn btn-primary btn-block mx-3" %>
   </div>
 <% end %>
 <div class="text-center">
-  <%= link_to '曲情報を削除する', song_pair_path(@song_pair), data: { turbo_method: :delete, turbo_confirm: "曲情報を削除しますか？(組み合わせ情報のみ削除されます)" } %>
+  <%= link_to t("views.song_pairs.edit.destroy.button"), song_pair_path(@song_pair), data: { turbo_method: :delete, turbo_confirm: t("views.song_pairs.edit.destroy.confirm") } %>
 </div>

@@ -2,8 +2,8 @@
   <div class="d-flex">
     <div class="song-info">
       <h3><%= link_to song.title, song %></h3>
-      <p>アーティスト名: <%= song.artist_list %></p>
-      <p>リリース年: <%= song.release_date %></p>
+      <p><%= t("activerecord.attributes.artist.name") %>: <%= song.artist_list %></p>
+      <p><%= t("activerecord.attributes.song.release_date") %>: <%= song.release_date %></p>
     </div>
     <div class="song-jacket-container ms-auto">
       <%= image_tag "https://img.youtube.com/vi/#{song.media_url_id}/hqdefault.jpg", class: "song-jacket" %>
@@ -11,7 +11,7 @@
   </div>
   <%= render 'shared/media_widget', song: song, element_id: element_id %>
   <div class="song-description" id="<%= element_id %>-description" data-controller="media">
-    <h5>説明:</h5>
+    <h5><%= t("views.song_pairs.song_info.description") %>:</h5>
     <p><%= parse_time_links(song_description, "#{element_id}-media-widget") %></p>
   </div>
 </div>

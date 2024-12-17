@@ -36,9 +36,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, notice: 'ユーザー登録が完了しました'
+      redirect_to login_path, notice: t("views.flash_message.notice.user.submit")
     else
-      flash.now[:alert] = '入力に誤りがあります'
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,10 +46,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_update_params)
-      redirect_to mypage_path, notice: 'ユーザー情報を更新しました'
+      redirect_to mypage_path, notice: t("views.flash_message.notice.user.update")
     else
-      flash.now[:alert] = '入力に誤りがあります'
-      render :edit
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
+      render :edit, status: :unprocessable_entity
     end
   end
 

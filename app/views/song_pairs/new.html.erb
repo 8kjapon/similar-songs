@@ -1,16 +1,17 @@
-<h1 class="text-center mb-4">楽曲を登録</h1>
+<h1 class="text-center mb-4"><%= t("views.song_pairs.new.title") %></h1>
 <%= form_with model: @song_pair, local: true, class: "form-signin", data: { turbo: false, controller: "multi-step-form", current_step: @current_step } do |f| %>
   <%# 注意事項 %>
   <div data-multi-step-form-target="step">
-    <h3 class="text-center mb-4">登録する上での注意</h3>
+    <h3 class="text-center mb-4"><%= t("views.song_pairs.new.notes.heading") %></h3>
     <div class="text-center mb-4">
-      <p>本サービスはあくまで楽曲探しや楽曲そのものを『楽しむ』為に提供するものです。<br>
-      作品の『盗作』や『パクリ』を指摘したり推奨するものではありません。<br>
-      楽曲やアーティストに対する悪意のある書き込み等は残すことのないようお願いします。<br>
-      誰が見ても純粋に「あ！似てる！面白い！」と思えるようなコンテンツにしていきましょう。</p>
+      <p>
+        <% t("views.song_pairs.new.notes.content").each do |content| %>
+          <%= content %><br>
+        <% end %>
+      </p>
     </div>
     <div class="d-flex justify-content-center">
-      <%= button_tag "次に進む", type: "button", data: { action: "multi-step-form#nextStep" }, class: "btn btn-primary btn-block" %>
+      <%= button_tag t("views.buttons.next"), type: "button", data: { action: "multi-step-form#nextStep" }, class: "btn btn-primary btn-block" %>
     </div>
   </div>
 
@@ -19,27 +20,29 @@
     <div class="mb-3">
       <%= f.collection_select :similarity_category_id, @categories, :id, :name, {}, { class: 'form-select' } %>
     </div>
-    <h3 class="text-center mb-4">カテゴリーについて</h3>
+    <h3 class="text-center mb-4"><%= t("views.song_pairs.new.category.heading") %></h3>
     <div class="text-center mb-4">
-      <p>カテゴリーは『どんな風に似ているのか』を分類する為に設定するものです。</p>
-      <p>何が似ているかを定義するものにもなります。</p>
-      <p>各カテゴリーの説明を元にどのカテゴリーに当てはまるかを参考にしてください。</p>
+      <% t("views.song_pairs.new.category.content").each do |content| %>
+        <p><%= content %></p>
+      <% end %>
       <br>
-      <h4>メロディ</h4>
-      <p>楽曲内のメロディ部分が似ている場合はこちらのカテゴリーを選んでください。</p>
-      <p>楽器が演奏していてもボーカルが歌っていてもメロディであればOKです。</p>
+      <h4><%= t("views.song_pairs.new.category.melody.heading") %></h4>
+      <% t("views.song_pairs.new.category.melody.content").each do |content| %>
+        <p><%= content %></p>
+      <% end %>
       <br>
-      <h4>ジャンル・スタイル</h4>
-      <p>楽曲内で使用されている楽器やエフェクトの使い方、ボーカルの歌い方等、音楽ジャンルとしてや楽曲のスタイルが似ている場合にはこちらのカテゴリーを選んでください。</p>
-      <p>「言葉じゃ説明しにくいけどなんか似てる…」という場合はこちらが当てはまる場合が多いかもしれません。</p>
+      <h4><%= t("views.song_pairs.new.category.style.heading") %></h4>
+      <% t("views.song_pairs.new.category.style.content").each do |content| %>
+        <p><%= content %></p>
+      <% end %>
       <br>
-      <h4>サンプリング</h4>
-      <p>楽曲内で別の楽曲の音源が一部分使われていたりする場合はこちらを選んでください。</p>
-      <p>サンプリングのされ方は様々で『ボーカル部分だけ使われている』、『ドラム部分だけ使われている』、『イントロ部分だけ使われている』など既存の楽曲音源を部分的に使用することでただ楽器を演奏したり、歌うだけでは出来ない新しい表現を生み出すことができます。</p>
-      <p>イメージしづらい場合はサンプリングカテゴリーで登録されている楽曲を実際に参考にしてみてください。</p>
+      <h4><%= t("views.song_pairs.new.category.sampling.heading") %></h4>
+      <% t("views.song_pairs.new.category.sampling.content").each do |content| %>
+        <p><%= content %></p>
+      <% end %>
     </div>
     <div class="d-flex justify-content-center">
-      <%= button_tag "次に進む", type: "button", data: { action: "multi-step-form#nextStep" }, class: "btn btn-primary btn-block" %>
+      <%= button_tag t("views.buttons.next"), type: "button", data: { action: "multi-step-form#nextStep" }, class: "btn btn-primary btn-block" %>
     </div>
   </div>
 
@@ -55,30 +58,30 @@
       </div>
     <% end %>
 
-    <h3 class="text-center mb-4">曲情報1</h3>
-    <p class="text-center">曲の情報を入力してください。</p>
+    <h3 class="text-center mb-4"><%= t("views.song_pairs.new.song_1.heading") %></h3>
+    <p class="text-center"><%= t("views.song_pairs.new.song_1.description") %></p>
     <div data-controller="autocomplete" data-autocomplete-url-value=<%= autocomplete_songs_path %>>
       <%= f.fields_for :original_song do |song1_form| %>
         <div class="mb-3 song-submit-form">
-          <%= song1_form.label :title, "曲名", class: "form-label" %>
+          <%= song1_form.label :title, class: "form-label" %>
           <%= song1_form.text_field :title, class: "form-control", data: { autocomplete_target: "input" } %>
           <ul class="list-group" data-autocomplete-target="results"></ul>
         </div>
         <%= song1_form.fields_for :artists do |artist1_form| %>
           <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
-            <%= artist1_form.label :name, "アーティスト名", class: "form-label" %>
+            <%= artist1_form.label :name, class: "form-label" %>
             <%= artist1_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
             <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
-          <%= song1_form.label :release_date, "リリース年", class: "form-label" %>
+          <%= song1_form.label :release_date, class: "form-label" %>
           <%= song1_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song1_form.object.release_date), {}, class: "form-select", data: { field: 'year', autocomplete_target: "releaseDate" } %>
         </div>
         <div class="mb-3">
-          <%= song1_form.label :media_url, "メディアURL", class: "form-label" %>
+          <%= song1_form.label :media_url, class: "form-label" %>
           <%= song1_form.text_field :media_url, class: "form-control", id: "media_url_1", data: { autocomplete_target: "mediaUrl" } %>
-          <p>YouTubeのURLに対応しています。</p>
+          <p><%= t("views.song_pairs.new.media_tip") %></p>
         </div>
         <div class="mb-3">
           <div id="media_player_1"></div>
@@ -86,36 +89,44 @@
       <% end %>
 
       <div class="mb-3">
-        <%= f.label :original_song_description, "曲1の説明", class: "form-label" %>
+        <%= f.label :original_song_description, class: "form-label" %>
         <%= f.text_area :original_song_description, class: "form-control" %>
-        <p>注目して欲しいポイントや似てると思ったポイントを記載してください。<br>半角で12:34のように記述するとページ上で自動的に再生時間指定リンクに変換されます。<br>例) 01:20辺りのメロディ</p>
+        <p>
+          <% t("views.song_pairs.new.song_1.tip").each do |tip| %>
+            <%= tip %><br>
+          <% end %>
+        </p>
       </div>
     </div>
 
-    <h3 class="text-center mb-4">曲情報2</h3>
-    <p class="text-center">似てる曲の情報を入力してください。<br>※サンプリングカテゴリーであれば曲情報1で入力した曲をサンプリングしている曲になります。</p>
+    <h3 class="text-center mb-4"><%= t("views.song_pairs.new.song_2.heading") %></h3>
+    <p class="text-center">
+      <% t("views.song_pairs.new.song_2.description").each do |description| %>
+        <%= description %><br>
+      <% end %>
+    </p>
     <div data-controller="autocomplete" data-autocomplete-url-value=<%= autocomplete_songs_path %>>
       <%= f.fields_for :similar_song do |song2_form| %>
         <div class="mb-3 song-submit-form">
-          <%= song2_form.label :title, "曲名", class: "form-label" %>
+          <%= song2_form.label :title, class: "form-label" %>
           <%= song2_form.text_field :title, class: "form-control", data: { autocomplete_target: "input" } %>
           <ul class="list-group" data-autocomplete-target="results"></ul>
         </div>
         <%= song2_form.fields_for :artists do |artist2_form| %>
           <div class="mb-3 song-submit-form" data-controller="artist-autocomplete" data-artist-autocomplete-url-value=<%= autocomplete_artists_path %>>
-            <%= artist2_form.label :name, "アーティスト名", class: "form-label" %>
+            <%= artist2_form.label :name, class: "form-label" %>
             <%= artist2_form.text_field :name, class: "form-control", data: { artist_autocomplete_target: "input", autocomplete_target: "artist" } %>
             <ul data-artist-autocomplete-target="results" class="list-group"></ul>
           </div>
         <% end %>
         <div class="mb-3">
-          <%= song2_form.label :release_date, "リリース年", class: "form-label" %>
+          <%= song2_form.label :release_date, class: "form-label" %>
           <%= song2_form.select :release_date, options_for_select((1870..Date.today.year).to_a.reverse.map(&:to_s), song2_form.object.release_date), {}, class: "form-select", data: { field: 'year', autocomplete_target: "releaseDate" } %>
         </div>
         <div class="mb-3">
-          <%= song2_form.label :media_url, "メディアURL", class: "form-label" %>
+          <%= song2_form.label :media_url, class: "form-label" %>
           <%= song2_form.text_field :media_url, class: "form-control", id: "media_url_2", data: { autocomplete_target: "mediaUrl" } %>
-          <p>YouTubeのURLに対応しています。</p>
+          <p><%= t("views.song_pairs.new.media_tip") %></p>
         </div>
         <div class="mb-3">
           <div id="media_player_2"></div>
@@ -123,13 +134,17 @@
       <% end %>
 
       <div class="mb-3">
-        <%= f.label :similar_song_description, "曲2の説明", class: "form-label" %>
+        <%= f.label :similar_song_description, class: "form-label" %>
         <%= f.text_area :similar_song_description, class: "form-control" %>
-        <p>注目して欲しいポイントや似てると思ったポイントを記載してください。<br>例) 01:20辺りのメロディ</p>
+        <p>
+          <% t("views.song_pairs.new.song_2.tip").each do |tip| %>
+            <%= tip %><br>
+          <% end %>
+        </p>
       </div>
       <div class="d-flex justify-content-center">
-        <%= button_tag "戻る", type: "button", data: { action: "multi-step-form#previousStep" }, class: "btn btn-primary btn-block" %>
-        <%= f.submit "曲を登録", class: "btn btn-primary btn-block mx-3" %>
+        <%= button_tag t("views.buttons.back"), type: "button", data: { action: "multi-step-form#previousStep" }, class: "btn btn-primary btn-block" %>
+        <%= f.submit t("views.song_pairs.new.submit"), class: "btn btn-primary btn-block mx-3" %>
       </div>
     </div>
   </div>

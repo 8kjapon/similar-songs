@@ -1,9 +1,238 @@
 ja:
+  meta_tags:
+    site_name: "musim"
+    title: "『似ている』から始まる曲探し"
+    description: "似ている曲から新しい曲への出会いを。"
   views:
+    not_found:
+      song_pairs: "楽曲が見つかりませんでした"
+      submit_songs: "楽曲が登録されていません"
+      category:
+        songs: "このカテゴリーの楽曲は登録されていません"
+      media:
+        youtube: "YouTubeの動画が見つかりません。"
+    share:
+      musim: "musimをシェア!"
+      twitter: "musim: 『似ている』から始まる曲探し"
+    headings:
+      recent: "最近登録された曲"
+      popular: "人気曲"
+    buttons:
+      more: "もっと見る"
+      next: "次に進む"
+      back: "戻る"
+      show_more: "全て表示"
+      signup_to_more: "アカウント登録・ログインをしてもっと見る"
+    song_pair_block:
+      similar_song: "似てる曲"
+      category: "カテゴリー"
+    song_block:
+      all: "全て表示"
+      no_data: "このカテゴリーの楽曲は登録されていません"
+    autocomplete:
+      song: "楽曲"
+      artist: "アーティスト"
+    song_pairs:
+      index:
+        title: "検索結果"
+        submit: "楽曲を登録する"
+        signup_to_submit: "アカウント登録・ログインをして楽曲を登録"
+        sort:
+          label: "並べ替え"
+          signup_to_use: "アカウント登録・ログインをして並べ替え機能を使う"
+      popularity:
+        title: "人気曲"
+      recent:
+        title: "最近登録された曲"
+      new:
+        title: "楽曲を登録"
+        notes:
+          heading: "登録する上での注意"
+          content:
+            - "本サービスはあくまで楽曲探しや楽曲そのものを『楽しむ』為に提供するものです。"
+            - "作品の『盗作』や『パクリ』を指摘したり推奨するものではありません。"
+            - "楽曲やアーティストに対する悪意のある書き込み等は残すことのないようお願いします。"
+            - "誰が見ても純粋に「あ！似てる！面白い！」と思えるようなコンテンツにしていきましょう。"
+        category:
+          heading: "カテゴリーについて"
+          content:
+            - "カテゴリーは『どんな風に似ているのか』を分類する為に設定するものです。"
+            - "何が似ているかを定義するものにもなります。"
+            - "各カテゴリーの説明を元にどのカテゴリーに当てはまるかを参考にしてください。"
+          melody:
+            heading: "メロディ"
+            content:
+              - "楽曲内のメロディ部分が似ている場合はこちらのカテゴリーを選んでください。"
+              - "楽器が演奏していてもボーカルが歌っていてもメロディであればOKです"
+          style:
+            heading: "ジャンル・スタイル"
+            content:
+              - "楽曲内で使用されている楽器やエフェクトの使い方、ボーカルの歌い方等、音楽ジャンルとしてや楽曲のスタイルが似ている場合にはこちらのカテゴリーを選んでください。"
+              - "「言葉じゃ説明しにくいけどなんか似てる…」という場合はこちらが当てはまる場合が多いかもしれません。"
+          sampling:
+            heading: "サンプリング"
+            content:
+              - "楽曲内で別の楽曲の音源が一部分使われていたりする場合はこちらを選んでください。"
+              - "サンプリングのされ方は様々で『ボーカル部分だけ使われている』、『ドラム部分だけ使われている』、『イントロ部分だけ使われている』など既存の楽曲音源を部分的に使用することでただ楽器を演奏したり、歌うだけでは出来ない新しい表現を生み出すことができます。"
+              - "イメージしづらい場合はサンプリングカテゴリーで登録されている楽曲を実際に参考にしてみてください。"
+        song_1:
+          heading: "曲情報1"
+          description: "曲の情報を入力してください。"
+          tip:
+            - "注目して欲しいポイントや似てると思ったポイントを記載してください。"
+            - "半角で12:34のように記述するとページ上で自動的に再生時間指定リンクに変換されます。"
+            - "例) 01:20辺りのメロディ"
+        song_2:
+          heading: "曲情報2"
+          description:
+            - "似てる曲の情報を入力してください。"
+            - "※サンプリングカテゴリーであれば曲情報1で入力した曲をサンプリングしている曲になります。"
+          tip:
+            - "注目して欲しいポイントや似てると思ったポイントを記載してください。"
+            - "例) 01:20辺りのメロディ"
+        media_tip: "YouTubeのURLに対応しています。"
+        submit: "曲を登録"
+      show:
+        title:
+          similar: "似てる曲情報"
+          sampling: "サンプリング曲情報"
+        pair_info:
+          similar: "似てる"
+          sampling: "サンプリングされてる"
+        user: "登録したユーザー"
+        evaluate:
+          heading: "評価"
+          guide: "似てると思ったら評価(SIM!)"
+        share: "シェア"
+        edit: "曲情報を編集する"
+      edit:
+        title: 曲情報を編集
+        category: "カテゴリー"
+        submit: "編集を完了"
+        destroy:
+          button: "曲情報を削除する"
+          confirm: "曲情報を削除しますか？(組み合わせ情報のみ削除されます)"
+      evaluate:
+        evaluation: "SIM!する"
+        unevaluation: "SIM!を取り消す"
+        signup_to_evaluate: "アカウント登録・ログインをして似てる曲を評価"
+      song_info:
+        description: "説明"
+    songs:
+      show:
+        title: "楽曲情報"
+        heading:
+          melody: "この曲とメロディーが似てる曲"
+          style: "この曲とジャンル・スタイルが似てる曲"
+          sampling: "この曲がサンプリングしてる・されてる曲"
+      song_info:
+        submit: "この曲と似てる楽曲を登録"
+        signup_to_submit:
+         - "アカウント登録・ログインをして"
+         - "この曲と似てる楽曲を登録"
     user_sessions:
-      email: "メールアドレス"
-      password: "パスワード"
+      title: "ログイン"
+      email:
+        label: "メールアドレス"
+        placeholder: メールアドレスを入力
+      password:
+        label: "パスワード"
+        placeholder: "パスワードを入力"
       submit: "ログイン"
+      signup: "アカウントを作成する"
+    users:
+      new:
+        title: "アカウントを作成"
+        name:
+          placeholder: "ユーザー名を入力"
+        email:
+          placeholder: "メールアドレスを入力"
+        submit: "登録"
+        login: "アカウントが既にあるのでログイン"
+        features:
+          heading: "アカウント登録をして出来ること"
+          content:
+            - "似てる楽曲のデータベースへの登録"
+            - "楽曲検索の並べ替え機能の使用"
+            - "最近登録された曲や人気曲の一覧表示"
+            - "似てる楽曲への評価"
+      edit:
+        title: "ユーザー情報の編集"
+        submit: "更新"
+      mypage:
+        title: "マイページ"
+        user:
+          name: "ユーザー名"
+          created_at: "登録日"
+          song_pairs: "楽曲登録数"
+          edit: "編集"
+      submit_songs:
+        title: "登録した曲"
+      evaluated_songs:
+        title: "評価した曲"
+    header:
+      nav:
+        song_submit: "楽曲を登録"
+        mypage: "マイページ"
+        logout: "ログアウト"
+        login: "ログイン"
+        signup: "新規登録"
+      heading: "『似ている』から始まる曲探し"
+      signup_to_start: "アカウント登録・ログインをして始める"
+    footer:
+      developer: "開発者"
+      rule: "利用ルール"
+    filter_sort:
+      category: "カテゴリー"
+      sort: "並べ替え"
+      sort_option:
+        song_title: "曲名"
+        artist_name: "アーティスト名"
+        created_at: "登録日"
+      order_option:
+        desc: "降順"
+        asc: "昇順"
+    search_form:
+      placeholder: "曲名やアーティスト名から検索"
+      submit: "検索"
+    flash_message:
+      alert:
+        user_sessions: "メールアドレスまたはパスワードが正しくありません"
+        edit_permit_error: "編集権限がありません"
+        form_error: "入力に誤りがあります"
+      notice:
+        user:
+          submit: "ユーザー登録が完了しました"
+          update: "ユーザー情報を更新しました"
+        user_sessions:
+          login: "ログインしました"
+          logout: "ログアウトしました"
+        song:
+          submit: "楽曲が登録されました"
+          update: "楽曲情報を更新しました"
+          destroy: "楽曲情報を削除しました"
+    static_pages:
+      rule:
+        title: "利用ルール"
+        description: "多くのユーザーが気持ちよく利用出来るよう、以下のルールに従い利用するようにしてください。"
+        content:
+          harassment:
+            heading: "嫌がらせや誹謗中傷になるような書き込みをしない"
+            content:
+              - "あくまで楽曲や楽曲探しを楽しむ為のサービスであり、楽曲やアーティスト、誰かに害を与えるような言動を行う為のサービスではありません。"
+              - "サービス内で残せる書き込みやユーザー名に至るまで、目について誰かが不快にならないかをよく考えた上でご利用ください。"
+              - "書き込みやユーザーなどに問題が発覚した場合は運営側で修正や削除対応、アクセス制限やその他然るべき対応を取らせていただきます。"
+          user_account:
+            heading: "ユーザー登録について"
+            content:
+              - "musimではユーザーアカウントを登録することで楽曲データの登録や評価機能、ソート機能などの利用が可能になります。"
+              - "より一層楽曲探しが楽しくなるかと思いますのでぜひご利用ください。"
+              - "ログインやアカウント登録に必要なメールアドレス・パスワードは適切な管理の元、安全にご利用ください。"
+          support:
+            heading: "サービスに関する質問や問い合わせについて"
+            content:
+              - "開発者ページより運営・開発者のウェブサイトやX(Twitter)へアクセスすることが可能ですのでそちらからお気軽にご相談ください。"
+
   similarity_category:
     melody: "メロディー"
     style: "ジャンル・スタイル"
