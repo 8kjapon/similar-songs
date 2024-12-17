@@ -118,6 +118,22 @@ ja:
       order_option:
         desc: "降順"
         asc: "昇順"
+    flash_message:
+      alert:
+        user_sessions: "メールアドレスまたはパスワードが正しくありません"
+        edit_permit_error: "編集権限がありません"
+        form_error: "入力に誤りがあります"
+      notice:
+        user:
+          submit: "ユーザー登録が完了しました"
+          update: "ユーザー情報を更新しました"
+        user_sessions:
+          login: "ログインしました"
+          logout: "ログアウトしました"
+        song:
+          submit: "楽曲が登録されました"
+          update: "楽曲情報を更新しました"
+          destroy: "楽曲情報を削除しました"
   similarity_category:
     melody: "メロディー"
     style: "ジャンル・スタイル"
