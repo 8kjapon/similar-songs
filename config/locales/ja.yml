@@ -166,6 +166,11 @@ ja:
       edit:
         title: "ユーザー情報の編集"
         submit: "更新"
+        change: "変更"
+      edit_email:
+        title: "メールアドレスの変更"
+        current_email: "現在のメールアドレス"
+        new_email: "新しいメールアドレス"
       mypage:
         title: "マイページ"
         user:
@@ -205,6 +210,9 @@ ja:
       submit: "検索"
     flash_message:
       alert:
+        user:
+          password:
+          change_email:
         user_sessions: "メールアドレスまたはパスワードが正しくありません"
         edit_permit_error: "編集権限がありません"
         form_error: "入力に誤りがあります"

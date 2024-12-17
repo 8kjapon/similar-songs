@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'mypage/submit_songs', to: 'users#submit_songs', as: :submit_songs
   get 'mypage/evaluated_songs', to: 'users#evaluated_songs', as: :evaluated_songs
   get 'mypage/edit', to: 'users#edit', as: :edit_mypage
+  get 'mypage/email', to: 'users#edit_email', as: :edit_email
+  patch 'mypage/email', to: "users#update_email"
   patch 'mypage', to: 'users#update'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
