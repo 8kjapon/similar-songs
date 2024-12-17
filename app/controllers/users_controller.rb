@@ -79,7 +79,6 @@ class UsersController < ApplicationController
       flash.now[:alert] = t("views.flash_message.alert.form_error")
       render :edit_email, status: :unprocessable_entity
     end
-
   end
 
   private
