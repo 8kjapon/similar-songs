@@ -4,6 +4,13 @@ ja:
     title: "『似ている』から始まる曲探し"
     description: "似ている曲から新しい曲への出会いを。"
   views:
+    not_found:
+      song_pairs: "楽曲が見つかりませんでした"
+      submit_songs: "楽曲が登録されていません"
+      category:
+        songs: "このカテゴリーの楽曲は登録されていません"
+      media:
+        youtube: "YouTubeの動画が見つかりません。"
     share:
       musim: "musimをシェア!"
       twitter: "musim: 『似ている』から始まる曲探し"
@@ -14,20 +21,20 @@ ja:
       more: "もっと見る"
       next: "次に進む"
       back: "戻る"
+      show_more: "全て表示"
       signup_to_more: "アカウント登録・ログインをしてもっと見る"
     song_pair_block:
       similar_song: "似てる曲"
       category: "カテゴリー"
     song_block:
       all: "全て表示"
-      no_data: "このカテゴリーの楽曲は登録されていません。"
+      no_data: "このカテゴリーの楽曲は登録されていません"
     autocomplete:
       song: "楽曲"
       artist: "アーティスト"
     song_pairs:
       index:
         title: "検索結果"
-        not_found: "楽曲が見つかりませんでした。"
         submit: "楽曲を登録する"
         signup_to_submit: "アカウント登録・ログインをして楽曲を登録"
         sort:
@@ -118,8 +125,6 @@ ja:
           melody: "この曲とメロディーが似てる曲"
           style: "この曲とジャンル・スタイルが似てる曲"
           sampling: "この曲がサンプリングしてる・されてる曲"
-      song_block:
-        not_found: "このカテゴリーの楽曲は登録されていません"
       song_info:
         submit: "この曲と似てる楽曲を登録"
         signup_to_submit:
@@ -151,6 +156,20 @@ ja:
             - "楽曲検索の並べ替え機能の使用"
             - "最近登録された曲や人気曲の一覧表示"
             - "似てる楽曲への評価"
+      edit:
+        title: "ユーザー情報の編集"
+        submit: "更新"
+      mypage:
+        title: "マイページ"
+        user:
+          name: "ユーザー名"
+          created_at: "登録日"
+          song_pairs: "楽曲登録数"
+          edit: "編集"
+      submit_songs:
+        title: "登録した曲"
+      evaluated_songs:
+        title: "評価した曲"
     header:
       nav:
         song_submit: "楽曲を登録"
@@ -173,8 +192,6 @@ ja:
       order_option:
         desc: "降順"
         asc: "昇順"
-    media_widget:
-      not_found: "YouTubeの動画が見つかりません。"
     search_form:
       placeholder: "曲名やアーティスト名から検索"
       submit: "検索"

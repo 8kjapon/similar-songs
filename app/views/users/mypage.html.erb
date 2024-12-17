@@ -1,45 +1,45 @@
-<% set_meta_tags(title: "マイページ", og: { title: "マイページ" }) %>
-<h1 class="text-center mb-4">マイページ</h1>
+<% set_meta_tags(title: t("views.users.mypage.title"), og: { title: t("views.users.mypage.title") }) %>
+<h1 class="text-center mb-4"><%= t("views.users.mypage.title") %></h1>
 <div class="mb-5 user-info d-flex align-items-center">
   <div>
-    <p>ユーザー名: <%= @user.name %></p>
-    <p>登録日: <%= @user.created_at.strftime('%Y年%m月%d日') %></p>
-    <p>楽曲登録数: <%= @song_pairs.count %></p>
+    <p><%= t("views.users.mypage.user.name") %>: <%= @user.name %></p>
+    <p><%= t("views.users.mypage.user.created_at") %>: <%= @user.created_at.strftime('%Y年%m月%d日') %></p>
+    <p><%= t("views.users.mypage.user.song_pairs") %>: <%= @song_pairs.count %></p>
   </div>
   <div class="ms-auto">
-    <%= link_to "編集", edit_mypage_path %>
+    <%= link_to t("views.users.mypage.user.edit"), edit_mypage_path %>
   </div>
 </div>
 <div>
-  <h2 class="text-center mb-4">登録した曲</h2>
+  <h2 class="text-center mb-4"><%= t("views.users.submit_songs.title") %></h2>
   <div class="mb-4">
     <% if @song_pairs.present? %>
       <%= render "shared/song_pair_block", song_pairs: @song_pairs, maximum: 5 %>
       <% if @song_pairs.count > 5 %>
         <div class="more-button d-flex justify-content-center">
-          <%= link_to "全て表示", submit_songs_path, class: "btn" %>
+          <%= link_to t("views.buttons.show_more"), submit_songs_path, class: "btn" %>
         </div>
       <% end %>
     <% else %>
       <div class="text-center">
-        <p>楽曲が登録されていません。</p>
+        <p><%= t("views.not_found.submit_songs") %></p>
       </div>
     <% end %>
   </div>
 </div>
 <div>
-  <h2 class="text-center mb-4">評価した曲</h2>
+  <h2 class="text-center mb-4"><%= t("views.users.evaluated_songs.title") %></h2>
   <div class="mb-4">
     <% if @evaluated_song_pairs.present? %>
       <%= render "shared/song_pair_block", song_pairs: @evaluated_song_pairs, maximum: 5 %>
       <% if @evaluated_song_pairs.count > 5 %>
         <div class="more-button d-flex justify-content-center">
-          <%= link_to "全て表示", evaluated_songs_path, class: "btn" %>
+          <%= link_to t("views.buttons.show_more"), evaluated_songs_path, class: "btn" %>
         </div>
       <% end %>
     <% else %>
       <div class="text-center">
-        <p>楽曲が登録されていません。</p>
+        <p><%= t("views.not_found.submit_songs") %></p>
       </div>
     <% end %>
   </div>
