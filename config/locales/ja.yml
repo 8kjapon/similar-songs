@@ -281,6 +281,9 @@ ja:
         password_confirmation: "パスワードの再確認"
       contact:
         message: "お問い合わせ内容"
+        status:
+          pending: "未対応"
+          resolved: "対応済み"
     errors:
       messages:
         blank: "%{attribute}が入力されていません"

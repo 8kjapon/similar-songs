@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         get 'song_pairs', to: 'users#song_pairs'
       end
     end
+    resources :contacts, only: %i[index edit update destroy]
   end
 
   # お問い合わせ関連
