@@ -23,6 +23,13 @@ ja:
       back: "戻る"
       show_more: "全て表示"
       signup_to_more: "アカウント登録・ログインをしてもっと見る"
+    contacts:
+      new:
+        title: "お問い合わせフォーム"
+        user: "ユーザー"
+        description: "お問い合わせ内容を詳細にご入力ください。"
+        guide: "送信後に確認メールが届きますのでご確認ください。"
+        submit: "送信"
     song_pair_block:
       similar_song: "似てる曲"
       category: "カテゴリー"

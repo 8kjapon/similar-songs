@@ -1,16 +1,19 @@
 <%= form_with model: @contact, local: true do |f| %>
   <div>
-    <h3 class="text-center mb-4">お問い合わせフォーム</h3>
+    <h3 class="text-center mb-4"><%= t("views.contacts.new.title") %></h3>
+    <div class="mb-3">
+      <label class="form-label"><%= t("views.contacts.new.user") %>: <%= current_user.name %></label>
+    </div>
     <div class="mb-3">
       <%= f.label :message, class: "form-label" %>
       <%= f.text_area :message, row: 6, required: true, class: "form-control" %>
-      <p>お問い合わせ内容を詳細にご入力ください。</p>
+      <p><%= t("views.contacts.new.description") %></p>
     </div>
     <div class="d-flex justify-content-center mb-3">
-      <%= f.submit "送信", class: "btn btn-primary btn-block mx-3" %>
+      <%= f.submit t("views.contacts.new.submit"), class: "btn btn-primary btn-block mx-3" %>
     </div>
     <div class="text-center">
-      <p>送信後に確認メールが届きますのでご確認ください。</p>
+      <p><%= t("views.contacts.new.guide") %></p>
     </div>
   </div>
 <% end %>
