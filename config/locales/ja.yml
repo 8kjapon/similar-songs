@@ -17,6 +17,9 @@ ja:
     song_block:
       all: "全て表示"
       no_data: "このカテゴリーの楽曲は登録されていません。"
+    autocomplete:
+      song: "楽曲"
+      artist: "アーティスト"
     song_pairs:
       new:
         title: "楽曲を登録"
