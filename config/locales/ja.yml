@@ -1,4 +1,8 @@
 ja:
+  meta_tags:
+    site_name: "musim"
+    title: "『似ている』から始まる曲探し"
+    description: "似ている曲から新しい曲への出会いを。"
   views:
     share:
       musim: "musimをシェア!"
@@ -104,6 +108,16 @@ ja:
         signup: "新規登録"
       heading: "『似ている』から始まる曲探し"
       signup_to_start: "アカウント登録・ログインをして始める"
+    filter_sort:
+      category: "カテゴリー"
+      sort: "並べ替え"
+      sort_option:
+        song_title: "曲名"
+        artist_name: "アーティスト名"
+        created_at: "登録日"
+      order_option:
+        desc: "降順"
+        asc: "昇順"
   similarity_category:
     melody: "メロディー"
     style: "ジャンル・スタイル"
