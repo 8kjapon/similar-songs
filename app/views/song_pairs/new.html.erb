@@ -1,5 +1,5 @@
 <h1 class="text-center mb-4"><%= t("views.song_pairs.new.title") %></h1>
-<%= form_with model: @song_pair, local: true, class: "form-signin", data: { turbo: false, controller: "multi-step-form", current_step: @current_step } do |f| %>
+<%= form_with model: @song_pair, local: true, data: { turbo: false, controller: "multi-step-form", current_step: @current_step } do |f| %>
   <%# 注意事項 %>
   <div data-multi-step-form-target="step">
     <h3 class="text-center mb-4"><%= t("views.song_pairs.new.notes.heading") %></h3>

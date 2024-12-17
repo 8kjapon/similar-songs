@@ -29,7 +29,12 @@ Rails.application.routes.draw do
         get 'song_pairs', to: 'users#song_pairs'
       end
     end
+    resources :contacts, only: %i[index edit update destroy]
   end
+
+  # お問い合わせ関連
+  resources :contacts, only: %i[new create]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   # 楽曲関連
   resources :songs, only: %i[show] do

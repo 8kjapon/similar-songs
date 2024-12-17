@@ -1,0 +1,13 @@
+musim管理者へ新しいお問い合わせが届きました。
+以下の内容をご確認ください。
+
+---
+ユーザー: <%= @contact.user.name %>
+メールアドレス: <%= @contact.user.email %>
+受付日: <%= @contact.created_at.strftime('%Y年%m月%d日') %>
+内容:
+<%= @contact.message %>
+---
+
+musim運営 / 8kjapon
+Twitter(X): @8kjapon

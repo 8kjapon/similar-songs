@@ -92,4 +92,10 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.hosts << "musim.8kjapon.com"
+
+  # Amazon SESとメールに関する設定
+  config.action_mailer.delivery_method = :ses
+  config.action_mailer.default_url_options = { host: 'musim.8kjapon.com', protocol: 'https' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 end

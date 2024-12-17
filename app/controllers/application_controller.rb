@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def not_authenticated
+    flash[:alert] = "ログインが必要です"
+    redirect_to login_path
+  end
+
   # ログイン済みユーザーが必要のない場所にアクセスした場合の処理
   def redirect_if_logged_in
     redirect_to root_path if logged_in?

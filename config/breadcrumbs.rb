@@ -57,3 +57,15 @@ crumb :song_pairs_admin_user do |user|
   link "#{user.name}の登録した似てる曲組み合わせ"
   parent :admin_users
 end
+
+# 問い合わせ一覧
+crumb :admin_contacts do
+  link "問い合わせ", admin_contacts_path
+  parent :admin_root
+end
+
+# 問い合わせ編集
+crumb :edit_admin_contact do
+  link "問い合わせ内容"
+  parent :admin_contacts
+end

@@ -1,0 +1,52 @@
+<% breadcrumb :edit_admin_contact %>
+<%= render 'admin/shared/content_header', header_title: "問い合わせ内容" %>
+<div class="app-content">
+  <div class="container-fluid">
+    <div class="row">
+      <%= form_with model: @contact, url: admin_contact_path(@contact), local: true do |f| %>
+        <% if @contact.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @contact.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ユーザー名</td>
+              <td><%= @contact.user.name %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @contact.user.email %></td>
+            </tr>
+            <tr>
+              <td>受付日</td>
+              <td><%= @contact.created_at.strftime('%Y年%m月%d日') %></td>
+            </tr>
+            <tr>
+              <td>内容</td>
+              <td><%= @contact.message %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :status, "対応状況" %></td>
+              <td><%= f.select :status, Contact.statuses.keys.map { |status| [t("activerecord.attributes.contact.status.#{status}"), status] }, {}, class: 'form-select' %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mb-4">
+          <%= f.submit "更新", class: "btn btn-primary btn-block mx-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
