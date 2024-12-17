@@ -111,6 +111,20 @@ ja:
         signup_to_evaluate: "アカウント登録・ログインをして似てる曲を評価"
       song_info:
         description: "説明"
+    songs:
+      show:
+        title: "楽曲情報"
+        heading:
+          melody: "この曲とメロディーが似てる曲"
+          style: "この曲とジャンル・スタイルが似てる曲"
+          sampling: "この曲がサンプリングしてる・されてる曲"
+      song_block:
+        not_found: "このカテゴリーの楽曲は登録されていません"
+      song_info:
+        submit: "この曲と似てる楽曲を登録"
+        signup_to_submit:
+         - "アカウント登録・ログインをして"
+         - "この曲と似てる楽曲を登録"
     user_sessions:
       title: "ログイン"
       email:

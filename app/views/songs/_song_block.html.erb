@@ -13,7 +13,7 @@
     <%= paginate pair_song_list %>
   <% else %>
     <div class="text-center">
-      <p>このカテゴリーの楽曲は登録されていません。</p>
+      <p><%= t("views.songs.song_block.not_found") %></p>
     </div>
   <% end %>
 </div>
