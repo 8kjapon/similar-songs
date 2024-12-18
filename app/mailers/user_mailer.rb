@@ -3,6 +3,6 @@ class UserMailer < ApplicationMailer
     @user = user
     @url = edit_password_reset_url(@user.reset_password_token)
 
-    mail(to: @user.email, subject: "パスワードのリセット")
+    mail(to: @user.email, subject: t("mailer.user.reset_password_email.subject"))
   end
 end

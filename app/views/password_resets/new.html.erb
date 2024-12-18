@@ -1,0 +1,21 @@
+<h1 class="text-center mb-4"><%= t("views.password_resets.new.title") %></h1>
+<%= form_with url: password_resets_path, local: true do |f| %>
+  <div class="mb-3 text-center">
+    <p>
+      <% t("views.password_resets.new.content").each do |content| %>
+        <%= content %><br>
+      <% end %>
+    </p>
+  </div>
+  <div class="mb-3">
+    <%= f.label :email, t('views.user_sessions.email.label'), class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", placeholder: t('views.user_sessions.email.placeholder'), autofocus: true %>
+  </div>
+  <div class="d-grid mb-3">
+    <%= f.submit t("views.password_resets.new.submit"), class: "btn btn-primary btn-block" %>
+  </div>
+  <div class="mb-3 text-center">
+    <%= link_to t("views.password_resets.new.login"), login_path %>
+    <%= link_to t('views.user_sessions.signup'), signup_path %>
+  </div>
+<% end %>
