@@ -20,13 +20,11 @@
       </div>
     </div>
   </div>
-  <% unless request.path == login_path || request.path == signup_path %>
-    <div class="header-image text-white">
-      <div class="main-area d-flex flex-column align-items-center">
-        <h1><%= t("views.header.heading") %></h1>
-        <%=link_to t("views.header.signup_to_start"), login_path %>
-        <%= render "shared/search_form" %>
-      </div>
+  <div class="header-image text-white">
+    <div class="main-area d-flex flex-column align-items-center">
+      <h1><%= t("views.header.heading") %></h1>
+      <%=link_to t("views.header.signup_to_start"), login_path %>
+      <%= render "shared/search_form" %>
     </div>
-  <% end %>
+  </div>
 </header>

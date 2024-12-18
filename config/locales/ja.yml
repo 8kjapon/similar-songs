@@ -147,6 +147,7 @@ ja:
         placeholder: "パスワードを入力"
       submit: "ログイン"
       signup: "アカウントを作成する"
+      forget_password: "パスワードを忘れた"
     users:
       new:
         title: "アカウントを作成"
@@ -182,6 +183,18 @@ ja:
         title: "登録した曲"
       evaluated_songs:
         title: "評価した曲"
+    password_resets:
+      new:
+        title: "パスワードを忘れた"
+        content:
+          - "アカウントに登録したメールアドレスを入力してください。"
+          - "パスワード再設定用のリンクが記載されたメールを送信します。"
+        submit: 再設定用のメールを送信
+        login: "ログインする"
+      edit:
+        title: "パスワードを再設定"
+        password: "新しいパスワード"
+        submit: "パスワードの再設定"
     header:
       nav:
         song_submit: "楽曲を登録"
@@ -217,6 +230,8 @@ ja:
         edit_permit_error: "編集権限がありません"
         form_error: "入力に誤りがあります"
         contacts: "入力に誤りがあります"
+        password_resets:
+          email: "メールアドレスを入力してください"
       notice:
         user:
           submit: "ユーザー登録が完了しました"
@@ -229,6 +244,9 @@ ja:
           update: "楽曲情報を更新しました"
           destroy: "楽曲情報を削除しました"
         contacts: "お問い合わせを送信しました"
+        password_resets:
+          create: "パスワード再設定用のメールを送信しました"
+          update: "パスワードをリセットしました"
     static_pages:
       rule:
         title: "利用ルール"
@@ -256,6 +274,9 @@ ja:
         subject: "お問い合わせ内容の確認"
       notification_email:
         subject: "新しいお問い合わせがありました"
+    user:
+      reset_password_email:
+        subject: "パスワードのリセット"
   similarity_category:
     melody: "メロディー"
     style: "ジャンル・スタイル"
