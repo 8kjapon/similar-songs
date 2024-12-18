@@ -4,6 +4,11 @@ class PasswordResetsController < ApplicationController
 
   def new; end
 
+  def edit
+    @user = User.load_from_reset_password_token(params[:id])
+    not_authenticated unless @user
+  end
+
   def create
     if params[:email].empty?
       flash.now[:alert] = t("views.flash_message.alert.password_resets.email")
@@ -13,11 +18,6 @@ class PasswordResetsController < ApplicationController
       @user&.deliver_reset_password_instructions!
       redirect_to login_path, notice: t("views.flash_message.notice.password_resets.create")
     end
-  end
-
-  def edit
-    @user = User.load_from_reset_password_token(params[:id])
-    not_authenticated unless @user
   end
 
   def update
