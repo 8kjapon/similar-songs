@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_password
+    @user = current_user
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -81,10 +85,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    @user = current_user
+    unless @user.valid_password?(user_password_params[:current_password])
+      flash.now[:alert] = t("views.flash_message.alert.user.change_password")
+      render :edit_password, status: :unprocessable_entity
+      return
+    end
+
+    @user.password_confirmation = user_password_params[:password_confirmation]
+    if user_password_params[:password].presence && @user.change_password(user_password_params[:password])
+      redirect_to mypage_path, notice: t("views.flash_message.notice.user.update")
+    else
+      flash.now[:alert] = t("views.flash_message.alert.form_error")
+      render :edit_password, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_email_params
     params.require(:user).permit(:new_email, :password)
+  end
+
+  def user_password_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
   def user_params
