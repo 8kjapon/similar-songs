@@ -99,3 +99,5 @@ gem "meta-tags"
 gem "gretel"
 
 gem "aws-sdk-rails"
+
+gem "omniauth-google-oauth2"
