@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :song_pair_evaluations, dependent: :destroy
   has_many :evaluated_song_pairs, through: :song_pair_evaluations, source: :song_pair
   has_many :contacts, dependent: :nullify
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 
   validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :email, presence: true, uniqueness: true
