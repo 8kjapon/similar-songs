@@ -172,6 +172,11 @@ ja:
         title: "メールアドレスの変更"
         current_email: "現在のメールアドレス"
         new_email: "新しいメールアドレス"
+      edit_password:
+        title: "パスワードの変更"
+        current_password: "現在のパスワード"
+        password: "新しいパスワード"
+        password_confirmation: "新しいパスワードの再確認"
       mypage:
         title: "マイページ"
         user:
@@ -226,6 +231,7 @@ ja:
         user:
           password: "パスワードに誤りがあります"
           change_email: "新しいメールアドレスが現在のメールアドレスと同じです"
+          change_password: "現在のパスワードが正しくありません"
         user_sessions: "メールアドレスまたはパスワードが正しくありません"
         edit_permit_error: "編集権限がありません"
         form_error: "入力に誤りがあります"

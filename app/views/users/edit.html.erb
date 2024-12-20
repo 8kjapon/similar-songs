@@ -10,7 +10,7 @@
   </div>
   <div class="mb-3">
     <label class="form-label"><%= t("activerecord.attributes.user.password") %></label>
-    <p>*****</p>
+    <p>***** <%= link_to t("views.users.edit.change"), mypage_password_path %></p>
   </div>
   <div class="d-grid mb-3">
     <%= f.submit t("views.users.edit.submit"), class: "btn btn-primary btn-block" %>

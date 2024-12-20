@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'mypage/edit', to: 'users#edit', as: :edit_mypage
   get 'mypage/email', to: 'users#edit_email', as: :edit_email
   patch 'mypage/email', to: "users#update_email"
+  get 'mypage/password', to: 'users#edit_password', as: :edit_password
+  patch 'mypage/password', to: 'users#update_password'
   patch 'mypage', to: 'users#update'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
