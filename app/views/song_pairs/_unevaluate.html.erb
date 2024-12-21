@@ -1,0 +1,4 @@
+<%= link_to song_pair_evaluation_path(current_user.song_pair_evaluations.find_by(song_pair_id: song_pair.id)), id:"unevaluate-button-song-pair-#{song_pair.id}", class: "btn unevaluate-button", data: { turbo_method: :delete } do %>
+  <i class="fa-solid fa-thumbs-up"></i>
+  <span><%= song_pair.song_pair_evaluations.count %></span>
+<% end %>
