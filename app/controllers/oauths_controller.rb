@@ -8,18 +8,22 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    if @user = login_from(provider)
-      @user.update_column(:last_login_at, Time.current)
-      redirect_to root_path, notice: "#{provider.titleize}でログインしました"
+    if (@user = login_from(provider))
+      @user.update(last_login_at: Time.current)
+      redirect_to root_path, notice: t("views.flash_message.notice.oauths.callback.login", provider: provider.titleize)
     else
       begin
         @user = create_from(provider)
         reset_session
         auto_login(@user)
-        @user.update_column(:last_login_at, Time.current)
-        redirect_to root_path, notice: "#{provider.titleize}でログインしました"
-      rescue
-        redirect_to login_path, alert: "ログインに失敗しました"
+        @user.update(last_login_at: Time.current)
+        redirect_to root_path, notice: t("views.flash_message.notice.oauths.callback.login", provider: provider.titleize)
+      rescue NoMethodError, OAuth2::Error => e
+        Rails.logger.error(e.message)
+        redirect_to login_path, alert: t("views.flash_message.notice.oauths.callback.other")
+      rescue ActiveRecord::RecordNotUnique => e
+        Rails.logger.error(e.message)
+        redirect_to login_path, alert: t("views.flash_message.notice.oauths.callback.email")
       end
     end
   end

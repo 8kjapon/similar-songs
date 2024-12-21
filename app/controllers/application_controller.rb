@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    flash[:alert] = "ログインが必要です"
+    flash[:alert] = t("views.flash_message.alert.sorcery.not_authenticated")
     redirect_to login_path
   end
 
@@ -81,6 +81,11 @@ class ApplicationController < ActionController::Base
     # ログイン履歴が存在している場合は処理をスキップ
     return if current_user.last_login_at.presence
 
-    current_user.update_column(:last_login_at, Time.current)
+    current_user.update(:last_login_at, Time.current)
+  end
+
+  # OAuthログインユーザーのアクセス制限用の処理
+  def redirect_if_oauth_user
+    redirect_to mypage_path if current_user.oauth?
   end
 end

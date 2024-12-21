@@ -120,8 +120,4 @@ class UsersController < ApplicationController
   def user_update_params
     params.require(:user).permit(:name)
   end
-
-  def redirect_if_oauth_user
-    redirect_to mypage_path if current_user.oauth?
-  end
 end
