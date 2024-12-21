@@ -15,4 +15,10 @@
     <%= link_to t('views.user_sessions.forget_password'), new_password_reset_path %>
     <%= link_to t('views.user_sessions.signup'), signup_path %>
   </div>
+  <div class="mb-3 login-buttons">
+    <%= link_to auth_at_provider_path(provider: :google), class: "btn oauth-login-button google-login" do %>
+      <i class="fa-brands fa-google"></i>
+      <span><%= t("views.user_sessions.oauth_login.google") %></span>
+    <% end %>
+  </div>
 <% end %>

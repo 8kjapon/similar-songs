@@ -148,6 +148,8 @@ ja:
       submit: "ログイン"
       signup: "アカウントを作成する"
       forget_password: "パスワードを忘れた"
+      oauth_login:
+        google: "Googleでログイン"
     users:
       new:
         title: "アカウントを作成"
@@ -238,6 +240,12 @@ ja:
         contacts: "入力に誤りがあります"
         password_resets:
           email: "メールアドレスを入力してください"
+        sorcery:
+          not_authenticated: "ログインが必要です"
+        oauths:
+        callback:
+          other: "ログインに失敗しました"
+          email: "該当するアカウントのメールアドレスが既に使用されています"
       notice:
         user:
           submit: "ユーザー登録が完了しました"
@@ -253,6 +261,9 @@ ja:
         password_resets:
           create: "パスワード再設定用のメールを送信しました"
           update: "パスワードをリセットしました"
+        oauths:
+          callback:
+            login: "%{provider}でログインしました"
     static_pages:
       rule:
         title: "利用ルール"

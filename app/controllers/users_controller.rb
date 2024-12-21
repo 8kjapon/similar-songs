@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: %i[new create]
+  before_action :redirect_if_oauth_user, only: %i[edit_email edit_password update_email update_password]
 
   def mypage
     @user = current_user

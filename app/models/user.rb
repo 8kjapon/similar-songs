@@ -3,9 +3,11 @@ class User < ApplicationRecord
   has_many :song_pairs, dependent: :nullify
   has_many :song_pair_evaluations, dependent: :destroy
   has_many :evaluated_song_pairs, through: :song_pair_evaluations, source: :song_pair
-  has_many :contacts, dependent: :nullify
+  has_many :contacts, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
-  validates :name, presence: true, length: { minimum: 3, maximum: 255 }
+  validates :name, presence: true, length: { minimum: 2, maximum: 255 }
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, presence: true, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -43,5 +45,10 @@ class User < ApplicationRecord
   # 管理者識別用の処理
   def admin?
     role == 'admin'
+  end
+
+  # OAuthログインをしているユーザーか識別する処理
+  def oauth?
+    authentications.present?
   end
 end

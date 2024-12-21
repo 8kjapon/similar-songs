@@ -15,6 +15,37 @@
     --bs-btn-disabled-border-color: #FF7171;
 }
 
+.oauth-login-button {
+    border: none;
+    &:hover {
+        border: none;
+    }
+    &:active {
+        border: none;
+    }
+}
+
+.google-login {
+    background-color: #fff;
+    color: #000;
+    padding: 1em;
+
+    &:hover {
+        background-color: #fff;
+        color: #000;
+    }
+    &:active {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 label {
     white-space: nowrap;
 }

@@ -23,7 +23,7 @@
   
   <div class="user-info-block text-center mb-4">
     <h3><%= t("views.song_pairs.show.user") %></h3>
-    <p><%= @song_pair.user.name %></p>
+    <p><%= @song_pair.user.name if @song_pair.user.presence %></p>
   </div>
 
   <div class="evaluate_button_block text-center mb-4">
