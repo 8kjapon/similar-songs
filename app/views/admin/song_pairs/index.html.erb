@@ -23,7 +23,7 @@
               <td><%= song_pair.original_song.artist_list %> / <%= song_pair.original_song.title %></td>
               <td><%= song_pair.similar_song.artist_list %> / <%= song_pair.similar_song.title %></td>
               <td><%= song_pair.similarity_category_name %></td>
-              <td><%= song_pair.user.name %></td>
+              <td><%= song_pair.user.name if song_pair.user.presence %></td>
               <td>
                 <%= link_to "閲覧", song_pair_path(song_pair) %>
                 <%= link_to "編集", edit_admin_song_pair_path(song_pair) %>

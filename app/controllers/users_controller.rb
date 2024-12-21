@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: %i[new create]
+  before_action :redirect_if_oauth_user, only: %i[edit_email edit_password update_email update_password]
 
   def mypage
     @user = current_user
@@ -118,5 +119,9 @@ class UsersController < ApplicationController
 
   def user_update_params
     params.require(:user).permit(:name)
+  end
+
+  def redirect_if_oauth_user
+    redirect_to mypage_path if current_user.oauth?
   end
 end

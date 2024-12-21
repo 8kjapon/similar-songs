@@ -81,6 +81,6 @@ class ApplicationController < ActionController::Base
     # ログイン履歴が存在している場合は処理をスキップ
     return if current_user.last_login_at.presence
 
-    current_user.update(last_login_at: Time.current)
+    current_user.update_column(:last_login_at, Time.current)
   end
 end
