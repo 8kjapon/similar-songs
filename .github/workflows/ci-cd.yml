@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
@@ -26,20 +26,12 @@ jobs:
       - name: Bundle install
         run: bundle install
 
-  test:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
       - name: Run Rubocop Check
         run: bundle exec rubocop
 
       - name: Run RSpec tests
         run: bundle exec rspec
 
-  build:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: Build assets with esbuild
         run: npm run build
         working-directory: .
