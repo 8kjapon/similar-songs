@@ -4,15 +4,7 @@
   <div class="container-fluid">
     <div class="row">
       <%= form_with model: @artist, url: admin_artist_path(@artist), local: true do |f| %>
-        <% if @artist.errors.any? %>
-          <div id="error_explanation" class="alert alert-danger">
-            <ul>
-              <% @artist.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'shared/error_messages', object: f.object %>
         <table class="table table-bordered">
           <thead>
             <tr>

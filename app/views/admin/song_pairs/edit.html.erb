@@ -4,15 +4,7 @@
   <div class="container-fluid">
     <div class="row">
       <%= form_with model: @song_pair, url: admin_song_pair_path(@song_pair), local: true do |f| %>
-        <% if @song_pair.errors.any? %>
-          <div id="error_explanation" class="alert alert-danger">
-            <ul>
-              <% @song_pair.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render 'shared/error_messages', object: f.object %>
         <h3 class="text-center mb-4">カテゴリー</h3>
         <div class="mb-3">
           <%= f.collection_select :similarity_category_id, @categories, :id, :name, {}, { class: 'form-select' } %>

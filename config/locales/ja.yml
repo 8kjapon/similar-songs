@@ -333,6 +333,15 @@ ja:
       messages:
         blank: "%{attribute}が入力されていません"
       models:
+        user:
+          attributes:
+            name:
+              too_long: "%{attribute}は255文字以内で入力してください"
+              too_short: "%{attribute}は2文字以上で入力してください"
+            email:
+              taken: "%{attribute}は既に存在します"
+            password: 
+              too_short: "%{attribute}は6文字以上で入力してください"
         song_pair:
           attributes:
             original_song_id:
