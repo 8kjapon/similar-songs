@@ -48,15 +48,7 @@
 
   <%# 曲情報入力 %>
   <div data-multi-step-form-target="step" class="hidden">
-    <% if @song_pair.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger">
-        <ul>
-          <% @song_pair.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'shared/error_messages', object: f.object %>
 
     <h3 class="text-center mb-4"><%= t("views.song_pairs.new.song_1.heading") %></h3>
     <p class="text-center"><%= t("views.song_pairs.new.song_1.description") %></p>

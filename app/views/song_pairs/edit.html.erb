@@ -1,14 +1,6 @@
 <h1 class="text-center mb-4"><%= t("views.song_pairs.edit.title") %></h1>
 <%= form_with model: @song_pair, url: song_pair_path(@song_pair), local: true do |f| %>
-  <% if @song_pair.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <ul>
-        <% @song_pair.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: f.object %>
   <h3 class="text-center mb-4"><%= t("views.song_pairs.edit.category") %></h3>
   <div class="mb-3">
     <%= f.collection_select :similarity_category_id, @categories, :id, :name, {}, { class: 'form-select' } %>
