@@ -73,6 +73,9 @@ group :development do
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
   gem "letter_opener_web", "~> 3.0"
+  gem "rspec-rails", "~> 7.0.0"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :test do
