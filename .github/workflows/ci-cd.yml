@@ -20,10 +20,11 @@ jobs:
         with:
           ruby-version: 3.2.5
 
-      - name: Install Dependencies
-        run: |
-          gem install bundler
-          bundle install
+      - name: Setup bundler
+        run: gem install bundler
+
+      - name: Bundle install
+        run: bundle install
 
   test:
     runs-on: ubuntu-latest
