@@ -29,7 +29,13 @@
   <div class="evaluate_button_block text-center mb-4">
     <h3><%= t("views.song_pairs.show.evaluate.heading") %></h3>
     <p><%= t("views.song_pairs.show.evaluate.guide") %></p>
-    <%= render 'evaluate_button', song_pair: @song_pair %>
+    <div class="evaluate-buttons">
+      <% if logged_in? %>
+        <%= render 'evaluate_button', song_pair: @song_pair %>
+      <% else %>
+        <%= link_to t("views.song_pairs.evaluate.signup_to_evaluate"), login_path %>
+      <% end %>
+    </div>
   </div>
 
   <div class="text-center mb-4">

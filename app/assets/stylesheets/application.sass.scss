@@ -91,10 +91,6 @@ label {
 iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
-    @media (max-width: 768px) {
-        width: 320px;
-        height: 180px;
-    }
 }
 
 body {
@@ -275,21 +271,46 @@ footer {
 .evaluate-button {
     margin-left: auto;
     margin-right: auto;
-    height: 60px;
+    width: 30%;
+    background-color: #FFF;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    @media (max-width: 425px) {
+        width: 100%;
+    }
+    &:hover {
+        background-color: #FFF;
+        color: #000;
+    }
+    &:active {
+        background-color: #FFF;
+        color: #000;
+    }
+}
+
+.unevaluate-button {
+    margin-left: auto;
+    margin-right: auto;
     width: 30%;
     background-color: #FF7171;
     border-radius: 7px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    @media (max-width: 1024px) {
+    font-size: 1.5em;
+    @media (max-width: 425px) {
         width: 100%;
-        white-space: nowrap;
     }
-    p {
-        margin: 0;
+    &:hover {
+        background-color: #FF7171;
+        color: #000;
+    }
+    &:active {
+        background-color: #FF7171;
+        color: #000;
     }
 }
 

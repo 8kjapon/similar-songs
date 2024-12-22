@@ -1,0 +1,4 @@
+<%= link_to song_pair_evaluations_path(song_pair_id: song_pair.id), id:"evaluate-button-song-pair-#{song_pair.id}", class: "btn evaluate-button", data: { turbo_method: :post } do %>
+  <i class="fa-regular fa-thumbs-up"></i>
+  <span><%= song_pair.song_pair_evaluations.count %></span>
+<% end %>

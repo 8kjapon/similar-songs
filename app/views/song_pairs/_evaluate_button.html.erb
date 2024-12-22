@@ -1,14 +1,7 @@
-<div class="evaluate-button">
-  <% if logged_in? %>
-    <div>
-      <% if current_user.song_pair_evaluated?(song_pair) %>
-        <%= link_to t("views.song_pairs.evaluate.unevaluation"), song_pair_evaluation_path(current_user.song_pair_evaluations.find_by(song_pair_id: song_pair.id)), data: { turbo_method: :delete }%>
-      <% else %>
-        <%= link_to t("views.song_pairs.evaluate.evaluation"), song_pair_evaluations_path(song_pair_id: song_pair.id), data: { turbo_method: :post } %>
-      <% end %>
-      <p>SIM!数: <%= song_pair.song_pair_evaluations.count %></p>
-    </div>
+<div>
+  <% if current_user.song_pair_evaluated?(song_pair) %>
+    <%= render 'unevaluate', song_pair: song_pair %>
   <% else %>
-    <%= link_to t("views.song_pairs.evaluate.signup_to_evaluate"), login_path %>
+    <%= render 'evaluate', song_pair: song_pair %>
   <% end %>
 </div>

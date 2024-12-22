@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "evaluate-button-song-pair-#{@song_pair.id}" do %>
+  <%= render 'song_pairs/unevaluate', song_pair: @song_pair %>
+<% end %>
