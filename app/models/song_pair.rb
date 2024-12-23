@@ -6,6 +6,7 @@ class SongPair < ApplicationRecord
   has_many :song_pair_evaluations, dependent: :destroy
 
   validates :original_song_id, uniqueness: { scope: :similar_song_id }
+  validate :different_songs
   validates :original_song_description, presence: true
   validates :similar_song_description, presence: true
 
@@ -109,5 +110,9 @@ class SongPair < ApplicationRecord
 
     # 楽曲説明のチェック
     errors.add(song_description, "#{song_label}#{I18n.t('errors.messages.blank_song_description')}") if send(song_description).blank?
+  end
+
+  def different_songs
+    errors.add(:similar_song_id, I18n.t('errors.messages.different_songs')) if original_song_id == similar_song_id
   end
 end

@@ -70,7 +70,7 @@ class Song < ApplicationRecord
     return unless release_date.to_i > Time.zone.today.year
 
     # リリース年が未来を指す数値の場合にエラーを追加
-    errors.add(:release_date, "は未来の数値にできません。")
+    errors.add(:release_date, I18n.t('errors.messages.invalid_release_date'))
   end
 
   # 引数として受け取ったYouTubeのURLからID部分を抽出する処理

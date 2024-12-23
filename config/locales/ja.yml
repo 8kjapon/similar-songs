@@ -346,8 +346,18 @@ ja:
           attributes:
             original_song_id:
               taken: "既に存在している曲の組み合わせです"
+        artist:
+          attributes:
+            name:
+              too_long: "%{attribute}は255文字以内で入力してください"
+        song_artist:
+          attributes:
+            song_id:
+              taken: "既に存在している組み合わせです"
   errors:
     format: "%{message}"
     messages:
       invalid_media_url: "メディアURLが入力されていないか、形式が正しくありません"
+      invalid_release_date: "は未来の数値にできません"
       blank_song_description: "の説明が入力されていません"
+      different_songs: "同じ曲での組み合わせは作成できません"
