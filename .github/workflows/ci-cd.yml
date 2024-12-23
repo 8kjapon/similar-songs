@@ -87,19 +87,25 @@ jobs:
             cd $SERVER_APP_DIR
 
             # 最新のコードのpullとDockerコンテナの停止
+            echo ">>> 最新のコードを取得中"
             git pull orign master
+            echo ">>> コンテナの停止中"
             docker compose -f docker-compose.production.yml down
 
             # Gemのインストール
-            docker-compose -f docker-compose.production.yml run --rm web bundle install
+            echo ">>> Gemのインストール"
+            docker compose -f docker-compose.production.yml run web bundle install
 
             # DBのマイグレーション
-            docker-compose -f docker-compose.production.yml run web bundle exec rails db:migrate
+            echo ">>> DBのマイグレーション"
+            docker compose -f docker-compose.production.yml run web bundle exec rails db:migrate
 
             # アセットのプリコンパイル
-            docker-compose -f docker-compose.production.yml run web bundle exec rails assets:precompile
+            echo ">>> アセットのプリコンパイル"
+            docker compose -f docker-compose.production.yml run web bundle exec rails assets:precompile
 
             # Dockerコンテナの立ち上げ
-            docker-compose -f docker-compose.production.yml up -d --build
+            echo ">>> コンテナの起動中"
+            docker compose -f docker-compose.production.yml up -d --build
           EOF
           rm private_key.pem
