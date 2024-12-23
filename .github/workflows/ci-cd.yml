@@ -53,15 +53,17 @@ jobs:
           cp config/database.ci.yml config/database.yml
           RAILS_ENV=test bundle exec rails db:create db:migrate
 
+      - name: Build assets with esbuild
+        run: |
+          yarn install
+          npm run build
+        working-directory: .
+
       - name: Run Rubocop Check
         run: bundle exec rubocop
 
       - name: Run RSpec tests
         run: bundle exec rspec
-
-      - name: Build assets with esbuild
-        run: npm run build
-        working-directory: .
 
   deploy:
     runs-on: ubuntu-latest
