@@ -1,0 +1,13 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: test_user
+  password: password
+
+development:
+  <<: *default
+  database: github_actions_ci
+
+test:
+  <<: *default
+  database: github_actions_ci
