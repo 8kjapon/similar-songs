@@ -88,8 +88,5 @@ jobs:
 
             # コードの更新
             ./maintenance/update.sh
-
-            # プリコンパイル
-            ./maintenance/precompile.sh
           EOF
           rm private_key.pem
