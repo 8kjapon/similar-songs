@@ -86,26 +86,10 @@ jobs:
           ssh -o StrictHostKeyChecking=no -t -i private_key.pem -p $SERVER_PORT $SERVER_USER@$SERVER_HOST << EOF
             cd $SERVER_APP_DIR
 
-            # 最新のコードのpullとDockerコンテナの停止
-            echo ">>> 最新のコードを取得中"
-            git pull orign master
-            echo ">>> コンテナの停止中"
-            docker compose -f docker-compose.production.yml down
+            # コードの更新
+            ./maintenance/update.sh
 
-            # Gemのインストール
-            echo ">>> Gemのインストール"
-            docker compose -f docker-compose.production.yml run web bundle install
-
-            # DBのマイグレーション
-            echo ">>> DBのマイグレーション"
-            docker compose -f docker-compose.production.yml run web bundle exec rails db:migrate
-
-            # アセットのプリコンパイル
-            echo ">>> アセットのプリコンパイル"
-            docker compose -f docker-compose.production.yml run web bundle exec rails assets:precompile
-
-            # Dockerコンテナの立ち上げ
-            echo ">>> コンテナの起動中"
-            docker compose -f docker-compose.production.yml up -d --build
+            # プリコンパイル
+            ./maintenance/precompile.sh
           EOF
           rm private_key.pem
