@@ -32,7 +32,7 @@ musimでは
 - ジャンル・スタイルが似ている
 - サンプリングしているorされている
 
-という定義でカテゴライズしており、「この曲に似ている(関係している)曲を探したい」という明確な目的を持たれたユーザーの需要を満たしやすい条件の元楽曲分けがされています。
+という定義でカテゴライズしており、「この曲に似ている(関係している)曲を探したい」という明確な目的を持たれたユーザーの需要を満たしやすい条件のもと楽曲分けがされています。
 また、各カテゴリーの定義についても楽曲登録ページにて以下のようなガイドラインを設置することで『どこを基準に判断するべきか』をユーザー側でも理解しやすいようになっています。
 [![Image from Gyazo](https://i.gyazo.com/4a7d999883bdc842d70d640ca4113c64.jpg)](https://gyazo.com/4a7d999883bdc842d70d640ca4113c64)
 このようなガイドラインを設けることで、カテゴリー内コンテンツのブレを抑えると共に、一見大雑把なカテゴリーに見える『ジャンル・スタイル』についても
@@ -44,17 +44,17 @@ musimでは
 ## 🎵主要な機能
 | 似ている楽曲の検索・閲覧機能 |
 | :---: |
-| [![Image from Gyazo](https://i.gyazo.com/8dd6202996660828bbfb4d3202d4b6bf.gif)](https://gyazo.com/8dd6202996660828bbfb4d3202d4b6bf) |
+| ![Image](https://github.com/user-attachments/assets/39c2b92b-b132-46dd-b96c-790534cba9ad) |
 | 任意のワードから楽曲やアーティストを検索し、コンテンツを閲覧 |
 
 | 自分が知っている似ている楽曲の登録機能 |
 | :---: |
-| [![Image from Gyazo](https://i.gyazo.com/b6d2c0b65cf93e2a9dac3d6342a488e2.gif)](https://gyazo.com/b6d2c0b65cf93e2a9dac3d6342a488e2) |
+| ![Image](https://github.com/user-attachments/assets/a2cda179-2c54-44f0-af17-3640ff5f1ef5) |
 | 楽曲情報やYouTubeリンクなどを入力し、楽曲情報を登録<br>オートコンプリート機能やYouTube動画のプレイヤー自動表示機能なども実装 |
 
 | 似ている楽曲への評価機能 |
 | :---: |
-| [![Image from Gyazo](https://i.gyazo.com/bb439ba8734c98b9e9a7046e2c55bb34.gif)](https://gyazo.com/bb439ba8734c98b9e9a7046e2c55bb34) |
+| ![Image](https://github.com/user-attachments/assets/64cc31be-4745-43fc-bc28-96ac060ccb15) |
 | 「似ている！」や「良い！」と思える楽曲へ評価することが可能 |
 
 | 閲覧数を参照にした人気楽曲の一覧機能 |
