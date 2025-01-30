@@ -156,6 +156,7 @@ JavaScriptに関してはStimulus等のライブラリも利用しておりま�
 
 ## 画面遷移図 (開発前段階)
 開発前段階で以下のような画面遷移を想定し、画面遷移図の作成を行いました。
+
 [画面遷移図 - figma](https://www.figma.com/design/3bjsOa8nyyGksM4QTVnIXz/240930_similar-songs?node-id=1-2&t=I00VkG1r1UnokXIS-1)
 
 設計段階で**未ログイン時のコンテンツ**と**ログイン状態時のコンテンツ**を分けて作成し、それぞれの状況に必要な情報やUIの選定を行っています。
