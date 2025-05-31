@@ -1,5 +1,5 @@
 # musim:『似ている』から始まる曲探し
-[![Image from Gyazo](https://i.gyazo.com/79799672f852595a24a1177be4ac6a22.jpg)](https://gyazo.com/79799672f852595a24a1177be4ac6a22)
+~~[![Image from Gyazo](https://i.gyazo.com/79799672f852595a24a1177be4ac6a22.jpg)](https://gyazo.com/79799672f852595a24a1177be4ac6a22)~~ ただいま利用しているサーバーの関係により一時的に公開を中止しております。ご了承ください。
 
 ## 📄サービス概要
 - 似てるジャンルや似てるメロディの楽曲を紹介する『音楽紹介サイト』になります。
